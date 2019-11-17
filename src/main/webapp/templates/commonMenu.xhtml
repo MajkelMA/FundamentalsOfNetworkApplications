@@ -8,10 +8,12 @@
 
 <h:body>
     <ui:composition>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <h:outputLink value="/pas2/faces/index.xhtml">
+            <h:outputLabel value="Main"/>
+        </h:outputLink>
+        <h:outputLink value="/pas2/faces/createAccount.xhtml">
+            <h:outputLabel value="Create Account" />
+        </h:outputLink>
     </ui:composition>
 </h:body>
 </html>

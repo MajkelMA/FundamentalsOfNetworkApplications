@@ -9,10 +9,17 @@
 
 
         <ui:define  name="content">
-                <h:dataTable value="#{accountRepository.all}" var="account">
-                        <h:column>#{account.login}</h:column>
-                </h:dataTable>
-        </ui:define>
+                <ul>
+                    <ui:repeat value="#{accountController.all}" var="account">
+                        <li>
+                            <h:outputLink value="/pas2/faces/accountAction.xhtml">
+                                <f:param name="id" value="#{account.id}"/>
+                                <h:outputText value="#{account.login}"/>
+                            </h:outputLink>
+                        </li>
+                    </ui:repeat>
+                </ul>
+       </ui:define>
 
 
 </ui:composition>

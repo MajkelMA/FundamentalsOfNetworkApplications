@@ -1,0 +1,77 @@
+body {
+    /* ========================================================
+    This pattern is downloaded from www.subtlepatterns.com
+    If you need more, that's where to get'em.
+    ======================================================== */
+    background-image: url(#{request.contextPath}/resources/images/mosaic.png);
+    color: white;
+}
+
+.form-item{
+    width: 100%;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-form-item input {
+    border: 1px solid #aaa;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#menu{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+#menu a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+#menu a:hover{
+    color: #f1f1f1;
+}
+
+
+#content {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0 10px;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+#footer{
+    margin-left: 160px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #757575;
+    padding: 1rem;
+    background-color: #3a403a;
+    text-align: center;
+}
+
+#header{
+    padding: 1em;
+    display: block;
+    margin-left: 160px;
+    text-align: center;
+}

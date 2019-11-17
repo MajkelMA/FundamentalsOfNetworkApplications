@@ -2,18 +2,14 @@ package com.lapciakbilicki.pas2.repository;
 
 import com.lapciakbilicki.pas2.filler.AccountFiller;
 import com.lapciakbilicki.pas2.model.account.Account;
-import com.sun.deploy.panel.AbstractRadioPropertyGroup;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.ArrayList;
 
 @ApplicationScoped
-@Named
 public class AccountRepository extends RepositoryAdapter<Account>{
-
 
     public AccountRepository(){
         this.setListOfItems(new ArrayList<>());

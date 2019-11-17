@@ -5,7 +5,7 @@ import com.lapciakbilicki.pas2.model.account.Account;
 
 import java.util.Objects;
 
-public abstract class SportsFacility implements IsIdentified{
+public abstract class SportsFacility implements IsIdentified {
     private String id;
     private double pricePerHours;
     private boolean access;

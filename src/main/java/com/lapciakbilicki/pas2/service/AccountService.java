@@ -12,6 +12,7 @@ import java.util.List;
 @RequestScoped
 public class AccountService extends ServiceAdapter<Account> {
 
+
     public AccountService() {
     }
 

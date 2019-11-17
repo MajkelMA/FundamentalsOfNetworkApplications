@@ -13,7 +13,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
-@Named
 public class AccountFiller implements Filler<Account> {
 
     @Override

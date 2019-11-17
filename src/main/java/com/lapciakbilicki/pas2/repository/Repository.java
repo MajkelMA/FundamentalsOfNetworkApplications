@@ -14,5 +14,4 @@ public interface Repository<T> {
     void update(T item);
     boolean remove(T item);
     List<T> getByCondition(Predicate<T> predicate);
-
 }

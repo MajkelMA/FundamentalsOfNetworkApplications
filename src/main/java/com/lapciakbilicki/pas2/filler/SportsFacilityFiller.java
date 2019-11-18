@@ -26,7 +26,7 @@ public class SportsFacilityFiller implements Filler<SportsFacility> {
                         true,
                         random.nextDouble()*50+5,
                          field,
-                         faker.funnyName().name(),
+                         faker.witcher().location(),
                          random.nextBoolean(),
                         random.nextDouble()*5,
                         random.nextDouble()*3
@@ -38,7 +38,7 @@ public class SportsFacilityFiller implements Filler<SportsFacility> {
                         true,
                         random.nextDouble()*50+5,
                          field,
-                         faker.funnyName().name(),
+                         faker.witcher().location(),
                         random.nextInt(10)+2,
                         1.5,
                          random.nextDouble()*5

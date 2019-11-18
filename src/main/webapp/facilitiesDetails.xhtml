@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template = "templates/mainTemplate.xhtml">
+
+    <ui:define name="content">
+        id: #{sportsFacilityController.activeSportsFacility.id} <br/>
+        Price per hours: #{sportsFacilityController.activeSportsFacility.pricePerHours} <br/>
+        Access: #{sportsFacilityController.activeSportsFacility.access} <br/>
+        Penalty: #{sportsFacilityController.activeSportsFacility.penalty} <br/>
+
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                       value="Number of Basket: #{sportsFacilityController.activeSportsFacility.numberOfBasket}"/> <br/>
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                       value="Min height of Basket: #{sportsFacilityController.activeSportsFacility.minHeightOfBasket}"/> <br/>
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                       value="Max height of Basket: #{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}"/> <br/>
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                       value="Full size: #{sportsFacilityController.activeSportsFacility.fullSize}"/> <br/>
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                       value="Width Of Goal: #{sportsFacilityController.activeSportsFacility.widthOfGoal}"/> <br/>
+        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                       value="Height Of Goal: #{sportsFacilityController.activeSportsFacility.heightOfGoal}"/> <br/>
+
+        Field Info: <br/>
+            Surface Area: #{sportsFacilityController.activeSportsFacility.field.surfaceArea} <br/>
+            Max Amount Of People: #{sportsFacilityController.activeSportsFacility.field.maxAmountOfPeople} <br/>
+            Type of Ground: #{sportsFacilityController.activeSportsFacility.field.typeOfGround} <br/>
+    </ui:define>
+</ui:composition>

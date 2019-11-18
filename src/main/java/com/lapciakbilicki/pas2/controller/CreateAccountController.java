@@ -65,16 +65,16 @@ public class CreateAccountController implements Serializable {
     public void createAccount(){
         boolean result;
         switch(type){
-            case "Users Admin":
-                result = this.accountService.add(new AdminAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                break;
-            case "Resources Admin":
-                result = this.accountService.add(new ResourcesManagerAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                break;
-            case "Client":
-                result = this.accountService.add(new ClientAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                break;
-            default:
+                case "Users Admin":
+                    result = this.accountService.add(new AdminAccount(UUID.randomUUID().toString(), login, password, fullName, true));
+                    break;
+                case "Resources Admin":
+                    result = this.accountService.add(new ResourcesManagerAccount(UUID.randomUUID().toString(), login, password, fullName, true));
+                    break;
+                case "Client":
+                    result = this.accountService.add(new ClientAccount(UUID.randomUUID().toString(), login, password, fullName, true));
+                    break;
+                default:
                 result = false;;
         }
         if (result) {

@@ -39,5 +39,4 @@ public class AccountService extends ServiceAdapter<Account> {
             accountToChange.setActive(!accountToChange.isActive());
     }
 
-
 }

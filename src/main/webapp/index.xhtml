@@ -2,27 +2,33 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      template = "templates/mainTemplate.xhtml">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="templates/mainTemplate.xhtml">
 
+    <ui:define name="content">
+        <h:form>
+            <ul>
+                <ui:repeat value="#{accountController.all}" var="account">
+                    <li>
+                        <h:outputLink value="/pas2/faces/accountAction.xhtml"
+                                      styleClass="#{account.active ? 'active' : 'inactive'}">
+                            <f:param name="id" value="#{account.id}"/>
+                            <h:outputText value="#{account.login}"/>
+                        </h:outputLink>
 
-        <ui:define  name="content">
-                <h:form>
-                    <ul>
-                        <ui:repeat value="#{accountController.all}" var="account">
-                            <li>
-                                <h:outputLink value="/pas2/faces/accountAction.xhtml"  styleClass="#{account.active ? 'active' : 'inactive'}">
-                                    <f:param name="id" value="#{account.id}"/>
-                                    <h:outputText value="#{account.login}"/>
-                                </h:outputLink>
-                                <h:commandButton action="#{accountController.changeUserActive(account.id)}" value="Change active"/>
-                            </li>
-                        </ui:repeat>
-                    </ul>
-                </h:form>
-       </ui:define>
+                        <h:commandButton action="#{accountController.changeUserActive(account.id)}"
+                                         value="Change active"/>
 
-
+                        <p:linkButton outcome="modifyAccount.xhtml" value="Modify">
+                            <f:param name="id" value="#{account.id}"/>
+                            <h:outputText value="#{account.login}"/>
+                        </p:linkButton>
+                    </li>
+                </ui:repeat>
+            </ul>
+        </h:form>
+    </ui:define>
 </ui:composition>

@@ -7,7 +7,54 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template = "templates/mainTemplate.xhtml">
 
+    <ui:define name="scripts">
+        <h:outputScript library="js" name="form.js"/>
+    </ui:define>
     <ui:define name="content">
-
+        <h:form id="createFacilityForm">
+            <h:selectOneMenu id="typeSelect" onchange="changeVisibility()">
+                <f:selectItem itemValue="FootballFacility" itemLabel="Football Facility"/>
+                <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball Facility"/>
+            </h:selectOneMenu><br/>
+            <div>Price Per Hours: <h:inputText value="#{createSportsFacilityController.pricePerHours}"/><br/></div>
+            <div>Penalty: <h:inputText value="#{createSportsFacilityController.penalty}"/><br/></div>
+            <div>Name: <h:inputText value="#{createSportsFacilityController.name}"/><br/></div>
+            <div style="visibility: visible" id="selectFullsize">
+                Full Size:
+                <h:selectOneMenu value="#{createSportsFacilityController.fullSize}" >
+                    <f:selectItem itemValue="true" itemLabel="yes"/>
+                    <f:selectItem itemValue="false" itemLabel="no"/>
+                </h:selectOneMenu>
+                <br/>
+            </div>
+            <div style="visibility: visible;" id="widthOfGoal">
+                Width of Goal: <h:inputText value="#{createSportsFacilityController.widthOfGoal}"/>
+                <br/>
+            </div>
+            <div style="visibility: visible;" id="heightOfGoal">
+                Height of Goal: <h:inputText value="#{createSportsFacilityController.heightOfGoal}"/>
+                <br/>
+            </div>
+            <div style="visibility: hidden;" id="numberOfBasket">
+                Number of Basket <h:inputText value="#{createSportsFacilityController.numberOfBasket}"/>
+                <br/>
+            </div>
+            <div style="visibility: hidden;" id="minHeightOfBasket">
+                Min Height of Basket <h:inputText value="#{createSportsFacilityController.minHeightOfBasket}"/>
+                <br/>
+            </div>
+            <div style="visibility: hidden;" id="maxHeightOfBasket">
+                Max Height Basket <h:inputText value="#{createSportsFacilityController.maxHeightOfBasket}"/>
+                <br/>
+            </div>
+            <div style="visibility: visible" id="submitFootballFacility">
+                 <h:commandButton action="#{createSportsFacilityController.createFootballFacility}" value="Create"/>
+                <br/>
+            </div>
+            <div style="visibility: hidden" id="submitBasketballFacility">
+                <h:commandButton action="#{createSportsFacilityController.createBasketballFacility}" value="Create"/>
+                <br/>
+            </div>
+        </h:form>
     </ui:define>
 </ui:composition>

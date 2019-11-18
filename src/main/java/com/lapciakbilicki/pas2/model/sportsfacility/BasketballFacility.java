@@ -9,8 +9,8 @@ public class BasketballFacility extends SportsFacility{
 
     }
 
-    public BasketballFacility(String id, double pricePerHours, boolean access, double penalty, Field field, int numberOfBasket, double minHeightOfBasket, double maxHeightOfBasket) {
-        super(id, pricePerHours, access, penalty, field);
+    public BasketballFacility(String id, double pricePerHours, boolean access, double penalty, Field field, String name, int numberOfBasket, double minHeightOfBasket, double maxHeightOfBasket) {
+        super(id, pricePerHours, access, penalty, field, name);
         this.numberOfBasket = numberOfBasket;
         this.minHeightOfBasket = minHeightOfBasket;
         this.maxHeightOfBasket = maxHeightOfBasket;

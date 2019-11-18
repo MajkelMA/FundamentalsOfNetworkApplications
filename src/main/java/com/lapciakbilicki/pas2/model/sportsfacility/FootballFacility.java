@@ -10,8 +10,8 @@ public class FootballFacility extends SportsFacility {
 
     }
 
-    public FootballFacility(String id, double pricePerHours, boolean access, double penalty, Field field, boolean fullSize, double widthOfGoal, double heightOfGoal) {
-        super(id, pricePerHours, access, penalty, field);
+    public FootballFacility(String id, double pricePerHours, boolean access, double penalty, Field field, String name,boolean fullSize, double widthOfGoal, double heightOfGoal) {
+        super(id, pricePerHours, access, penalty, field, name);
         this.fullSize = fullSize;
         this.widthOfGoal = widthOfGoal;
         this.heightOfGoal = heightOfGoal;

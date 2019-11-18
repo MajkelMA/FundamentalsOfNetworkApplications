@@ -5,7 +5,7 @@ import com.lapciakbilicki.pas2.model.IsIdentified;
 import java.util.Objects;
 
 
-public abstract class Account implements IsIdentified{
+public abstract class Account implements IsIdentified {
     private String id;
     private String login;
     private String password;
@@ -62,7 +62,7 @@ public abstract class Account implements IsIdentified{
         this.active = active;
     }
 
-    public void copyAttributionsWithoutId(Account account){
+    public void copyAttributionsWithoutId(Account account) {
         this.login = account.login;
         this.password = account.password;
         this.fullName = account.fullName;
@@ -72,9 +72,9 @@ public abstract class Account implements IsIdentified{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+//        if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id.equals(account.id);
+        return this.id.equals(account.id);
     }
 
     @Override

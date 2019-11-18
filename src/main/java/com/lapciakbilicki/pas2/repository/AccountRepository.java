@@ -24,9 +24,14 @@ public class AccountRepository extends RepositoryAdapter<Account>{
 
     @Override
     public void update(Account item) {
-        Account accountToUpdate = this.get(item.getId());
-        if(accountToUpdate != null){
-            accountToUpdate.copyAttributionsWithoutId(item);
+        if(this.remove(item)){
+            if (item.getClass().getSimpleName().equals("AdminAccount")) {
+                this.add(item);
+            } else if (item.getClass().getSimpleName().equals("ResourcesManagerAccount")) {
+                this.add(item);
+            } else {
+                this.add(item);
+            }
         }
     }
 }

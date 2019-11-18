@@ -12,26 +12,38 @@
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel value="Id:" for="acId"/>
-                <p:autoComplete id="acId" value="#{accountController.activeAccount.id}"/>
+                <h:outputLabel value="Type:" for="acType"/>
+                <h:selectOneMenu id="acType" value="#{modifyAccountController.type}">
+                    <f:selectItem itemValue="AdminAccount" itemLabel="Users Admin"/>
+                    <f:selectItem itemValue="ResourcesManagerAccount" itemLabel="Resources Admin"/>
+                    <f:selectItem itemValue="ClientAccount" itemLabel="Client"/>
+                </h:selectOneMenu>
 
-                <p:outputLabel value="Login:" for="acLogin"/>
-                <p:autoComplete id="acLogin" value="#{accountController.activeAccount.login}"/>
+                <h:outputLabel value="Id:" for="acId"/>
+                <h:inputText id="acId" value="#{modifyAccountController.id}"/>
 
-                <p:outputLabel value="Password:" for="acPassword"/>
-                <p:autoComplete id="acPassword" value="#{accountController.activeAccount.password}"/>
+                <h:outputLabel value="Login:" for="acLogin"/>
+                <h:inputText id="acLogin" value="#{modifyAccountController.login}"/>
 
-                <p:outputLabel value="FullName:" for="acFullName"/>
-                <p:autoComplete id="acFullName" value="#{accountController.activeAccount.fullName}"/>
+                <h:outputLabel value="Password:" for="acPassword"/>
+                <h:inputText id="acPassword" value="#{modifyAccountController.password}"/>
 
-                <p:outputLabel value="Banned:" for="isBanned"/>
-                <p:selectOneMenu id="isBanned" value="#{accountController.activeAccount.active}">
-                    <f:selectItem itemValue="false" itemLabel="Yes" />
-                    <f:selectItem itemValue="true" itemLabel="No" />
-                </p:selectOneMenu>
+                <h:outputLabel value="FullName:" for="acFullName"/>
+                <h:inputText id="acFullName" value="#{modifyAccountController.fullName}"/>
+
+                <h:outputLabel value="Active:" for="isBanned"/>
+                <h:selectOneMenu id="isBanned" value="#{modifyAccountController.active}">
+                    <f:selectItem itemValue="true" itemLabel="Yes"/>
+                    <f:selectItem itemValue="false" itemLabel="No"/>
+                </h:selectOneMenu>
             </h:panelGrid>
-            <p:commandButton value="Submit"/>
-            <p:linkButton outcome="index.xhtml" value="BACK"/>
+            <h:commandButton action="#{modifyAccountController.updateAccount}" value="Submit"/>
+            <p:commandButton action="#{modifyAccountController.updateAccount}" value="Submit"/>
+            <p:linkButton outcome="index.xhtml" value="Back"/>
         </h:form>
+        <div class="message">
+            <h:outputLabel render="#{modifyAccountController.message != null}"
+                           value="#{modifyAccountController.message}"/>
+        </div>
     </ui:define>
 </ui:composition>

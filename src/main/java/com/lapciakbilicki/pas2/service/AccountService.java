@@ -12,7 +12,6 @@ import java.util.List;
 @RequestScoped
 public class AccountService extends ServiceAdapter<Account> {
 
-
     public AccountService() {
     }
 
@@ -31,6 +30,10 @@ public class AccountService extends ServiceAdapter<Account> {
             return repository.add(item);
         }
         else return false;
+    }
+
+    public void updateAccount(Account item) {
+        this.repository.update(item);
     }
 
     public void changeAccountActivity(String id){

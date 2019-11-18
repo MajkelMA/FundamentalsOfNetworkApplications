@@ -3,12 +3,15 @@ package com.lapciakbilicki.pas2.controller;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.service.AccountService;
 
+import javax.ejb.Init;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

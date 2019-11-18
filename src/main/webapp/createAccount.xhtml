@@ -5,22 +5,23 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template = "templates/mainTemplate.xhtml">
+                template="templates/mainTemplate.xhtml">
 
     <ui:define name="content">
         <h:form>
             <h:selectOneMenu value="#{createAccountController.type}">
-                <f:selectItem itemValue = "Users Admin" itemLabel="Users Admin"/>
-                <f:selectItem itemValue = "Resources Admin" itemLabel="Resources Admin"/>
-                <f:selectItem itemValue = "Client" itemLabel="Client"/>
+                <f:selectItem itemValue="Users Admin" itemLabel="Users Admin"/>
+                <f:selectItem itemValue="Resources Admin" itemLabel="Resources Admin"/>
+                <f:selectItem itemValue="Client" itemLabel="Client"/>
             </h:selectOneMenu>
             Login: <h:inputText value="#{createAccountController.login}"/>
             Password: <h:inputSecret value="#{createAccountController.password}"/>
-            Full Name: <h:inputText value="#{createAccountController.fullName}" />
+            Full Name: <h:inputText value="#{createAccountController.fullName}"/>
             <h:commandButton action="#{createAccountController.createAccount}" value="Create"/>
         </h:form>
         <div class="message">
-            <h:outputLabel render="#{createAccountController.message != null}" value="#{createAccountController.message}"/>
+            <h:outputLabel render="#{createAccountController.message != null}"
+                           value="#{createAccountController.message}"/>
         </div>
     </ui:define>
 </ui:composition>

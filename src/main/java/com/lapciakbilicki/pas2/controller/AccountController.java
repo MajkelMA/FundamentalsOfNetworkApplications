@@ -32,9 +32,6 @@ public class AccountController implements Serializable {
     }
 
     public void changeUserActive(String id){
-        Account accountToChange = this.accountService.get(id);
-        if(accountToChange != null)
-            accountToChange.setActive(!accountToChange.isActive());
+        accountService.changeAccountActivity(id);
     }
-
 }

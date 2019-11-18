@@ -1,7 +1,6 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
 import com.lapciakbilicki.pas2.model.IsIdentified;
-import com.lapciakbilicki.pas2.model.account.Account;
 
 import java.util.Objects;
 
@@ -11,17 +10,19 @@ public abstract class SportsFacility implements IsIdentified {
     private boolean access;
     private double penalty;
     private Field field;
+    private String name;
 
-    public SportsFacility(){
+    public SportsFacility() {
 
     }
 
-    public SportsFacility(String id, double pricePerHours, boolean access, double penalty, Field field) {
+    public SportsFacility(String id, double pricePerHours, boolean access, double penalty, Field field, String name) {
         this.id = id;
         this.pricePerHours = pricePerHours;
         this.access = access;
         this.penalty = penalty;
         this.field = field;
+        this.name = name;
     }
 
     public String getId() {
@@ -64,6 +65,14 @@ public abstract class SportsFacility implements IsIdentified {
         this.field = field;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,10 +86,11 @@ public abstract class SportsFacility implements IsIdentified {
         return Objects.hash(id);
     }
 
-    public void copyAttributionsWithoutId(SportsFacility sportsFacility){
+    public void copyAttributionsWithoutId(SportsFacility sportsFacility) {
         this.pricePerHours = sportsFacility.pricePerHours;
         this.access = sportsFacility.access;
-        this.field = sportsFacility.field;;
+        this.field = sportsFacility.field;
         this.penalty = sportsFacility.penalty;
+        this.name = sportsFacility.name;
     }
 }

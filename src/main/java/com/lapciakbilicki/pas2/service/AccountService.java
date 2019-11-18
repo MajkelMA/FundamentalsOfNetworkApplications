@@ -27,9 +27,17 @@ public class AccountService extends ServiceAdapter<Account> {
         List<Account> accounts = repository.getByCondition(
                 account -> account.getLogin().equals(item.getLogin())
         );
-        if(accounts.isEmpty())
+        if(accounts.isEmpty()) {
             return repository.add(item);
+        }
         else return false;
     }
+
+    public void changeAccountActivity(String id){
+        Account accountToChange = this.get(id);
+        if(accountToChange != null)
+            accountToChange.setActive(!accountToChange.isActive());
+    }
+
 
 }

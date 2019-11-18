@@ -9,16 +9,19 @@
 
 
         <ui:define  name="content">
-                <ul>
-                    <ui:repeat value="#{accountController.all}" var="account">
-                        <li>
-                            <h:outputLink value="/pas2/faces/accountAction.xhtml">
-                                <f:param name="id" value="#{account.id}"/>
-                                <h:outputText value="#{account.login}"/>
-                            </h:outputLink>
-                        </li>
-                    </ui:repeat>
-                </ul>
+                <h:form>
+                    <ul>
+                        <ui:repeat value="#{accountController.all}" var="account">
+                            <li>
+                                <h:outputLink value="/pas2/faces/accountAction.xhtml"  styleClass="#{account.active ? 'active' : 'inactive'}">
+                                    <f:param name="id" value="#{account.id}"/>
+                                    <h:outputText value="#{account.login}"/>
+                                </h:outputLink>
+                                <h:commandButton action="#{accountController.changeUserActive(account.id)}" value="Change active"/>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </h:form>
        </ui:define>
 
 

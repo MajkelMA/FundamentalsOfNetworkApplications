@@ -75,3 +75,11 @@ body {
     margin-left: 160px;
     text-align: center;
 }
+
+.active{
+    color : white;
+}
+
+.inactive{
+    color : red;
+}

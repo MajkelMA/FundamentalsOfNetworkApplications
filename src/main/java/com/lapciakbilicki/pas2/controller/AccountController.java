@@ -5,14 +5,16 @@ import com.lapciakbilicki.pas2.service.AccountService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 @Named
-@RequestScoped
-public class AccountController {
+@ViewScoped
+public class AccountController implements Serializable {
 
     @Inject
     private AccountService accountService;
@@ -27,6 +29,12 @@ public class AccountController {
 
     public Account getActiveAccount(){
         return this.accountService.get(requestMap.get("id"));
+    }
+
+    public void changeUserActive(String id){
+        Account accountToChange = this.accountService.get(id);
+        if(accountToChange != null)
+            accountToChange.setActive(!accountToChange.isActive());
     }
 
 }

@@ -8,17 +8,56 @@
                 template="templates/mainTemplate.xhtml">
 
     <ui:define name="content">
-        <h:form>
-            <h:selectOneMenu value="#{createAccountController.type}">
-                <f:selectItem itemValue="Users Admin" itemLabel="Users Admin"/>
-                <f:selectItem itemValue="Resources Admin" itemLabel="Resources Admin"/>
-                <f:selectItem itemValue="Client" itemLabel="Client"/>
-            </h:selectOneMenu>
-            Login: <h:inputText value="#{createAccountController.login}"/>
-            Password: <h:inputSecret value="#{createAccountController.password}"/>
-            Full Name: <h:inputText value="#{createAccountController.fullName}"/>
-            <h:commandButton action="#{createAccountController.createAccount}" value="Create"/>
-        </h:form>
+        <div class="create-form col-4">
+            <h:form>
+              <div class="form-group col-10">
+                  <div class="form-group-item col-5">
+                      <label>Type: </label>
+                  </div>
+                  <div class="form-group-item col-5">
+                        <h:selectOneMenu value="#{createAccountController.type}" styleClass="input-form-component">
+                            <f:selectItem itemValue="Users Admin" itemLabel="Users Admin"/>
+                            <f:selectItem itemValue="Resources Admin" itemLabel="Resources Admin"/>
+                            <f:selectItem itemValue="Client" itemLabel="Client"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Login: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createAccountController.login}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Password: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputSecret value="#{createAccountController.password}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Full name: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createAccountController.fullName}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton action="#{createAccountController.createAccount}" value="Create" styleClass="create-button"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:button styleClass="modify-button" value="Clear"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
         <div class="message">
             <h:outputLabel render="#{createAccountController.message != null}"
                            value="#{createAccountController.message}"/>

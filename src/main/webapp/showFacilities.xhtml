@@ -8,15 +8,31 @@
                 template = "templates/mainTemplate.xhtml">
 
     <ui:define name="content">
-        <ul>
-              <ui:repeat value="#{sportsFacilityController.all}" var="object">
-                  <li>
-                      <h:outputLink value="/pas2/faces/facilitiesDetails.xhtml">
-                          <f:param name="id" value="#{object.id}"/>
-                          <h:outputText value="#{object.name}"/>
-                      </h:outputLink>
-                  </li>
-              </ui:repeat>
-        </ul>
+        <div class="data-view">
+            <ul>
+                  <ui:repeat value="#{sportsFacilityController.all}" var="object">
+                      <li>
+                          <div class="data-view-component col-8">
+                          <h:outputLink value="/pas2/faces/facilitiesDetails.xhtml" styleClass="link-button active">
+                              <f:param name="id" value="#{object.id}"/>
+                              <h:outputText value="#{object.name}"/>
+                          </h:outputLink>
+                          </div>
+                          <div class="data-view-component col-1">
+                              <h:outputLink value="/pas2/faces/modifyFacilities.xhtml" styleClass="link-button modify-button">
+                                  <f:param name="id" value="#{object.id}"/>
+                                  <h:outputLabel value="Modify"/>
+                              </h:outputLink>
+                          </div>
+                          <div class="data-view-component col-1">
+                              <h:outputLink value="/pas2/faces/modifyFacilities.xhtml" styleClass="link-button delete-button">
+                                  <f:param name="id" value="#{object.id}"/>
+                                  <h:outputLabel value="Delete"/>
+                              </h:outputLink>
+                          </div>
+                      </li>
+                  </ui:repeat>
+            </ul>
+        </div>
     </ui:define>
 </ui:composition>

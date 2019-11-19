@@ -3,83 +3,148 @@ body {
     This pattern is downloaded from www.subtlepatterns.com
     If you need more, that's where to get'em.
     ======================================================== */
-    background-image: url(#{request.contextPath}/resources/images/mosaic.png);
+    background-image: url(#{request.contextPath}/resources/images/prism.png);
     color: white;
 }
 
-.form-item{
-    width: 100%;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
+* {
+    margin: 0;
+    padding: 0;
 }
-
-.button-form-item input {
-    border: 1px solid #aaa;
-    width: 100%;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-#menu{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-}
-
-#menu a{
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-}
-
-#menu a:hover{
-    color: #f1f1f1;
-}
-
-
-#content {
-    margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0 10px;
+html body{
+    height: 100%;
 }
 
 .wrapper{
+    min-width: 720px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    float: left;
+    min-height: 100%;
 }
 
-#footer{
-    margin-left: 160px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    color: #757575;
-    padding: 1rem;
-    background-color: #3a403a;
-    text-align: center;
+.menu{
+    width: 15%;
+    position: fixed;
+    height: 100%;
+    margin-right: 40px;
+    background-color: #1f1e1e;
+    overflow-x: hidden; /* Disable horizontal scroll */
 }
 
-#header{
-    padding: 1em;
+.menu-item{
     display: block;
-    margin-left: 160px;
+    border-bottom: 2px solid white;
     text-align: center;
+}
+
+.menu-item:first-child{
+    border-top: 2px solid white;
+}
+
+
+.menu-item a{
+    display: block;
+    text-decoration: none;
+    color: #666666;
+    min-height: 50px;
+    font-size: 25px;
+    vertical-align: center;
+}
+
+.menu-item a:hover{
+    color: white;
+}
+
+.content-wrapper{
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    margin-left: 15%;
+}
+
+
+.header{
+    padding: 2%;
+    max-height: 10%;
+}
+
+.content{
+    margin: 2%;
+    padding-bottom: 3rem;
+}
+
+.footer{
+    border-top: 1px white ridge;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.data-view{
+    border: 1px white solid;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.data-view ul{
+    display: block;
+    list-style: none;
+}
+
+.data-view li{
+    border-bottom: 1px white dashed;
+    display: flex;
+    padding: 5px 0;
+}
+
+.data-view li:hover{
+    -webkit-box-shadow: 0px 0px 33px -11px rgba(224,217,219,1);
+    -moz-box-shadow: 0px 0px 33px -11px rgba(224,217,219,1);
+    box-shadow: 0px 0px 33px -11px rgba(224,217,219,1);
+}
+
+
+.data-view li:first-child{
+    border-top: 1px white dashed;
+}
+
+.data-view{
+    color: white;
+    text-decoration: none;
+}
+
+.data-view-component{
+    display: inline-flex;
+    overflow: hidden;
 }
 
 .active{
-    color : white;
+    color: white;
 }
 
 .inactive{
-    color : red;
+    color: #5c5a5a;
 }
+
+.create-form{
+    margin: 0 auto;
+    border: 1px solid #227848;
+    border-radius: 5px;
+    display: flex;
+    text-align: center;
+    padding: 20px;
+
+}
+
+
+.form-group{
+    margin: 5px 0;
+    display: inline-flex;
+}
+
+.form-item{
+}
+
+

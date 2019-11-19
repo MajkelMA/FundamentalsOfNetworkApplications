@@ -1,0 +1,79 @@
+.link-button{
+    display: block;
+    min-width: 90%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.modify-button{
+    background: #3f7ef2;
+    border: 1px #3faaf2 solid;
+    border-radius: 5px;
+    min-width: 90%;
+    min-height: 100%;
+    color: white;
+    font-size: 16px;
+}
+
+.modify-button:hover {
+    background:#84aaf0;
+}
+
+.change-button {
+    background: #227848;
+    color: #fff;
+    border: 1px solid #308254;
+    border-radius: 5px;
+    min-width: 90%;
+    min-height: 100%;
+    text-shadow:none;
+    font-size: 16px;
+}
+
+.delete-button:hover{
+    background: #ed4242;
+}
+
+.change-button:hover{
+    background: #4aa873;
+}
+
+.delete-button{
+    background: #db1414;
+    color: #fff;
+    border: 1px solid #de2828;
+    border-radius: 5px;
+    min-width: 90%;
+    min-height: 100%;
+    text-shadow:none;
+    font-size: 16px;
+}
+
+.create-button{
+    background: #227848;
+    color: #fff;
+    border: 1px solid #308254;
+    border-radius: 5px;
+    min-width: 90%;
+    min-height: 100%;
+    text-shadow:none;
+    font-size: 16px;
+}
+
+.create-button:hover{
+    background: #4aa873;
+}
+
+.input-form-component{
+    width: 80%;
+    border-radius: 5px;
+}
+
+.input-form-component:focus{
+    width: 80%;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 33px -1px rgba(34,120,72,1);
+    -moz-box-shadow: 0px 0px 33px -1px rgba(34,120,72,1);
+    box-shadow: 0px 0px 33px -1px rgba(34,120,72,1);
+}
+

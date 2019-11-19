@@ -8,27 +8,30 @@
 <h:head>
     <title>main page</title>
     <h:outputStylesheet library="css" name="main.css" />
+    <h:outputStylesheet library="css" name="columns.css"/>
+    <h:outputStylesheet library="css" name="buttons.css"/>
     <ui:insert name="scripts"/>
 </h:head>
 <h:body>
-    <div id = "menu">
-     <ui:insert name="menu">
-         <ui:include src="commonMenu.xhtml"/>
-     </ui:insert>
-    </div>
-
-    <div class=".wrapper">
-        <div id="header">
-            <ui:insert name="header">
-                <ui:include src="commonHeader.xhtml" />
-            </ui:insert>
+    <div class="wrapper">
+        <div class="menu">
+         <ui:insert name="menu">
+             <ui:include src="commonMenu.xhtml"/>
+         </ui:insert>
         </div>
-        <div id="content">
-            <ui:insert name="content"/>
-        </div>
+        <div class="content-wrapper">
+            <div class="header">
+                <ui:insert name="header">
+                    <ui:include src="commonHeader.xhtml" />
+                </ui:insert>
+            </div>
+            <div class="content">
+                <ui:insert name="content"/>
+            </div>
 
-        <div id = "footer">
-            podstawowe informaje
+            <div class="footer">
+                podstawowe informaje
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="templates/mainTemplate.xhtml">
+
+    <ui:define name="content">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <h:outputScript library="js" name="datePicker.js"/>
+
+        <div class="create-form col-4">
+            <h:form>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Login: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu value="#{createReservationController.accountLogin}"
+                                         styleClass="input-form-component">
+                            <f:selectItems value="#{accountController.all}" var="account"
+                                           itemLabel="#{account.login}" itemValue="#{account.login}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Facility: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu value="#{createReservationController.facilityName}"
+                                         styleClass="input-form-component">
+                            <f:selectItems value="#{sportsFacilityController.all}" var="facility"
+                                           itemLabel="#{facility.name}" itemValue="#{facility.name}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label for="startDate">Start date:</label>
+                    </div>
+                    <div id="startDate" class="form-group-item col-5">
+                        <h:inputText value="#{createReservationController.startDate}"
+                                     styleClass="form-control datepicker input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label for="startHour">Start hour:</label>
+                    </div>
+                    <div id="startHour" class="form-group-item col-5">
+                        <h:selectOneMenu value="#{createReservationController.startHour}"
+                                         styleClass="input-form-component">
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                            <f:selectItem itemValue="4" itemLabel="4"/>
+                            <f:selectItem itemValue="5" itemLabel="5"/>
+                            <f:selectItem itemValue="6" itemLabel="6"/>
+                            <f:selectItem itemValue="7" itemLabel="7"/>
+                            <f:selectItem itemValue="8" itemLabel="8"/>
+                            <f:selectItem itemValue="9" itemLabel="9"/>
+                            <f:selectItem itemValue="10" itemLabel="10"/>
+                            <f:selectItem itemValue="11" itemLabel="11"/>
+                            <f:selectItem itemValue="12" itemLabel="12"/>
+                            <f:selectItem itemValue="13" itemLabel="13"/>
+                            <f:selectItem itemValue="14" itemLabel="14"/>
+                            <f:selectItem itemValue="15" itemLabel="15"/>
+                            <f:selectItem itemValue="16" itemLabel="16"/>
+                            <f:selectItem itemValue="17" itemLabel="17"/>
+                            <f:selectItem itemValue="18" itemLabel="18"/>
+                            <f:selectItem itemValue="19" itemLabel="19"/>
+                            <f:selectItem itemValue="20" itemLabel="20"/>
+                            <f:selectItem itemValue="21" itemLabel="21"/>
+                            <f:selectItem itemValue="22" itemLabel="22"/>
+                            <f:selectItem itemValue="23" itemLabel="23"/>
+                            <f:selectItem itemValue="24" itemLabel="24"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label for="endDate">End date:</label>
+                    </div>
+                    <div id="endDate" class="form-group-item col-5">
+                        <h:inputText value="#{createReservationController.endDate}"
+                                     styleClass="form-control datepicker input-form-component" />
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label for="endHour">End hour:</label>
+                    </div>
+                    <div id="endHour" class="form-group-item col-5">
+                        <h:selectOneMenu value="#{createReservationController.endHour}"
+                                         styleClass="input-form-component">
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                            <f:selectItem itemValue="4" itemLabel="4"/>
+                            <f:selectItem itemValue="5" itemLabel="5"/>
+                            <f:selectItem itemValue="6" itemLabel="6"/>
+                            <f:selectItem itemValue="7" itemLabel="7"/>
+                            <f:selectItem itemValue="8" itemLabel="8"/>
+                            <f:selectItem itemValue="9" itemLabel="9"/>
+                            <f:selectItem itemValue="10" itemLabel="10"/>
+                            <f:selectItem itemValue="11" itemLabel="11"/>
+                            <f:selectItem itemValue="12" itemLabel="12"/>
+                            <f:selectItem itemValue="13" itemLabel="13"/>
+                            <f:selectItem itemValue="14" itemLabel="14"/>
+                            <f:selectItem itemValue="15" itemLabel="15"/>
+                            <f:selectItem itemValue="16" itemLabel="16"/>
+                            <f:selectItem itemValue="17" itemLabel="17"/>
+                            <f:selectItem itemValue="18" itemLabel="18"/>
+                            <f:selectItem itemValue="19" itemLabel="19"/>
+                            <f:selectItem itemValue="20" itemLabel="20"/>
+                            <f:selectItem itemValue="21" itemLabel="21"/>
+                            <f:selectItem itemValue="22" itemLabel="22"/>
+                            <f:selectItem itemValue="23" itemLabel="23"/>
+                            <f:selectItem itemValue="24" itemLabel="24"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton action="#{createReservationController.createReservation}" value="Create"
+                                         styleClass="create-button"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:button styleClass="modify-button" value="Clear"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+        <div class="message">
+            <h:outputLabel render="#{createReservationController.message != null}"
+                           value="#{createReservationController.message}"/>
+        </div>
+    </ui:define>
+</ui:composition>

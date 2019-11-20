@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="templates/mainTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="data-view">
+            <ul>
+                <ui:repeat value="#{reservationController.all}" var="object">
+                    <h:form>
+                        <li>
+                            <div class="data-view-component col-2">
+                                <h:outputText value="#{object.account.fullName}"/>
+                            </div>
+                            <div class="data-view-component col-2">
+                                <h:outputText value="#{object.facility.name}"/>
+                            </div>
+                            <div class="data-view-component col-4">
+                                <h:outputText value="#{object.id}"/>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:outputLink value="/pas2/faces/modifyReservation.xhtml"
+                                              styleClass="link-button modify-button">
+                                    <f:param name="id" value="#{object.id}"/>
+                                    <h:outputLabel value="Modify"/>
+                                </h:outputLink>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:commandButton styleClass="delete-button"
+                                                 action="#{reservationController.deleteReservation(object.id)}"
+                                                 value="Delete"/>
+                            </div>
+                        </li>
+                    </h:form>
+                </ui:repeat>
+            </ul>
+        </div>
+    </ui:define>
+</ui:composition>

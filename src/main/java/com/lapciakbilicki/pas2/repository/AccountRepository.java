@@ -9,29 +9,23 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 
 @ApplicationScoped
-public class AccountRepository extends RepositoryAdapter<Account>{
+public class AccountRepository extends RepositoryAdapter<Account> {
 
-    public AccountRepository(){
+    public AccountRepository() {
         this.setListOfItems(new ArrayList<>());
     }
 
     @PostConstruct
     @Inject
-    public void init(AccountFiller accountFiller){
+    public void init(AccountFiller accountFiller) {
         this.setFiller(accountFiller);
         this.getFiller().autoFill(this.getAll());
     }
 
     @Override
     public void update(Account item) {
-        if(this.remove(item)){
-            if (item.getClass().getSimpleName().equals("AdminAccount")) {
-                this.add(item);
-            } else if (item.getClass().getSimpleName().equals("ResourcesManagerAccount")) {
-                this.add(item);
-            } else {
-                this.add(item);
-            }
+        if (this.remove(item)) {
+            this.add(item);
         }
     }
 }

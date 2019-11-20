@@ -28,20 +28,26 @@ public class SportsFacilityController implements Serializable {
     private List<SportsFacility> sportsFacilities;
 
     @PostConstruct
-    public void loadSportsFacilities(){
+    public void loadSportsFacilities() {
         sportsFacilities = new ArrayList<>(sportsFacilityService.getAll());
     }
 
-    public List<SportsFacility> getAll(){
+    public List<SportsFacility> getAll() {
         return sportsFacilities;
     }
 
-    public SportsFacility getActiveSportsFacility(){
+    public SportsFacility getActiveSportsFacility() {
         return this.sportsFacilityService.get(requestMap.get("id"));
     }
 
-    public void deleteSportsFacility(String id){
-        SportsFacility facilityToRemove = sportsFacilities.stream().filter(sportsFacility -> sportsFacility.getId().equals(id)).findFirst().orElse(null);
+    public void deleteSportsFacility(String id) {
+        SportsFacility facilityToRemove = sportsFacilities
+                .stream()
+                .filter(sportsFacility -> sportsFacility
+                        .getId()
+                        .equals(id))
+                .findFirst()
+                .orElse(null);
         sportsFacilityService.remove(facilityToRemove);
         loadSportsFacilities();
     }

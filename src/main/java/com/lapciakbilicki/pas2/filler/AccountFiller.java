@@ -7,7 +7,6 @@ import com.lapciakbilicki.pas2.model.account.AdminAccount;
 import com.lapciakbilicki.pas2.model.account.ClientAccount;
 import com.lapciakbilicki.pas2.model.account.ResourcesManagerAccount;
 
-import javax.inject.Named;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -22,14 +21,14 @@ public class AccountFiller implements Filler<Account> {
         int randType;
         String login;
 
-        for(int i = 0; i < 20; i++){
+        for (int i = 0; i < 20; i++) {
             randType = random.nextInt(3);
             login = faker.witcher().character();
-            if(randType == 0)
+            if (randType == 0)
                 destination.add(new AdminAccount(UUID.randomUUID().toString(), login, "fill", login, true));
-            if(randType == 1)
+            if (randType == 1)
                 destination.add(new ResourcesManagerAccount(UUID.randomUUID().toString(), login, "fill", login, true));
-            if(randType == 2)
+            if (randType == 2)
                 destination.add(new ClientAccount(UUID.randomUUID().toString(), login, "fill", login, true));
 
         }

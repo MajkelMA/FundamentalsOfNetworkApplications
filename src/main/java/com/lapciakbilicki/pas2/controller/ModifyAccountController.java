@@ -1,12 +1,10 @@
 package com.lapciakbilicki.pas2.controller;
 
-import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.model.account.AdminAccount;
 import com.lapciakbilicki.pas2.model.account.ClientAccount;
 import com.lapciakbilicki.pas2.model.account.ResourcesManagerAccount;
 import com.lapciakbilicki.pas2.service.AccountService;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;

@@ -72,7 +72,6 @@ public abstract class Account implements IsIdentified {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
         return this.id.equals(account.id);
     }

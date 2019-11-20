@@ -148,3 +148,29 @@ html body{
 }
 
 
+.data-panel{
+    display: block;
+    border: 1px solid #227848;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.data-panel-group{
+    display: inline-flex;
+}
+
+.data-panel-header{
+    padding: 5px;
+    margin: 0 auto;
+    background: #308254;
+
+}
+
+.data-panel-item{
+    padding: 5px;
+    margin: 0 auto;
+}
+
+
+

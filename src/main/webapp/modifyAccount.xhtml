@@ -10,6 +10,76 @@
                 template="templates/mainTemplate.xhtml">
 
     <ui:define name="content">
-
+        <div class="create-form col-4">
+            <h:form>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Type: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu id="acType" value="#{modifyAccountController.type}" styleClass="input-form-component">
+                            <f:selectItem itemValue="AdminAccount" itemLabel="Users Admin"/>
+                            <f:selectItem itemValue="ResourcesManagerAccount" itemLabel="Resources Admin"/>
+                            <f:selectItem itemValue="ClientAccount" itemLabel="Client"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Id: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acId" value="#{modifyAccountController.id}"  styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Login: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acLogin" value="#{modifyAccountController.login}"  styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Password: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acPassword" value="#{modifyAccountController.password}"  styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Full Name: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acFullName" value="#{modifyAccountController.fullName}"  styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Active: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu id="isBanned" value="#{modifyAccountController.active}" styleClass="input-form-component">
+                            <f:selectItem itemValue="true" itemLabel="Yes"/>
+                            <f:selectItem itemValue="false" itemLabel="No"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton action="#{modifyAccountController.updateAccount}" value="Submit" styleClass="create-button"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <div class="form-group-item col-10">
+                            <h:button styleClass="modify-button" value="Clear"/>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>

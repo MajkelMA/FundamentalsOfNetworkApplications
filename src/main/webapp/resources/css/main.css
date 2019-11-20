@@ -148,3 +148,40 @@ html body{
 }
 
 
+.data-panel{
+    display: block;
+    border: 1px solid #227848;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+.data-panel-group{
+    display: inline-flex;
+}
+
+.data-panel-header{
+    padding: 5px;
+    margin: 0 auto;
+    background: #308254;
+
+}
+
+.data-panel-item{
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.menu > .menu-item:hover > ul{
+    display: block;
+}
+
+.menu > .menu-item > ul{
+    display: none;
+}
+
+.menu > .menu-item > ul > .menu-item{
+    background: #424141;
+    position: relative;
+    z-index: 100;
+}

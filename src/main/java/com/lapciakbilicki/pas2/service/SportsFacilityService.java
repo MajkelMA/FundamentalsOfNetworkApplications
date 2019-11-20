@@ -32,4 +32,11 @@ public class SportsFacilityService extends ServiceAdapter<SportsFacility> {
         }
         return false;
     }
+
+    public void changeSportsFacilityAccess(String id){
+        List<SportsFacility> sportsFacilities = this.repository.getByCondition(sportsFacility -> sportsFacility.getId().equals(id));
+        if(!sportsFacilities.isEmpty()){
+            sportsFacilities.get(0).setAccess(!sportsFacilities.get(0).isAccess());
+        }
+    }
 }

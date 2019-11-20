@@ -8,27 +8,102 @@
                 template = "templates/mainTemplate.xhtml">
 
     <ui:define name="content">
-        id: #{sportsFacilityController.activeSportsFacility.id} <br/>
-        Price per hours: #{sportsFacilityController.activeSportsFacility.pricePerHours} <br/>
-        Access: #{sportsFacilityController.activeSportsFacility.access} <br/>
-        Penalty: #{sportsFacilityController.activeSportsFacility.penalty} <br/>
-
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                       value="Number of Basket: #{sportsFacilityController.activeSportsFacility.numberOfBasket}"/> <br/>
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                       value="Min height of Basket: #{sportsFacilityController.activeSportsFacility.minHeightOfBasket}"/> <br/>
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                       value="Max height of Basket: #{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}"/> <br/>
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                       value="Full size: #{sportsFacilityController.activeSportsFacility.fullSize}"/> <br/>
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                       value="Width Of Goal: #{sportsFacilityController.activeSportsFacility.widthOfGoal}"/> <br/>
-        <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                       value="Height Of Goal: #{sportsFacilityController.activeSportsFacility.heightOfGoal}"/> <br/>
-
-        Field Info: <br/>
-            Surface Area: #{sportsFacilityController.activeSportsFacility.field.surfaceArea} <br/>
-            Max Amount Of People: #{sportsFacilityController.activeSportsFacility.field.maxAmountOfPeople} <br/>
-            Type of Ground: #{sportsFacilityController.activeSportsFacility.field.typeOfGround} <br/>
+        <div class="data-panel col-6">
+            <div class="data-panel-group col-8">
+                <div class="data-panel-header col-8">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.name}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Price per hours: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Access: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.access}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                                   value="Number of Basket: "/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="Full size: "/>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.numberOfBasket}"/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.fullSize}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                    value="Min height of Basket: "/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="Width Of Goal:"/>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.minHeightOfBasket}"/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.widthOfGoal}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                                   value="Max height of Basket: "/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="Height Of Goal:"/>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}"/>
+                    <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
+                                   value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.class.simpleName}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Max Amount of People: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.maxAmountOfPeople}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type of Ground: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.typeOfGround}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Surface Area: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}"/>
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>

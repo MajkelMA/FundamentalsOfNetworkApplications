@@ -51,4 +51,8 @@ public class SportsFacilityController implements Serializable {
         sportsFacilityService.remove(facilityToRemove);
         loadSportsFacilities();
     }
+
+    public void changeAccess(String id){
+        sportsFacilityService.changeSportsFacilityAccess(id);
+    }
 }

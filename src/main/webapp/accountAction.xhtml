@@ -10,13 +10,60 @@
                 template="templates/mainTemplate.xhtml">
 
     <ui:define name="content">
-        <p:panel header="#{accountController.activeAccount.fullName}">
-            id: #{accountController.activeAccount.id} <br/>
-            login: #{accountController.activeAccount.login} <br/>
-            password: #{accountController.activeAccount.password} <br/>
-            full name: #{accountController.activeAccount.fullName} <br/>
-            is active: #{accountController.activeAccount.active} <br/>
-        </p:panel>
-        <p:linkButton outcome="index.xhtml" value="BACK"/>
+        <div class="data-panel col-6">
+            <div class="data-panel-group col-8">
+                <div class="data-panel-header col-8">
+                    <h:outputLabel value="#{accountController.activeAccount.fullName}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Login: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.login}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Password: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.password}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Full name: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.fullName}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Active: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.active}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Id: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.id}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.class.simpleName}"/>
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>

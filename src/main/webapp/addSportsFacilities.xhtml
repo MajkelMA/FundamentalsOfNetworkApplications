@@ -7,54 +7,121 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template = "templates/mainTemplate.xhtml">
 
-    <ui:define name="scripts">
-        <h:outputScript library="js" name="form.js"/>
-    </ui:define>
     <ui:define name="content">
-        <h:form id="createFacilityForm">
-            <h:selectOneMenu id="typeSelect" onchange="changeVisibility()">
-                <f:selectItem itemValue="FootballFacility" itemLabel="Football Facility"/>
-                <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball Facility"/>
-            </h:selectOneMenu><br/>
-            <div>Price Per Hours: <h:inputText value="#{createSportsFacilityController.pricePerHours}"/><br/></div>
-            <div>Penalty: <h:inputText value="#{createSportsFacilityController.penalty}"/><br/></div>
-            <div>Name: <h:inputText value="#{createSportsFacilityController.name}"/><br/></div>
-            <div style="visibility: visible" id="selectFullsize">
-                Full Size:
-                <h:selectOneMenu value="#{createSportsFacilityController.fullSize}" >
-                    <f:selectItem itemValue="true" itemLabel="yes"/>
-                    <f:selectItem itemValue="false" itemLabel="no"/>
-                </h:selectOneMenu>
-                <br/>
-            </div>
-            <div style="visibility: visible;" id="widthOfGoal">
-                Width of Goal: <h:inputText value="#{createSportsFacilityController.widthOfGoal}"/>
-                <br/>
-            </div>
-            <div style="visibility: visible;" id="heightOfGoal">
-                Height of Goal: <h:inputText value="#{createSportsFacilityController.heightOfGoal}"/>
-                <br/>
-            </div>
-            <div style="visibility: hidden;" id="numberOfBasket">
-                Number of Basket <h:inputText value="#{createSportsFacilityController.numberOfBasket}"/>
-                <br/>
-            </div>
-            <div style="visibility: hidden;" id="minHeightOfBasket">
-                Min Height of Basket <h:inputText value="#{createSportsFacilityController.minHeightOfBasket}"/>
-                <br/>
-            </div>
-            <div style="visibility: hidden;" id="maxHeightOfBasket">
-                Max Height Basket <h:inputText value="#{createSportsFacilityController.maxHeightOfBasket}"/>
-                <br/>
-            </div>
-            <div style="visibility: visible" id="submitFootballFacility">
-                 <h:commandButton action="#{createSportsFacilityController.createFootballFacility}" value="Create"/>
-                <br/>
-            </div>
-            <div style="visibility: hidden" id="submitBasketballFacility">
-                <h:commandButton action="#{createSportsFacilityController.createBasketballFacility}" value="Create"/>
-                <br/>
-            </div>
-        </h:form>
+        <div class="create-form col-4">
+            <h:form id="createFacilityForm">
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Type: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu id="typeSelect" value="#" styleClass="input-form-component" onchange="changeVisibility()">
+                            <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball facility"/>
+                            <f:selectItem itemValue="FootballFacility" itemLabel="Football facility"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Name: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createSportsFacilityController.name}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Max Amount of People: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createSportsFacilityController.field.maxAmountOfPeople}" styleClass="input-form-component">
+                                <f:converter converterId="javax.faces.Integer"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Surface Area: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createSportsFacilityController.field.surfaceArea}" styleClass="input-form-component">
+                                <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Type of Grount: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createSportsFacilityController.field.typeOfGround}" styleClass="input-form-component" />
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Price per Houers: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{createSportsFacilityController.pricePerHours}" styleClass="input-form-component">
+                                <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class="football-facility" style="display: none" value="Fullsize: " />
+                        <h:outputLabel  class="basketball-facility" value="Number of Basket: " />
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu style="display: none" value="#{createSportsFacilityController.fullSize}" styleClass="input-form-component football-facility">
+                            <f:selectItem itemValue="true" itemLabel="Yes"/>
+                            <f:selectItem itemValue="false" itemLabel="No"/>
+                        </h:selectOneMenu>
+                        <h:inputText value="#{createSportsFacilityController.numberOfBasket}" styleClass="input-form-component basketball-facility">
+                                <f:converter converterId="javax.faces.Integer" />
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class="football-facility" style="display: none" value="Widht of Goal: " />
+                        <h:outputLabel class="basketball-facility" value="Min Height of Basket: " />
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText style="display: none" value="#{createSportsFacilityController.widthOfGoal}" styleClass="input-form-component football-facility">
+                                <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                        <h:inputText value="#{createSportsFacilityController.minHeightOfBasket}" styleClass="input-form-component basketball-facility">
+                                <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class="football-facility" style="display: none" value="Height of Goal: " />
+                        <h:outputLabel class="basketball-facility" value="Max Height of Basket: " />
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText style="display: none" value="#{createSportsFacilityController.heightOfGoal}" styleClass="input-form-component football-facility">
+                             <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                        <h:inputText value="#{createSportsFacilityController.maxHeightOfBasket}"  styleClass="input-form-component basketball-facility">
+                                <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton style="display: none" styleClass="create-button football-facility"  value="Create" action="#{createSportsFacilityController.createFootballFacility}"/>
+                        <h:commandButton styleClass="create-button basketball-facility"  value="Create" action="#{createSportsFacilityController.createBasketballFacility}"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:button styleClass="modify-button" value="Clear" onclick="clearForm()"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>

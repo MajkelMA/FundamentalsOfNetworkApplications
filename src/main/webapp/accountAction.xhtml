@@ -56,6 +56,14 @@
                     <h:outputLabel value="#{accountController.activeAccount.id}"/>
                 </div>
             </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{accountController.activeAccount.class.simpleName}"/>
+                </div>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

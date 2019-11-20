@@ -8,7 +8,6 @@ public abstract class SportsFacility implements IsIdentified {
     private String id;
     private double pricePerHours;
     private boolean access;
-    private double penalty;
     private Field field;
     private String name;
 
@@ -16,11 +15,10 @@ public abstract class SportsFacility implements IsIdentified {
 
     }
 
-    public SportsFacility(String id, double pricePerHours, boolean access, double penalty, Field field, String name) {
+    public SportsFacility(String id, double pricePerHours, boolean access, Field field, String name) {
         this.id = id;
         this.pricePerHours = pricePerHours;
         this.access = access;
-        this.penalty = penalty;
         this.field = field;
         this.name = name;
     }
@@ -49,13 +47,6 @@ public abstract class SportsFacility implements IsIdentified {
         this.access = access;
     }
 
-    public double getPenalty() {
-        return penalty;
-    }
-
-    public void setPenalty(double penalty) {
-        this.penalty = penalty;
-    }
 
     public Field getField() {
         return field;
@@ -90,7 +81,6 @@ public abstract class SportsFacility implements IsIdentified {
         this.pricePerHours = sportsFacility.pricePerHours;
         this.access = sportsFacility.access;
         this.field = sportsFacility.field;
-        this.penalty = sportsFacility.penalty;
         this.name = sportsFacility.name;
     }
 }

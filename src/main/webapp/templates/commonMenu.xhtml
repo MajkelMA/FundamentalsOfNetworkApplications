@@ -8,26 +8,31 @@
 
 <h:body>
     <ui:composition>
-        <div class="menu-item">
-            <h:outputLink value="/pas2/faces/index.xhtml">
-                <h:outputLabel value="Main"/>
-            </h:outputLink>
-        </div>
-        <div class="menu-item">
-            <h:outputLink value="/pas2/faces/createAccount.xhtml">
-                <h:outputLabel value="Create Account" />
-            </h:outputLink>
-        </div>
-        <div class="menu-item">
-            <h:outputLink value="/pas2/faces/showFacilities.xhtml">
-                <h:outputLabel value="Facilities" />
-            </h:outputLink>
-        </div>
-        <div class="menu-item">
-            <h:outputLink value="/pas2/faces/addSportsFacilities.xhtml">
-                <h:outputLabel value="Create Facilities" />
-            </h:outputLink>
-        </div>
+        <ul class="menu">
+            <li class="menu-item">
+                <h:outputLink value="/pas2/faces/index.xhtml">
+                    <h:outputLabel value="Main"/>
+                </h:outputLink>
+            </li>
+            <li class="menu-item">
+                <h:outputLink value="/pas2/faces/createAccount.xhtml">
+                    <h:outputLabel value="Create Account" />
+                </h:outputLink>
+            </li>
+            <li class="menu-item">
+                <h:outputLink value="/pas2/faces/showFacilities.xhtml">
+                    <h:outputLabel value="Facilities" />
+                </h:outputLink>
+            </li>
+            <li class="menu-item">
+                <h:outputLink value="/pas2/faces/addSportsFacilities.xhtml">
+                    <h:outputLabel value="Create Facility" />
+                </h:outputLink>
+            </li>
+            <li class="menu-item">
+                <a href="#">test</a>
+            </li>
+        </ul>
     </ui:composition>
 </h:body>
 </html>

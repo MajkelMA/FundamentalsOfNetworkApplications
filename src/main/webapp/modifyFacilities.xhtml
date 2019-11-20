@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template = "templates/mainTemplate.xhtml">
+
+    <ui:define name="scripts">
+        <h:outputScript library="js" name="modifyFacility.js"/>
+    </ui:define>
+    <ui:define name="content">
+        <div class="create-form col-4">
+            <h:form id="createFacilityForm">
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Type: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu id="typeSelect" styleClass="input-form-component" value="#{modifySportsFacilityController.type}" onchange="changeVisibility()">
+                            <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball Facility"/>
+                            <f:selectItem itemValue="FootballFacility" itemLabel="Football Facility"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Name: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acName" value="#{modifySportsFacilityController.name}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Price per Houers: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText id="acPricePerHours" value="#{modifySportsFacilityController.pricePerHours}" styleClass="input-form-component">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Access: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu styleClass="input-form-component" value="#{modifySportsFacilityController.access}">
+                            <f:selectItem itemValue="true" itemLabel="Yes"/>
+                            <f:selectItem itemValue="false" itemLabel="No"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Id: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{modifySportsFacilityController.id}" styleClass="input-form-component"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Max Amount of People: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                      <h:inputText value="#{modifySportsFacilityController.maxAmountOfPeople}" styleClass="input-form-component">
+                              <f:converter converterId="javax.faces.Integer"/>
+                      </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Surface Area: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{modifySportsFacilityController.surfaceArea}" styleClass="input-form-component">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Type of Grount: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText value="#{modifySportsFacilityController.typeOfGround}" styleClass="input-form-component" />
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class = "basketball-facility" value="Min Height of Basket: "/>
+                        <h:outputLabel class = "football-facility" value="Full Size: "/>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:selectOneMenu styleClass="input-form-component football-facility" value="#{modifySportsFacilityController.fullSize}">
+                            <f:selectItem itemValue="true" itemLabel="Yes"/>
+                            <f:selectItem itemValue="false" itemLabel="No"/>
+                        </h:selectOneMenu>
+                        <h:inputText styleClass="input-form-component basketball-facility" value="#{modifySportsFacilityController.minHeightOfBasket}">
+                            <f:converter converterId="javax.faces.Double"/>
+                    </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class="basketball-facility" value="Max Height Of Basket: "/>
+                        <h:outputLabel class="football-facility" value="Width of Goal: "/>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText styleClass="input-form-component basketball-facility" value="#{modifySportsFacilityController.maxHeightOfBasket}">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                        <h:inputText styleClass="input-form-component football-facility" value="#{modifySportsFacilityController.widthOfGoal}">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <h:outputLabel class="basketball-facility" value="Number of Basket: "/>
+                        <h:outputLabel class="football-facility" value="Height of Goal: "/>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputText styleClass="input-form-component basketball-facility" value="#{modifySportsFacilityController.numberOfBasket}">
+                            <f:converter converterId="javax.faces.Integer"/>
+                        </h:inputText>
+                        <h:inputText styleClass="input-form-component football-facility" value="#{modifySportsFacilityController.heightOfGoal}">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton styleClass="create-button basketball-facility" action="#{modifySportsFacilityController.updateBasketBallFacility}" value="Submit"/>
+                        <h:commandButton styleClass="create-button football-facility" action="#{modifySportsFacilityController.updateFootballFacility}" value="Submit"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

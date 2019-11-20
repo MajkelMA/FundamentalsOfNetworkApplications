@@ -172,5 +172,16 @@ html body{
     margin: 0 auto;
 }
 
+.menu > .menu-item:hover > ul{
+    display: block;
+}
 
+.menu > .menu-item > ul{
+    display: none;
+}
 
+.menu > .menu-item > ul > .menu-item{
+    background: #424141;
+    position: relative;
+    z-index: 100;
+}

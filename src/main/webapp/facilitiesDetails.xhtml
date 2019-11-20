@@ -72,6 +72,38 @@
                                    value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}"/>
                 </div>
             </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.class.simpleName}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Max Amount of People: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.maxAmountOfPeople}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Type of Ground: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.typeOfGround}"/>
+                </div>
+            </div>
+            <div class="data-panel-group col-8">
+                <div class="data-panel-item col-4">
+                    <label>Surface Area: </label>
+                </div>
+                <div class="data-panel-item col-4">
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}"/>
+                </div>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

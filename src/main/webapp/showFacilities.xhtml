@@ -10,23 +10,26 @@
     <ui:define name="content">
         <div class="data-view">
             <ul>
-                  <ui:repeat value="#{sportsFacilityController.all}" var="object">
+                  <ui:repeat value="#{sportsFacilityController.all}" var="facility">
                       <h:form>
                           <li>
-                              <div class="data-view-component col-8">
-                              <h:outputLink value="/pas2/faces/facilitiesDetails.xhtml" styleClass="link-button active">
-                                  <f:param name="id" value="#{object.id}"/>
-                                  <h:outputText value="#{object.name}"/>
+                              <div class="data-view-component col-7">
+                              <h:outputLink value="/pas2/faces/facilitiesDetails.xhtml" styleClass="link-button #{facility.access ? 'active' : 'inactive'}">
+                                  <f:param name="id" value="#{facility.id}"/>
+                                  <h:outputText value="#{facility.name}"/>
                               </h:outputLink>
                               </div>
                               <div class="data-view-component col-1">
+                                  <h:commandButton styleClass="change-button" action="#{sportsFacilityController.changeAccess(facility.id)}" value="Change Access"/>
+                              </div>
+                              <div class="data-view-component col-1">
                                   <h:outputLink value="/pas2/faces/modifyFacilities.xhtml" styleClass="link-button modify-button">
-                                      <f:param name="id" value="#{object.id}"/>
+                                      <f:param name="id" value="#{facility.id}"/>
                                       <h:outputLabel value="Modify"/>
                                   </h:outputLink>
                               </div>
                               <div class="data-view-component col-1">
-                                <h:commandButton styleClass="delete-button" action="#{sportsFacilityController.deleteSportsFacility(object.id)}" value="Delete"/>
+                                <h:commandButton styleClass="delete-button" action="#{sportsFacilityController.deleteSportsFacility(facility.id)}" value="Delete"/>
                               </div>
                           </li>
                       </h:form>

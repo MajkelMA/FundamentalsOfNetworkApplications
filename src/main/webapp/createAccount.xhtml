@@ -16,9 +16,11 @@
                       <label>Roles: </label>
                   </div>
                   <div class="form-group-item col-5">
-                      <h:selectManyCheckbox styleClass="form-table" value="#{accountController.roles}">
+                      <h:selectManyCheckbox id="roles" styleClass="form-table" value="#{accountController.roles}">
                          <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
+                         <f:validator validatorId="roleValidator"/>
                       </h:selectManyCheckbox>
+                      <h:message for="roles" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -59,7 +61,8 @@
                         <label>Full name: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText value="#{accountController.account.fullName}" styleClass="input-form-component"/>
+                        <h:inputText id="fullname" value="#{accountController.account.fullName}" styleClass="input-form-component" required="true" requiredMessage="please enter fullname"/>
+                        <h:message for="fullname" style="color: red; display:block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">

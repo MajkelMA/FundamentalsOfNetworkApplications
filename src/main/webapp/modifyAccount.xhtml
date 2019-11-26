@@ -16,9 +16,11 @@
                         <label>Roles: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectManyCheckbox styleClass="form-table" value="#{accountController.roles}">
+                        <h:selectManyCheckbox id="roles"  styleClass="form-table" value="#{accountController.roles}">
                             <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
+                            <f:validator validatorId="roleValidator"/>
                         </h:selectManyCheckbox>
+                        <h:message for="roles" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -26,7 +28,11 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acLogin" value="#{accountController.accountToModify.login}"  styleClass="input-form-component"/>
+                        <h:inputText id="login" value="#{accountController.accountToModify.login}" required="true" requiredMessage="enter login" styleClass="input-form-component">
+                            <f:validator validatorId="loginUniqueValidator"/>
+                            <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
+                        </h:inputText>
+                        <h:message for="login" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -34,7 +40,20 @@
                         <label>Password: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acPassword" value="#{accountController.accountToModify.password}"  styleClass="input-form-component"/>
+                        <h:inputText id="password" value="#{accountController.accountToModify.password}"  required="true" requiredMessage="enter password" styleClass="input-form-component">
+                            <f:validator validatorId="confirmPasswordValidator"/>
+                            <f:attribute value="#{confirmPassword}" name="confirmPassword"/>
+                        </h:inputText>
+                        <h:message for="password" style="color: red; display: block;"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-5">
+                        <label>Comfirm Password: </label>
+                    </div>
+                    <div class="form-group-item col-5">
+                        <h:inputSecret styleClass="input-form-component" id="confirmPassword"  binding="#{confirmPassword}" required="true" requiredMessage="please confirm password"/>
+                        <h:message for="confirmPassword" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -42,7 +61,9 @@
                         <label>Full Name: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acFullName" value="#{accountController.accountToModify.fullName}"  styleClass="input-form-component"/>
+                        <h:inputText id="fullname" value="#{accountController.accountToModify.fullName}" requiredMessage="enter fullname" required="true" styleClass="input-form-component"/>
+                        <h:message for="fullname" style="color: red; display:block;"/>
+
                     </div>
                 </div>
                 <div class="form-group col-10">

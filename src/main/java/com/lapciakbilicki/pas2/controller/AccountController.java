@@ -37,4 +37,5 @@ public class AccountController implements Serializable {
     public void changeUserActive(String id){
         accountService.changeAccountActivity(id);
     }
+
 }

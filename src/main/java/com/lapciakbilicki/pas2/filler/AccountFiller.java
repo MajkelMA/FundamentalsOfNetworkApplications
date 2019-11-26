@@ -2,35 +2,31 @@ package com.lapciakbilicki.pas2.filler;
 
 import com.github.javafaker.Faker;
 
+import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
-import com.lapciakbilicki.pas2.model.account.AdminAccount;
-import com.lapciakbilicki.pas2.model.account.ClientAccount;
-import com.lapciakbilicki.pas2.model.account.ResourcesManagerAccount;
+import com.lapciakbilicki.pas2.repository.RoleRepository;
+import com.lapciakbilicki.pas2.service.RoleService;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
-import java.util.UUID;
+import javax.inject.Inject;
+import java.util.*;
 
 public class AccountFiller implements Filler<Account> {
+
+    @Inject
+    RoleService roleService;
 
     @Override
     public void autoFill(List<Account> destination) {
         Faker faker = new Faker(Locale.ENGLISH);
         Random random = new Random();
-        int randType;
         String login;
 
         for (int i = 0; i < 20; i++) {
-            randType = random.nextInt(3);
             login = faker.witcher().character();
-            if (randType == 0)
-                destination.add(new AdminAccount(UUID.randomUUID().toString(), login, "fill", login, true));
-            if (randType == 1)
-                destination.add(new ResourcesManagerAccount(UUID.randomUUID().toString(), login, "fill", login, true));
-            if (randType == 2)
-                destination.add(new ClientAccount(UUID.randomUUID().toString(), login, "fill", login, true));
-
+            int roleType = random.nextInt(3);
+            List<Role> roles = new ArrayList<>();
+            roles.add(roleService.getAll().get(roleType));
+            destination.add(new Account(UUID.randomUUID().toString(), login, "fill", login, true, roles));
         }
     }
 

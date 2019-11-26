@@ -13,14 +13,12 @@
             <h:form>
               <div class="form-group col-10">
                   <div class="form-group-item col-5">
-                      <label>Type: </label>
+                      <label>Roles: </label>
                   </div>
                   <div class="form-group-item col-5">
-                        <h:selectOneMenu value="#{createAccountController.type}" styleClass="input-form-component">
-                            <f:selectItem itemValue="Users Admin" itemLabel="Users Admin"/>
-                            <f:selectItem itemValue="Resources Admin" itemLabel="Resources Admin"/>
-                            <f:selectItem itemValue="Client" itemLabel="Client"/>
-                        </h:selectOneMenu>
+                      <h:selectManyCheckbox styleClass="form-table" value="#{createAccountController.roles}">
+                         <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
+                      </h:selectManyCheckbox>
                     </div>
                 </div>
                 <div class="form-group col-10">

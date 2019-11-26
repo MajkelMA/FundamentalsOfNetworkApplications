@@ -1,25 +1,18 @@
 package com.lapciakbilicki.pas2.controller;
 
-import com.lapciakbilicki.pas2.model.account.Account;
-import com.lapciakbilicki.pas2.model.account.AdminAccount;
-import com.lapciakbilicki.pas2.model.account.ClientAccount;
-import com.lapciakbilicki.pas2.model.account.ResourcesManagerAccount;
-import com.lapciakbilicki.pas2.service.AccountService;
 
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+import com.lapciakbilicki.pas2.service.AccountService;
+import com.lapciakbilicki.pas2.service.RoleService;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.UUID;
+
 
 @Named
 @RequestScoped
 public class CreateAccountController implements Serializable {
-    private String type;
+    private String[] roles;
     private String login;
     private String password;
     private String fullName;
@@ -29,12 +22,12 @@ public class CreateAccountController implements Serializable {
     @Inject
     AccountService accountService;
 
-    public String getType() {
-        return type;
+    public String[] getRoles() {
+        return roles;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRoles(String[] roles) {
+        this.roles = roles;
     }
 
     public String getLogin() {
@@ -61,29 +54,15 @@ public class CreateAccountController implements Serializable {
         this.fullName = fullName;
     }
 
-
     public void createAccount(){
-        boolean result;
-        switch(type){
-                case "Users Admin":
-                    result = this.accountService.add(new AdminAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                    break;
-                case "Resources Admin":
-                    result = this.accountService.add(new ResourcesManagerAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                    break;
-                case "Client":
-                    result = this.accountService.add(new ClientAccount(UUID.randomUUID().toString(), login, password, fullName, true));
-                    break;
-                default:
-                result = false;;
+        if(accountService.createUserWithRoles(roles, login, password, fullName)){
+            message = "Account created successfully";
         }
-        if (result) {
-           message = "Account created successfully";
-        } else {
-            message = "Account did not create";
+        else{
+            message = "account did not create";
         }
     }
-    
+
     public String getMessage() {
         return message;
     }

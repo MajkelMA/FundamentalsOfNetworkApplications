@@ -6,7 +6,6 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
                 template="templates/mainTemplate.xhtml">
 
     <ui:define name="content">
@@ -14,14 +13,12 @@
             <h:form>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label>Type: </label>
+                        <label>Roles: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu id="acType" value="#{modifyAccountController.type}" styleClass="input-form-component">
-                            <f:selectItem itemValue="AdminAccount" itemLabel="Users Admin"/>
-                            <f:selectItem itemValue="ResourcesManagerAccount" itemLabel="Resources Admin"/>
-                            <f:selectItem itemValue="ClientAccount" itemLabel="Client"/>
-                        </h:selectOneMenu>
+                        <h:selectManyCheckbox styleClass="form-table" value="#{modifyAccountController.roles}">
+                            <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
+                        </h:selectManyCheckbox>
                     </div>
                 </div>
                 <div class="form-group col-10">

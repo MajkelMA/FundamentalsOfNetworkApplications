@@ -1,23 +1,27 @@
 package com.lapciakbilicki.pas2.model.account;
 
 import com.lapciakbilicki.pas2.model.IsIdentified;
+import com.lapciakbilicki.pas2.model.Role.Role;
 
+import java.util.List;
 import java.util.Objects;
 
 
-public abstract class Account implements IsIdentified {
+public class Account implements IsIdentified {
     private String id;
     private String login;
     private String password;
     private String fullName;
     private boolean active;
+    private List<Role> roles;
 
-    public Account(String id, String login, String password, String fullName, boolean active) {
+    public Account(String id, String login, String password, String fullName, boolean active, List<Role> roles) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.fullName = fullName;
         this.active = active;
+        this.roles = roles;
     }
 
     @Override
@@ -79,5 +83,13 @@ public abstract class Account implements IsIdentified {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

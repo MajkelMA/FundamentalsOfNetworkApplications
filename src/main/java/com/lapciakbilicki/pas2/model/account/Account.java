@@ -15,6 +15,10 @@ public class Account implements IsIdentified {
     private boolean active;
     private List<Role> roles;
 
+    public Account(){
+
+    }
+
     public Account(String id, String login, String password, String fullName, boolean active, List<Role> roles) {
         this.id = id;
         this.login = login;

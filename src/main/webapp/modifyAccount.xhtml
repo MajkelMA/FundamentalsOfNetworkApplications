@@ -16,17 +16,9 @@
                         <label>Roles: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectManyCheckbox styleClass="form-table" value="#{modifyAccountController.roles}">
+                        <h:selectManyCheckbox styleClass="form-table" value="#{accountController.roles}">
                             <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
                         </h:selectManyCheckbox>
-                    </div>
-                </div>
-                <div class="form-group col-10">
-                    <div class="form-group-item col-5">
-                        <label>Id: </label>
-                    </div>
-                    <div class="form-group-item col-5">
-                        <h:inputText id="acId" value="#{modifyAccountController.id}"  styleClass="input-form-component"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -34,7 +26,7 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acLogin" value="#{modifyAccountController.login}"  styleClass="input-form-component"/>
+                        <h:inputText id="acLogin" value="#{accountController.accountToModify.login}"  styleClass="input-form-component"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -42,7 +34,7 @@
                         <label>Password: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acPassword" value="#{modifyAccountController.password}"  styleClass="input-form-component"/>
+                        <h:inputText id="acPassword" value="#{accountController.accountToModify.password}"  styleClass="input-form-component"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -50,7 +42,7 @@
                         <label>Full Name: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acFullName" value="#{modifyAccountController.fullName}"  styleClass="input-form-component"/>
+                        <h:inputText id="acFullName" value="#{accountController.accountToModify.fullName}"  styleClass="input-form-component"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -58,15 +50,16 @@
                         <label>Active: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu id="isBanned" value="#{modifyAccountController.active}" styleClass="input-form-component">
+                        <h:selectOneMenu id="isBanned" value="#{accountController.accountToModify.active}" styleClass="input-form-component">
                             <f:selectItem itemValue="true" itemLabel="Yes"/>
                             <f:selectItem itemValue="false" itemLabel="No"/>
+                            <f:converter converterId="javax.faces.Boolean"/>
                         </h:selectOneMenu>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton action="#{modifyAccountController.updateAccount}" value="Submit" styleClass="create-button"/>
+                        <h:commandButton action="#{accountController.updateAccount}" value="Submit" styleClass="create-button"/>
                     </div>
                 </div>
             </h:form>

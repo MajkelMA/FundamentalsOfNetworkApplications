@@ -16,6 +16,11 @@ public class ConfirmPasswordValidator implements Validator {
         String password = (String)o;
         UIInput inputPassword = (UIInput)uiComponent.getAttributes().get("confirmPassword");
         String confirmPassword = inputPassword.getSubmittedValue().toString();
+
+        if(password.length() < 8){
+            throw new ValidatorException(new FacesMessage("Password is too short"));
+        }
+
         if(!password.equals(confirmPassword)) {
             throw new ValidatorException(new FacesMessage("Password must match confirm password"));
         }

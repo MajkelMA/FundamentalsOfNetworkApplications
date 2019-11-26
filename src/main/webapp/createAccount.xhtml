@@ -16,7 +16,7 @@
                       <label>Roles: </label>
                   </div>
                   <div class="form-group-item col-5">
-                      <h:selectManyCheckbox styleClass="form-table" value="#{createAccountController.roles}">
+                      <h:selectManyCheckbox styleClass="form-table" value="#{accountController.roles}">
                          <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
                       </h:selectManyCheckbox>
                     </div>
@@ -26,9 +26,9 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="login" value="#{createAccountController.login}" styleClass="input-form-component" required="true" requiredMessage="Please enter login">
+                        <h:inputText id="login" value="#{accountController.account.login}" styleClass="input-form-component" required="true" requiredMessage="Please enter login">
                             <f:validator validatorId="loginUniqueValidator"/>
-                            <f:attribute value="#{createAccountController.allAccounts}" name="allAccounts"/>
+                            <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
                         </h:inputText>
                         <h:message for="login" style="color: red; display: block;"/>
                     </div>
@@ -38,7 +38,7 @@
                         <label>Password: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputSecret value="#{createAccountController.password}" id="password" styleClass="input-form-component" required="true" requiredMessage="please enter password">
+                        <h:inputSecret value="#{accountController.account.password}" id="password" styleClass="input-form-component" required="true" requiredMessage="please enter password">
                             <f:validator validatorId="confirmPasswordValidator"/>
                             <f:attribute value="#{confirmPassword}" name="confirmPassword"/>
                         </h:inputSecret>
@@ -59,12 +59,12 @@
                         <label>Full name: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText value="#{createAccountController.fullName}" styleClass="input-form-component"/>
+                        <h:inputText value="#{accountController.account.fullName}" styleClass="input-form-component"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton action="#{createAccountController.createAccount}" value="Create" styleClass="create-button"/>
+                        <h:commandButton action="#{accountController.createAccount}" value="Create" styleClass="create-button"/>
                     </div>
                 </div>
                 <div class="form-group col-10">

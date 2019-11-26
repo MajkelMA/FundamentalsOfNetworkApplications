@@ -21,9 +21,9 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu value="#{createReservationController.accountLogin}"
+                        <h:selectOneMenu value="#{reservationController.accountLogin}"
                                          styleClass="input-form-component">
-                            <f:selectItems value="#{accountController.all}" var="account"
+                            <f:selectItems value="#{reservationController.getAllAccounts()}" var="account"
                                            itemLabel="#{account.login}" itemValue="#{account.login}"/>
                         </h:selectOneMenu>
                     </div>
@@ -33,9 +33,9 @@
                         <label>Facility: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu value="#{createReservationController.facilityName}"
+                        <h:selectOneMenu value="#{reservationController.facilityName}"
                                          styleClass="input-form-component">
-                            <f:selectItems value="#{sportsFacilityController.all}" var="facility"
+                            <f:selectItems value="#{reservationController.getAllSportsFacilities()}" var="facility"
                                            itemLabel="#{facility.name}" itemValue="#{facility.name}"/>
                         </h:selectOneMenu>
                     </div>
@@ -45,7 +45,7 @@
                         <label for="startDate">Start date:</label>
                     </div>
                     <div id="startDate" class="form-group-item col-5">
-                        <h:inputText value="#{createReservationController.startDate}"
+                        <h:inputText value="#{reservationController.startDate}"
                                      styleClass="form-control datepicker input-form-component"/>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <label for="startHour">Start hour:</label>
                     </div>
                     <div id="startHour" class="form-group-item col-5">
-                        <h:selectOneMenu value="#{createReservationController.startHour}"
+                        <h:selectOneMenu value="#{reservationController.startHour}"
                                          styleClass="input-form-component">
                             <f:selectItem itemValue="1" itemLabel="1"/>
                             <f:selectItem itemValue="2" itemLabel="2"/>
@@ -88,7 +88,7 @@
                         <label for="endDate">End date:</label>
                     </div>
                     <div id="endDate" class="form-group-item col-5">
-                        <h:inputText value="#{createReservationController.endDate}"
+                        <h:inputText value="#{reservationController.endDate}"
                                      styleClass="form-control datepicker input-form-component" />
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                         <label for="endHour">End hour:</label>
                     </div>
                     <div id="endHour" class="form-group-item col-5">
-                        <h:selectOneMenu value="#{createReservationController.endHour}"
+                        <h:selectOneMenu value="#{reservationController.endHour}"
                                          styleClass="input-form-component">
                             <f:selectItem itemValue="1" itemLabel="1"/>
                             <f:selectItem itemValue="2" itemLabel="2"/>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton action="#{createReservationController.createReservation}" value="Create"
+                        <h:commandButton action="#{reservationController.createReservation}" value="Create"
                                          styleClass="create-button"/>
                     </div>
                 </div>
@@ -140,8 +140,8 @@
             </h:form>
         </div>
         <div class="message">
-            <h:outputLabel render="#{createReservationController.message != null}"
-                           value="#{createReservationController.message}"/>
+            <h:outputLabel render="#{reservationController.message != null}"
+                           value="#{reservationController.message}"/>
         </div>
     </ui:define>
 </ui:composition>

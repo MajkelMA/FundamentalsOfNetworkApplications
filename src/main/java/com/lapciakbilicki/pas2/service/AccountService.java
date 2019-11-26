@@ -26,11 +26,11 @@ public class AccountService extends ServiceAdapter<Account> {
 
     @PostConstruct
     @Inject
-    public void init(AccountRepository accountRepository){
+    public void init(AccountRepository accountRepository) {
         this.repository = accountRepository;
     }
 
-    public boolean checkLoginUnique(String login){
+    public boolean checkLoginUnique(String login) {
         List<Account> accounts = repository.getByCondition(
                 account -> account.getLogin().equals(login)
         );
@@ -38,26 +38,25 @@ public class AccountService extends ServiceAdapter<Account> {
     }
 
     @Override
-    public boolean add(Account item){
-        if(checkLoginUnique(item.getLogin())) {
+    public boolean add(Account item) {
+        if (checkLoginUnique(item.getLogin())) {
             return repository.add(item);
-        }
-        else return false;
+        } else return false;
     }
 
     public void updateAccount(Account item) {
         this.repository.update(item);
     }
 
-    public void changeAccountActivity(String id){
+    public void changeAccountActivity(String id) {
         Account accountToChange = this.get(id);
-        if(accountToChange != null)
+        if (accountToChange != null)
             accountToChange.setActive(!accountToChange.isActive());
     }
 
-    public boolean createUserWithRoles(String[] roles, String login, String password, String fullName){
+    public boolean createUserWithRoles(String[] roles, String login, String password, String fullName) {
         List<Role> usersRoles = new ArrayList<>();
-        for(String role : roles){
+        for (String role : roles) {
             usersRoles.add(roleService.get(role));
         }
         return add(new Account(UUID.randomUUID().toString(), login, password, fullName, true, usersRoles));
@@ -65,7 +64,7 @@ public class AccountService extends ServiceAdapter<Account> {
 
     public void updateAccountWithRole(String id, String login, String password, String fullName, boolean active, String[] roles) {
         List<Role> usersRoles = new ArrayList<>();
-        for(String role : roles){
+        for (String role : roles) {
             usersRoles.add(roleService.get(role));
         }
 

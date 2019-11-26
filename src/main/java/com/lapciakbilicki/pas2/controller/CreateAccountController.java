@@ -1,12 +1,14 @@
 package com.lapciakbilicki.pas2.controller;
 
 
+import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.service.AccountService;
 import com.lapciakbilicki.pas2.service.RoleService;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Named
@@ -61,6 +63,10 @@ public class CreateAccountController implements Serializable {
         else{
             message = "account did not create";
         }
+    }
+
+    public List<Account> getAllAccounts(){
+        return accountService.getAll();
     }
 
     public String getMessage() {

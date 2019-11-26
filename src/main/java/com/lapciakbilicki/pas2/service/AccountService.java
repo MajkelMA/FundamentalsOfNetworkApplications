@@ -7,6 +7,7 @@ import com.lapciakbilicki.pas2.repository.AccountRepository;
 import com.sun.org.apache.xpath.internal.objects.XString;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,12 +30,16 @@ public class AccountService extends ServiceAdapter<Account> {
         this.repository = accountRepository;
     }
 
+    public boolean checkLoginUnique(String login){
+        List<Account> accounts = repository.getByCondition(
+                account -> account.getLogin().equals(login)
+        );
+        return accounts.isEmpty();
+    }
+
     @Override
     public boolean add(Account item){
-        List<Account> accounts = repository.getByCondition(
-                account -> account.getLogin().equals(item.getLogin())
-        );
-        if(accounts.isEmpty()) {
+        if(checkLoginUnique(item.getLogin())) {
             return repository.add(item);
         }
         else return false;

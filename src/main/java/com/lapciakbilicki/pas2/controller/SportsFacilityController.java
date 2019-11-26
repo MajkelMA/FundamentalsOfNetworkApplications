@@ -95,6 +95,7 @@ public class SportsFacilityController implements Serializable {
                 minHeightOfBasket,
                 maxHeightOfBasket
         ));
+        init();
     }
 
     public void updateFootballFacility(){
@@ -108,6 +109,7 @@ public class SportsFacilityController implements Serializable {
                 widthOfGoal,
                 heightOfGoal
         ));
+        init();
     }
 
     public void changeAccess(String id) {
@@ -125,6 +127,7 @@ public class SportsFacilityController implements Serializable {
                 widthOfGoal,
                 heightOfGoal
         ));
+        init();
     }
 
     public void createBasketballFacility() {
@@ -139,6 +142,7 @@ public class SportsFacilityController implements Serializable {
                 maxHeightOfBasket
 
         ));
+        init();
     }
 
     //<editor-fold desc="getter and setters">
@@ -265,6 +269,7 @@ public class SportsFacilityController implements Serializable {
     public void setNumberOfBasket(int numberOfBasket) {
         this.numberOfBasket = numberOfBasket;
     }
+
 
     public String getType() {
         if (this.requestMap.containsKey("type")) {

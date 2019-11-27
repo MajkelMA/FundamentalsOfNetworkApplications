@@ -5,8 +5,16 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template = "templates/mainTemplate.xhtml">
 
+    <ui:define name="breadcrumbs">
+        <p:breadCrumb>
+            <p:menuitem value="#{msg['main']}" url="/pas2/faces/index.xhtml"/>
+            <p:menuitem value="#{msg['facilities']}" url="/pas2/faces/showFacilities.xhtml"/>
+            <p:menuitem value="#{sportsFacilityController.activeSportsFacility.name}" url="/pas2/faces/facilitiesDerails.xhtml?id=#{sportsFacilityController.activeSportsFacility.id}"/>
+        </p:breadCrumb>
+    </ui:define>
     <ui:define name="content">
         <div class="data-panel col-6">
             <div class="data-panel-group col-8">
@@ -19,7 +27,9 @@
                     <label>#{msg['price_per_hours']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}"/>
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -53,9 +63,13 @@
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.minHeightOfBasket}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.minHeightOfBasket}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.widthOfGoal}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.widthOfGoal}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -67,9 +81,13 @@
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -101,7 +119,9 @@
                     <label>#{msg['surface_area']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}"/>
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
         </div>

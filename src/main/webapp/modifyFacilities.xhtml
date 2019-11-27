@@ -5,8 +5,16 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template = "templates/mainTemplate.xhtml">
 
+    <ui:define name="breadcrumbs">
+        <p:breadCrumb>
+            <p:menuitem value="#{msg['main']}" url="/pas2/faces/index.xhtml"/>
+            <p:menuitem value="#{msg['facilities']}" url="/pas2/faces/showFacilities.xhtml"/>
+            <p:menuitem value="#{msg['modify_button']} #{sportsFacilityController.activeSportsFacility.name}" url="/pas2/faces/modifyFacilities.xhtml?id=#{sportsFacilityController.activeSportsFacility.id}"/>
+        </p:breadCrumb>
+    </ui:define>
     <ui:define name="scripts">
         <h:outputScript library="js" name="modifyFacility.js"/>
     </ui:define>
@@ -45,6 +53,7 @@
                         <h:inputText id="pricePerHours" validatorMessage="#{msg['validator_price_per_hours']}" value="#{sportsFacilityController.pricePerHours}" styleClass="input-form-component">
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="1"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:message for="pricePerHours" style="color: red; display: block"/>
                     </div>
@@ -80,6 +89,7 @@
                         <h:inputText id="surfacearea" validatorMessage="#{msg['validator_min_surface_area']}" value="#{sportsFacilityController.surfaceArea}" styleClass="input-form-component">
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="250"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:message for="surfacearea" style="color: red; display: block;"/>
                     </div>
@@ -119,10 +129,12 @@
                         <h:inputText id="minheightofbasket" binding="#{minHeightOfBasket}" validatorMessage="#{msg['validator_min_height_of_basket']}" styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.minHeightOfBasket}">
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="1.5"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:inputText id="widthofgoal" styleClass="input-form-component football-facility" validatorMessage="#{msg['validator_width_of_goal']}" value="#{sportsFacilityController.widthOfGoal}">
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="2"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:message for="widthofgoal" style="color: red; display: none;" styleClass="football-facility"/>
                         <h:message for="minheightofbasket" style="color: red; display:block;" styleClass="basketball-facility"/>
@@ -138,10 +150,12 @@
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validator validatorId="maxHeightOfBasketValidator"/>
                             <f:attribute value="#{minHeightOfBasket}" name="minHeightOfBasket"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:inputText id="heightofgoal" styleClass="input-form-component football-facility" validatorMessage="#{msg['validator_height_of_goal']}" value="#{sportsFacilityController.heightOfGoal}">
                             <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="2"/>
+                            <f:convertNumber maxFractionDigits="2"/>
                         </h:inputText>
                         <h:message for="heightofgoal" styleClass="football-facility" style="color: red; display: none"/>
                         <h:message for="maxbasketballheight" style="color: red; display:block;" styleClass="basketball-facility"/>

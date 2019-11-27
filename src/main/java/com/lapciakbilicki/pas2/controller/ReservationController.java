@@ -48,13 +48,6 @@ public class ReservationController implements Serializable {
     @PostConstruct
     public void init() {
         reservations = new ArrayList<>(reservationService.getAll());
-        Date now = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("d MMMM, y", Locale.US);
-        this.startDate = sdf.format(now);
-        this.endDate = this.startDate;
-        sdf = new SimpleDateFormat("H");
-        this.startHour = sdf.format(now);
-        this.endHour = this.startHour;
     }
 
     public List<Reservation> getAll() {
@@ -76,8 +69,17 @@ public class ReservationController implements Serializable {
                         .equals(id))
                 .findFirst()
                 .orElse(null);
-        reservationService.remove(reservation);
+        if (reservation.isActive() == true)
+            reservationService.remove(reservation);
         this.init();
+    }
+
+    public String dateToStr(Date date) {
+        if (date != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("d/M/y HH:mm", Locale.US);
+            return sdf.format(date);
+        }
+        return "-";
     }
 
     public void changeReservationActive(String id) {

@@ -13,6 +13,7 @@ public class Reservation implements IsIdentified {
     private SportsFacility facility;
     private Date startDate;
     private Date endDate;
+    private Date finishDate;
     private boolean active;
 
     public Reservation() {
@@ -26,12 +27,8 @@ public class Reservation implements IsIdentified {
         this.startDate = startDate;
         this.endDate = endDate;
         this.active = active;
+        this.finishDate = null;
     }
-
-//    public double getPrice() {
-//        long time = endDate.getTimeInMillis() - startDate.getTimeInMillis();
-//        return ((double) time) * (facility.getPricePerHours() / 3600000);
-//    }
 
     @Override
     public boolean equals(Object o) {
@@ -46,6 +43,8 @@ public class Reservation implements IsIdentified {
         return Objects.hash(id);
     }
 
+
+
     //<editor-fold desc="getters and setters">
     @Override
     public void setId(String id) {
@@ -55,6 +54,14 @@ public class Reservation implements IsIdentified {
     @Override
     public String getId() {
         return this.id;
+    }
+
+    public Date getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 
     public boolean isActive() {

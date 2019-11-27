@@ -25,15 +25,25 @@
                                     <h:outputText value="#{object.account.fullName}"/>
                                 </h:outputLink>
                             </div>
-                            <div class="data-view-component col-1">
-                                <h:outputText value="#{object.active ? 'active' : 'inactive'}"/>
-                            </div>
+
                             <div class="data-view-component col-1">
                                 <h:outputText value="#{object.facility.name}"/>
                             </div>
-                            <div class="data-view-component col-3">
-                                <h:outputText value="#{object.id}"/>
+
+                            <div class="data-view-component col-1">
+                                <h:outputText value="#{object.active ? 'active' : 'inactive'}"/>
                             </div>
+
+                            <div class="data-view-component col-1">
+                                <h:outputText value="#{reservationController.dateToStr(object.startDate)}"/>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:outputText value="#{reservationController.dateToStr(object.endDate)}"/>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:outputText value="#{reservationController.dateToStr(object.finishDate)}"/>
+                            </div>
+
                             <div class="data-view-component col-1">
                                 <h:commandButton action="#{reservationController.changeReservationActive(object.id)}"
                                                  value="Finish" styleClass="change-button"/>

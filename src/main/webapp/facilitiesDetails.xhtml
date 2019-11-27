@@ -5,8 +5,16 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 template = "templates/mainTemplate.xhtml">
 
+    <ui:define name="breadcrumbs">
+        <p:breadCrumb>
+            <p:menuitem value="#{msg['main']}" url="/pas2/faces/index.xhtml"/>
+            <p:menuitem value="#{msg['facilities']}" url="/pas2/faces/showFacilities.xhtml"/>
+            <p:menuitem value="#{sportsFacilityController.activeSportsFacility.name}" url="/pas2/faces/facilitiesDerails.xhtml?id=#{sportsFacilityController.activeSportsFacility.id}"/>
+        </p:breadCrumb>
+    </ui:define>
     <ui:define name="content">
         <div class="data-panel col-6">
             <div class="data-panel-group col-8">

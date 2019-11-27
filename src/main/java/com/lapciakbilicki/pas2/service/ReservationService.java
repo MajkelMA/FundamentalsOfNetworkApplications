@@ -20,4 +20,10 @@ public class ReservationService extends ServiceAdapter<Reservation>{
     public void init(ReservationRepository reservationRepository) {
         this.repository = reservationRepository;
     }
+
+    public void reservationDeactivation(String id) {
+        Reservation reservation = this.get(id);
+        if (reservation != null)
+            reservation.setActive(false);
+    }
 }

@@ -4,7 +4,6 @@ import com.lapciakbilicki.pas2.model.IsIdentified;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,13 +13,19 @@ public class Reservation implements IsIdentified {
     private SportsFacility facility;
     private Date startDate;
     private Date endDate;
+    private boolean active;
 
-    public Reservation(String id, Account account, SportsFacility facility, Date startDate, Date endDate) {
+    public Reservation() {
+
+    }
+
+    public Reservation(String id, Account account, SportsFacility facility, Date startDate, Date endDate, boolean active) {
         this.id = id;
         this.account = account;
         this.facility = facility;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.active = active;
     }
 
 //    public double getPrice() {
@@ -41,33 +46,23 @@ public class Reservation implements IsIdentified {
         return Objects.hash(id);
     }
 
-    //<editor-fold desc="setters">
+    //<editor-fold desc="getters and setters">
     @Override
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public void setFacility(SportsFacility facility) {
-        this.facility = facility;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-//</editor-fold>
-
-    //<editor-fold desc="getters">
     @Override
     public String getId() {
         return this.id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Account getAccount() {
@@ -85,5 +80,21 @@ public class Reservation implements IsIdentified {
     public Date getEndDate() {
         return endDate;
     }
-//</editor-fold>
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public void setFacility(SportsFacility facility) {
+        this.facility = facility;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+    //</editor-fold>
 }

@@ -22,10 +22,12 @@
                                 </h:outputLink>
                             </div>
                             <div class="data-view-component col-1">
-                                <h:commandButton action="#{accountController.changeUserActive(account.id)}" value="Change active" styleClass="change-button"/>
+                                <h:commandButton action="#{accountController.changeUserActive(account.id)}"
+                                                 value="Change active" styleClass="change-button"/>
                             </div>
                             <div class="data-view-component col-1">
-                                <h:outputLink value="/pas2/faces/modifyAccount.xhtml" styleClass="link-button modify-button" >
+                                <h:outputLink value="/pas2/faces/modifyAccount.xhtml"
+                                              styleClass="link-button modify-button">
                                     <f:param name="id" value="#{account.id}"/>
                                     <h:outputLabel value="Modify"/>
                                 </h:outputLink>

@@ -11,17 +11,32 @@
     <ui:define name="content">
         <div class="data-view">
             <ul>
+                <h:form>
+                    <div class="data-view-component col-2">
+                        <h:commandButton value="Add reservation" action="reservation" styleClass="change-button"/>
+                    </div>
+                </h:form>
+
                 <ui:repeat value="#{reservationController.all}" var="object">
                     <h:form>
                         <li>
                             <div class="data-view-component col-2">
-                                <h:outputText value="#{object.account.fullName}"/>
+                                <h:outputLink value="" styleClass="active">
+                                    <h:outputText value="#{object.account.fullName}"/>
+                                </h:outputLink>
                             </div>
-                            <div class="data-view-component col-2">
+                            <div class="data-view-component col-1">
+                                <h:outputText value="#{object.active ? 'active' : 'inactive'}"/>
+                            </div>
+                            <div class="data-view-component col-1">
                                 <h:outputText value="#{object.facility.name}"/>
                             </div>
-                            <div class="data-view-component col-4">
+                            <div class="data-view-component col-3">
                                 <h:outputText value="#{object.id}"/>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:commandButton action="#{reservationController.changeReservationActive(object.id)}"
+                                                 value="Finish" styleClass="change-button"/>
                             </div>
                             <div class="data-view-component col-1">
                                 <h:outputLink value="/pas2/faces/modifyReservation.xhtml"

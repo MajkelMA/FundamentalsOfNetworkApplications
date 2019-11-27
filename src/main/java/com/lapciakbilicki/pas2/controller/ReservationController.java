@@ -6,9 +6,18 @@ import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 import com.lapciakbilicki.pas2.service.AccountService;
 import com.lapciakbilicki.pas2.service.ReservationService;
 import com.lapciakbilicki.pas2.service.SportsFacilityService;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Produces;
 import javax.faces.annotation.RequestParameterMap;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
+import javax.faces.flow.Flow;
+import javax.faces.flow.builder.FlowBuilder;
+import javax.faces.flow.builder.FlowBuilderParameter;
+import javax.faces.flow.builder.FlowDefinition;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,10 +26,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@ManagedBean
 @ViewScoped
 @Named
 public class ReservationController implements Serializable {
     private List<Reservation> reservations;
+
     private String startDate, endDate, facilityName, accountLogin, startHour, endHour, message;
 
     @Inject
@@ -37,14 +48,13 @@ public class ReservationController implements Serializable {
     @PostConstruct
     public void init() {
         reservations = new ArrayList<>(reservationService.getAll());
-
         Date now = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("d MMMM, y", Locale.US);
-        startDate = sdf.format(now);
-        endDate = startDate;
+        this.startDate = sdf.format(now);
+        this.endDate = this.startDate;
         sdf = new SimpleDateFormat("H");
-        startHour = sdf.format(now);
-        endHour = startHour;
+        this.startHour = sdf.format(now);
+        this.endHour = this.startHour;
     }
 
     public List<Reservation> getAll() {
@@ -70,50 +80,13 @@ public class ReservationController implements Serializable {
         this.init();
     }
 
-    public void createReservation() {
-        Date startDate = null, endDate = null;
-
-        try {
-            startDate = new SimpleDateFormat("d MMMM, y HH:mm", Locale.US).parse(this.startDate + " " + this.startHour + ":00");
-            endDate = new SimpleDateFormat("d MMMM, y HH:mm", Locale.US).parse(this.endDate + " " + this.endHour + ":00");
-        } catch (ParseException e) {
-            message = " exception: " + e.getMessage();
-        }
-
-        boolean result = false;
-        if (endDate.after(startDate)) {
-            Reservation reservation = new Reservation(UUID.randomUUID().toString(),
-                    accountService.getAll()
-                            .stream()
-                            .filter(account -> account
-                                    .getLogin()
-                                    .equals(accountLogin))
-                            .findFirst()
-                            .orElse(null),
-                    sportsFacilityService.getAll()
-                            .stream()
-                            .filter(facility -> facility
-                                    .getName()
-                                    .equals(facilityName))
-                            .findFirst()
-                            .orElse(null),
-                    startDate,
-                    endDate);
-            if (reservation.getAccount() != null && reservation.getFacility() != null) {
-                result = this.reservationService.add(reservation);
-            }
-        }
-        if (result) {
-            message = "Reservation created successfully";
-        } else {
-            message = "Reservation did not create";
-        }
+    public void changeReservationActive(String id) {
+        reservationService.reservationDeactivation(id);
     }
 
     //<editor-fold desc="getters and setter">
-
     public String getStartDate() {
-        return startDate;
+        return this.startDate;
     }
 
     public void setStartDate(String startDate) {
@@ -121,7 +94,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getEndDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public void setEndDate(String endDate) {
@@ -129,7 +102,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getFacilityName() {
-        return facilityName;
+        return this.facilityName;
     }
 
     public void setFacilityName(String facilityName) {
@@ -137,7 +110,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getAccountLogin() {
-        return accountLogin;
+        return this.accountLogin;
     }
 
     public void setAccountLogin(String accountLogin) {
@@ -145,7 +118,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getStartHour() {
-        return startHour;
+        return this.startHour;
     }
 
     public void setStartHour(String startHour) {
@@ -153,7 +126,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getEndHour() {
-        return endHour;
+        return this.endHour;
     }
 
     public void setEndHour(String endHour) {
@@ -161,7 +134,7 @@ public class ReservationController implements Serializable {
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public void setMessage(String message) {

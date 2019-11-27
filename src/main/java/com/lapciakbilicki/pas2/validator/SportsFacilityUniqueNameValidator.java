@@ -13,6 +13,10 @@ import java.util.List;
 
 @FacesValidator("sportsFacilityUniqueNameValidator")
 public class SportsFacilityUniqueNameValidator implements Validator {
+
+    private final String engMessage = "None unique name";
+    private final String plMessage = "Podano nieunikalną nazwa";
+
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         List<SportsFacility> sportsFacilities = (List<SportsFacility>)uiComponent.getAttributes().get("allFacility");
@@ -24,11 +28,11 @@ public class SportsFacilityUniqueNameValidator implements Validator {
                 .orElse(null);
         if (findSportsFacility != null) {
             if(oldName == null) {
-                throw new ValidatorException(new FacesMessage("None unique name"));
+                throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
             }
             else{
                 if(!oldName.equals(name)){
-                    throw new ValidatorException(new FacesMessage("None unique name"));
+                    throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
                 }
             }
         }

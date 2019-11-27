@@ -26,15 +26,7 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Password: </label>
-                </div>
-                <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{accountController.activeAccount.password}"/>
-                </div>
-            </div>
-            <div class="data-panel-group col-8">
-                <div class="data-panel-item col-4">
-                    <label>Full name: </label>
+                    <label>#{msg['full_name']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel value="#{accountController.activeAccount.fullName}"/>
@@ -42,10 +34,10 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Active: </label>
+                    <label>#{msg['active']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{accountController.activeAccount.active}"/>
+                    <h:outputLabel value="#{msg[accountController.activeAccount.active]}"/>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -58,12 +50,12 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Roles: </label>
+                    <label>#{msg['roles']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <div class="label-group">
                         <ui:repeat value="#{accountController.activeAccount.roles}" var="role">
-                           <h:outputLabel value="#{role.name}"/>
+                           <h:outputLabel value="#{msg[role.name]}"/>
                        </ui:repeat>
                     </div>
                 </div>

@@ -13,11 +13,11 @@
             <h:form>
               <div class="form-group col-10">
                   <div class="form-group-item col-5">
-                      <label>Roles: </label>
+                      <label>#{msg['roles']}: </label>
                   </div>
                   <div class="form-group-item col-5">
                       <h:selectManyCheckbox id="roles" styleClass="form-table" value="#{accountController.roles}">
-                         <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}"/>
+                         <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{msg[role.name]}" itemValue="#{role.id}"/>
                          <f:validator validatorId="roleValidator"/>
                       </h:selectManyCheckbox>
                       <h:message for="roles" style="color: red; display: block;"/>
@@ -28,7 +28,7 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="login" value="#{accountController.account.login}" styleClass="input-form-component" required="true" requiredMessage="Please enter login">
+                        <h:inputText id="login" value="#{accountController.account.login}" styleClass="input-form-component" required="true" requiredMessage="#{msg['validator_login']}">
                             <f:validator validatorId="loginUniqueValidator"/>
                             <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
                         </h:inputText>
@@ -37,10 +37,10 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label>Password: </label>
+                        <label>#{msg['password']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputSecret value="#{accountController.account.password}" id="password" styleClass="input-form-component" required="true" requiredMessage="please enter password">
+                        <h:inputSecret value="#{accountController.account.password}" id="password" styleClass="input-form-component" required="true" requiredMessage="#{msg['require_validator_password']}">
                             <f:validator validatorId="confirmPasswordValidator"/>
                             <f:attribute value="#{confirmPassword}" name="confirmPassword"/>
                         </h:inputSecret>
@@ -49,30 +49,30 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label>Comfirm Password: </label>
+                        <label>#{msg['confirm_password']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputSecret styleClass="input-form-component" id="confirmPassword"  binding="#{confirmPassword}" required="true" requiredMessage="please confirm password"/>
+                        <h:inputSecret styleClass="input-form-component" id="confirmPassword"  binding="#{confirmPassword}" required="true" requiredMessage="#{msg['require_confirm_password']}"/>
                         <h:message for="confirmPassword" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label>Full name: </label>
+                        <label>#{msg['full_name']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="fullname" value="#{accountController.account.fullName}" styleClass="input-form-component" required="true" requiredMessage="please enter fullname"/>
+                        <h:inputText id="fullname" value="#{accountController.account.fullName}" styleClass="input-form-component" required="true" requiredMessage="#{msg['require_full_name']}"/>
                         <h:message for="fullname" style="color: red; display:block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton action="#{accountController.createAccount}" value="Create" styleClass="create-button"/>
+                        <h:commandButton action="#{accountController.createAccount}" value="#{msg['create_button']}" styleClass="create-button"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:button styleClass="modify-button" value="Clear" onclick="clearForm()"/>
+                        <h:button styleClass="modify-button" value="#{msg['clear_button']}" onclick="clearForm()"/>
                     </div>
                 </div>
             </h:form>

@@ -16,7 +16,7 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Price per hours: </label>
+                    <label>#{msg['price_per_hours']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}"/>
@@ -24,32 +24,32 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Access: </label>
+                    <label>#{msg['access']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.access}"/>
+                    <h:outputLabel value="#{msg[sportsFacilityController.activeSportsFacility.access]}"/>
                 </div>
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="Number of Basket: "/>
+                                   value="#{msg['number_of_basket']}: "/>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="Full size: "/>
+                                   value="#{msg['fullsize']}: "/>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
                                    value="#{sportsFacilityController.activeSportsFacility.numberOfBasket}"/>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.fullSize}"/>
+                                   value="#{msg[sportsFacilityController.activeSportsFacility.fullSize]}"/>
                 </div>
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                    value="Min height of Basket: "/>
+                    value="#{msg['min_height_of_basket']}: "/>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="Width Of Goal:"/>
+                                   value="#{msg['width_of_goal']}:"/>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
@@ -61,9 +61,9 @@
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="Max height of Basket: "/>
+                                   value="#{msg['max_height_of_basket']}: "/>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="Height Of Goal:"/>
+                                   value="#{msg['height_of_goal']}:"/>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
@@ -74,15 +74,15 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Type: </label>
+                    <label>#{msg['type']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.class.simpleName}"/>
+                    <h:outputLabel value="#{msg[sportsFacilityController.activeSportsFacility.class.simpleName]}"/>
                 </div>
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Max Amount of People: </label>
+                    <label>#{msg['max_amount_of_people']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.maxAmountOfPeople}"/>
@@ -90,7 +90,7 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Type of Ground: </label>
+                    <label>#{msg['type_of_ground']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.typeOfGround}"/>
@@ -98,7 +98,7 @@
             </div>
             <div class="data-panel-group col-8">
                 <div class="data-panel-item col-4">
-                    <label>Surface Area: </label>
+                    <label>#{msg['surface_area']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}"/>

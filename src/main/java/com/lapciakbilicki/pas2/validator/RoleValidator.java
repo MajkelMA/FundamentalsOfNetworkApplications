@@ -9,12 +9,14 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("roleValidator")
 public class RoleValidator implements Validator {
+    private final String engMessage = "Select role";
+    private final String plMessage = "Wybierz role";
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
             String[] roles = (String[])o;
             if(roles.length == 0){
-                throw new ValidatorException(new FacesMessage("Select role"));
+                throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
             }
     }
 }

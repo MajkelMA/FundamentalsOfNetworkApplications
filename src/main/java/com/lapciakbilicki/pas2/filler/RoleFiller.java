@@ -10,7 +10,7 @@ public class RoleFiller implements Filler<Role> {
     @Override
     public void autoFill(List<Role> destination) {
         destination.add(new Role(UUID.randomUUID().toString(), "Client", "Client"));
-        destination.add(new Role(UUID.randomUUID().toString(), "Resources Admin", "Resources Admin"));
-        destination.add(new Role(UUID.randomUUID().toString(), "User Admin", "User Admin"));
+        destination.add(new Role(UUID.randomUUID().toString(), "Resources_Admin", "Resources Admin"));
+        destination.add(new Role(UUID.randomUUID().toString(), "User_Admin", "User Admin"));
     }
 }

@@ -1,1 +1,1 @@
-window.onpageshow = changeVisibility;
+// window.onpageshow = changeVisibility;

@@ -20,16 +20,16 @@
                               </h:outputLink>
                               </div>
                               <div class="data-view-component col-1">
-                                  <h:commandButton styleClass="change-button" action="#{sportsFacilityController.changeAccess(facility.id)}" value="Change Access"/>
+                                  <h:commandButton styleClass="change-button" action="#{sportsFacilityController.changeAccess(facility.id)}" value="#{msg['change_active_button']}"/>
                               </div>
                               <div class="data-view-component col-1">
                                   <h:outputLink value="/pas2/faces/modifyFacilities.xhtml" styleClass="link-button modify-button">
                                       <f:param name="id" value="#{facility.id}"/>
-                                      <h:outputLabel value="Modify"/>
+                                      <h:outputLabel value="#{msg['modify_button']}"/>
                                   </h:outputLink>
                               </div>
                               <div class="data-view-component col-1">
-                                <h:commandButton styleClass="delete-button" action="#{sportsFacilityController.deleteSportsFacility(facility.id)}" value="Delete"/>
+                                <h:commandButton styleClass="delete-button" action="#{sportsFacilityController.deleteSportsFacility(facility.id)}" value="#{msg['delete_button']}"/>
                               </div>
                           </li>
                       </h:form>

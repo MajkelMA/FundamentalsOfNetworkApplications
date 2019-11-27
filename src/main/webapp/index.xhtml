@@ -10,7 +10,7 @@
 
     <ui:define name="content">
         <div class="data-view">
-            <h:form>
+            <h:form accept-charset="UTF-8">
                 <ul>
                     <ui:repeat value="#{accountController.all}" var="account">
                         <li>
@@ -22,14 +22,13 @@
                                 </h:outputLink>
                             </div>
                             <div class="data-view-component col-1">
-                                <h:commandButton action="#{accountController.changeUserActive(account.id)}"
-                                                 value="Change active" styleClass="change-button"/>
+                                <h:commandButton action="#{accountController.changeUserActive(account.id)}" value="#{msg['change_active_button']}" styleClass="change-button"/>
                             </div>
                             <div class="data-view-component col-1">
                                 <h:outputLink value="/pas2/faces/modifyAccount.xhtml"
                                               styleClass="link-button modify-button">
                                     <f:param name="id" value="#{account.id}"/>
-                                    <h:outputLabel value="Modify"/>
+                                    <h:outputLabel value="#{msg['modify_button']}"/>
                                 </h:outputLink>
                             </div>
                         </li>

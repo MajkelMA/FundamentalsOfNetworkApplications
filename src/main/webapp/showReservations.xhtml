@@ -15,6 +15,15 @@
                     <div class="data-view-component col-2">
                         <h:commandButton value="Add reservation" action="reservation" styleClass="change-button"/>
                     </div>
+                    <div class="data-view-component col-2">
+                        <h:selectOneMenu styleClass="input-form-component"
+                                         value="#{reservationController.sort}"
+                                         onchange="window.location='/pas2/faces/showReservations.xhtml?sort='+ this.options[this.selectedIndex].value">
+                            <f:selectItem itemValue="All" itemLabel="All"/>
+                            <f:selectItem itemValue="Active" itemLabel="Active"/>
+                            <f:selectItem itemValue="Inactive" itemLabel="Inactive"/>
+                        </h:selectOneMenu>
+                    </div>
                 </h:form>
 
                 <ui:repeat value="#{reservationController.all}" var="object">

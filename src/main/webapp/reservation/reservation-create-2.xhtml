@@ -16,10 +16,23 @@
 
         <div class="data-view">
             <ul>
+                <h:form>
+                    <div class="data-view-component col-4">
+                        <h:outputLabel value="Price:"/>
+                        <h:inputText value="#{reservationController.priceFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-4">
+                        <h:outputLabel value="Name:"/>
+                        <h:inputText value="#{reservationController}"/>
+                    </div>
+                </h:form>
                 <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">
                     <li>
-                        <div class="data-view-component col-9">
+                        <div class="data-view-component col-5">
                             <h:outputText value="#{object.name}"/>
+                        </div>
+                        <div class="data-view-component col-4">
+                            <h:outputText value="#{object.pricePerHours}"/>
                         </div>
                         <div class="data-view-component col-1">
                             <h:form>

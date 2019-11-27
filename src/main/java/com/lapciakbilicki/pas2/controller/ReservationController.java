@@ -6,33 +6,26 @@ import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 import com.lapciakbilicki.pas2.service.AccountService;
 import com.lapciakbilicki.pas2.service.ReservationService;
 import com.lapciakbilicki.pas2.service.SportsFacilityService;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Produces;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
-import javax.faces.flow.Flow;
-import javax.faces.flow.builder.FlowBuilder;
-import javax.faces.flow.builder.FlowBuilderParameter;
-import javax.faces.flow.builder.FlowDefinition;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 @Named
 public class ReservationController implements Serializable {
     private List<Reservation> reservations;
 
-    private String startDate, endDate, facilityName, accountLogin, startHour, endHour, message;
+    private String startDate, endDate, facilityName, accountLogin, startHour, endHour, message, sort, priceFacilityFilter = "", nameFacilityFilter = "";
 
     @Inject
     private ReservationService reservationService;
@@ -48,6 +41,20 @@ public class ReservationController implements Serializable {
     @PostConstruct
     public void init() {
         reservations = new ArrayList<>(reservationService.getAll());
+        if (requestMap.containsKey("sort")) {
+            this.sort = this.requestMap.get("sort");
+            if (this.sort.equals("Active")) {
+                reservations = reservationService.getAll().stream().filter(Reservation::isActive).collect(Collectors.toList());
+            } else if (this.sort.equals("Inactive")) {
+                reservations = reservationService.getAll().stream().filter(res -> !res.isActive()).collect(Collectors.toList());
+            } else {
+                reservations = new ArrayList<>(reservationService.getAll());
+            }
+        }
+    }
+
+    public int update() {
+        return 1;
     }
 
     public List<Reservation> getAll() {
@@ -69,7 +76,7 @@ public class ReservationController implements Serializable {
                         .equals(id))
                 .findFirst()
                 .orElse(null);
-        if (reservation.isActive() == true)
+        if (reservation.isActive())
             reservationService.remove(reservation);
         this.init();
     }
@@ -87,6 +94,31 @@ public class ReservationController implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
+
+    public String getPriceFacilityFilter() {
+        return priceFacilityFilter;
+    }
+
+    public void setPriceFacilityFilter(String priceFacilityFilter) {
+        this.priceFacilityFilter = priceFacilityFilter;
+    }
+
+    public String getNameFacilityFilter() {
+        return nameFacilityFilter;
+    }
+
+    public void setNameFacilityFilter(String nameFacilityFilter) {
+        this.nameFacilityFilter = nameFacilityFilter;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
     public String getStartDate() {
         return this.startDate;
     }

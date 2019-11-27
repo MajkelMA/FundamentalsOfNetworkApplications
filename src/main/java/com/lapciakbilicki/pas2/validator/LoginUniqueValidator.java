@@ -17,12 +17,20 @@ public class LoginUniqueValidator implements Validator, Serializable {
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         String login = (String)o;
         List<Account> accounts = (List<Account>)uiComponent.getAttributes().get("allAccounts");
+        String oldLogin = (String)uiComponent.getAttributes().get("login");
         Account accountToFind = accounts.stream()
                 .filter(account -> account.getLogin().equals(login))
                 .findFirst()
                 .orElse(null);
         if(accountToFind != null){
-            throw new ValidatorException(new FacesMessage("login is not unique"));
+            if(oldLogin == null) {
+                throw new ValidatorException(new FacesMessage("login is not unique"));
+            }
+            else{
+                if(!accountToFind.getLogin().equals(oldLogin)){
+                    throw new ValidatorException(new FacesMessage("login is not unique"));
+                }
+            }
         }
     }
 

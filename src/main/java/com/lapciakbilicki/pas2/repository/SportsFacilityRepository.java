@@ -2,6 +2,7 @@ package com.lapciakbilicki.pas2.repository;
 
 import com.lapciakbilicki.pas2.filler.Filler;
 import com.lapciakbilicki.pas2.filler.SportsFacilityFiller;
+import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 
 import javax.annotation.PostConstruct;
@@ -31,8 +32,9 @@ public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> 
 
     @Override
     public void update(SportsFacility item) {
-        if(this.remove(item)){
-            this.add(item);
+        SportsFacility sportsFacility = this.get(item.getId());
+        if(sportsFacility != null){
+            sportsFacility.copyAttributionsWithoutId(item);
         }
     }
 }

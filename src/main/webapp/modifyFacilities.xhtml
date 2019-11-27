@@ -18,7 +18,7 @@
                         <label>Type: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu id="typeSelect" styleClass="input-form-component" value="#{sportsFacilityController.type}" onchange="changeVisibility()">
+                        <h:selectOneMenu id="typeSelect" styleClass="input-form-component" value="#{sportsFacilityController.facilityType}" disabled="true" onchange="changeVisibility()">
                             <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball Facility"/>
                             <f:selectItem itemValue="FootballFacility" itemLabel="Football Facility"/>
                         </h:selectOneMenu>
@@ -29,7 +29,12 @@
                         <label>Name: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acName" value="#{sportsFacilityController.name}" styleClass="input-form-component"/>
+                        <h:inputText id="name" value="#{sportsFacilityController.name}" required="true" requiredMessage="enter sports facility name" styleClass="input-form-component">
+                            <f:validator validatorId="sportsFacilityUniqueNameValidator" />
+                            <f:attribute value="#{sportsFacilityController.all}" name="allFacility"/>
+                            <f:attribute value="#{sportsFacilityController.name}" name="name"/>
+                        </h:inputText>
+                        <h:message for="name" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -37,9 +42,11 @@
                         <label>Price per Houers: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="acPricePerHours" value="#{sportsFacilityController.pricePerHours}" styleClass="input-form-component">
+                        <h:inputText id="pricePerHours" validatorMessage="Price per houer must be greater than 1" value="#{sportsFacilityController.pricePerHours}" styleClass="input-form-component">
                             <f:converter converterId="javax.faces.Double"/>
+                            <f:validateDoubleRange minimum="1"/>
                         </h:inputText>
+                        <h:message for="pricePerHours" style="color: red; display: block"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -55,20 +62,14 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label>Id: </label>
-                    </div>
-                    <div class="form-group-item col-5">
-                        <h:inputText value="#{sportsFacilityController.id}" styleClass="input-form-component"/>
-                    </div>
-                </div>
-                <div class="form-group col-10">
-                    <div class="form-group-item col-5">
                         <label>Max Amount of People: </label>
                     </div>
                     <div class="form-group-item col-5">
-                      <h:inputText value="#{sportsFacilityController.maxAmountOfPeople}" styleClass="input-form-component">
-                              <f:converter converterId="javax.faces.Integer"/>
+                      <h:inputText id="amount" validatorMessage="Min amount of peope must be greater than 10" value="#{sportsFacilityController.maxAmountOfPeople}" styleClass="input-form-component">
+                          <f:validateLongRange minimum="11"/>
+                          <f:converter converterId="javax.faces.Integer"/>
                       </h:inputText>
+                        <h:message for="amount" style="color: red; display:block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -76,9 +77,11 @@
                         <label>Surface Area: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText value="#{sportsFacilityController.surfaceArea}" styleClass="input-form-component">
+                        <h:inputText id="surfacearea" validatorMessage="Min surface area must be greater than 250" value="#{sportsFacilityController.surfaceArea}" styleClass="input-form-component">
                             <f:converter converterId="javax.faces.Double"/>
+                            <f:validateDoubleRange minimum="250"/>
                         </h:inputText>
+                        <h:message for="surfacearea" style="color: red; display: block;"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
@@ -86,12 +89,13 @@
                         <label>Type of Grount: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText value="#{sportsFacilityController.typeOfGround}" styleClass="input-form-component" />
+                        <h:inputText value="#{sportsFacilityController.typeOfGround}" id="typofground" requiredMessage="Enter type of ground" required="true" styleClass="input-form-component" />
+                        <h:message for="typofground" style="color: red; display: block"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <h:outputLabel class = "basketball-facility" value="Min Height of Basket: "/>
+                        <h:outputLabel class = "basketball-facility" value="Number of Basket: "/>
                         <h:outputLabel class = "football-facility" value="Full Size: "/>
                     </div>
                     <div class="form-group-item col-5">
@@ -99,43 +103,54 @@
                             <f:selectItem itemValue="true" itemLabel="Yes"/>
                             <f:selectItem itemValue="false" itemLabel="No"/>
                         </h:selectOneMenu>
-                        <h:inputText styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.minHeightOfBasket}">
-                            <f:converter converterId="javax.faces.Double"/>
+                        <h:inputText id="numberofbaket" validatorMessage="number of baket must be greter than 2" styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.numberOfBasket}">
+                            <f:converter converterId="javax.faces.Integer"/>
+                            <f:validateLongRange minimum="2"/>
                     </h:inputText>
+                        <h:message for="numberofbaket" class="basketball-facility" style="color: red; display: block"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <h:outputLabel class="basketball-facility" value="Max Height Of Basket: "/>
+                        <h:outputLabel class="basketball-facility" value="Min Height of Basket: "/>
                         <h:outputLabel class="football-facility" value="Width of Goal: "/>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.maxHeightOfBasket}">
+                        <h:inputText id="minheightofbasket" binding="#{minHeightOfBasket}" validatorMessage="min height of basket must be greter than 1.5" styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.minHeightOfBasket}">
                             <f:converter converterId="javax.faces.Double"/>
+                            <f:validateDoubleRange minimum="1.5"/>
                         </h:inputText>
-                        <h:inputText styleClass="input-form-component football-facility" value="#{sportsFacilityController.widthOfGoal}">
+                        <h:inputText id="widthofgoal" styleClass="input-form-component football-facility" validatorMessage="width of goal must be greter than 2" value="#{sportsFacilityController.widthOfGoal}">
                             <f:converter converterId="javax.faces.Double"/>
+                            <f:validateDoubleRange minimum="2"/>
                         </h:inputText>
+                        <h:message for="widthofgoal" style="color: red; display: none;" styleClass="football-facility"/>
+                        <h:message for="minheightofbasket" style="color: red; display:block;" styleClass="basketball-facility"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <h:outputLabel class="basketball-facility" value="Number of Basket: "/>
+                        <h:outputLabel class="basketball-facility" value="Max Height of Basket: "/>
                         <h:outputLabel class="football-facility" value="Height of Goal: "/>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.numberOfBasket}">
-                            <f:converter converterId="javax.faces.Integer"/>
-                        </h:inputText>
-                        <h:inputText styleClass="input-form-component football-facility" value="#{sportsFacilityController.heightOfGoal}">
+                        <h:inputText id="maxbasketballheight" styleClass="input-form-component basketball-facility" value="#{sportsFacilityController.maxHeightOfBasket}">
                             <f:converter converterId="javax.faces.Double"/>
+                            <f:validator validatorId="maxHeightOfBasketValidator"/>
+                            <f:attribute value="#{minHeightOfBasket}" name="minHeightOfBasket"/>
                         </h:inputText>
+                        <h:inputText id="heightofgoal" styleClass="input-form-component football-facility" validatorMessage="height of goal must be greter than 2" value="#{sportsFacilityController.heightOfGoal}">
+                            <f:converter converterId="javax.faces.Double"/>
+                            <f:validateDoubleRange minimum="2"/>
+                        </h:inputText>
+                        <h:message for="heightofgoal" styleClass="football-facility" style="color: red; display: none"/>
+                        <h:message for="maxbasketballheight" style="color: red; display:block;" styleClass="basketball-facility"/>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton styleClass="create-button basketball-facility" action="#{sportsFacilityController.updateBasketBallFacility}" value="Submit"/>
-                        <h:commandButton styleClass="create-button football-facility" action="#{sportsFacilityController.updateFootballFacility}" value="Submit"/>
+                        <h:commandButton styleClass="create-button basketball-facility" action="#{sportsFacilityController.updateBasketBallFacility}" onclick="fillDataDuringCreateBasketballField()" value="Submit"/>
+                        <h:commandButton styleClass="create-button football-facility" action="#{sportsFacilityController.updateFootballFacility}" onclick="fillDataDuringCreateFootballField()" value="Submit"/>
                     </div>
                 </div>
             </h:form>

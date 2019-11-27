@@ -31,6 +31,7 @@
                         <h:inputText id="login" value="#{accountController.accountToModify.login}" required="true" requiredMessage="enter login" styleClass="input-form-component">
                             <f:validator validatorId="loginUniqueValidator"/>
                             <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
+                            <f:attribute value="#{accountController.accountToModify.login}" name="login"/>
                         </h:inputText>
                         <h:message for="login" style="color: red; display: block;"/>
                     </div>

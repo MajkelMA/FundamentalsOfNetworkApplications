@@ -15,7 +15,7 @@
                         <label>Type: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu id="typeSelect" value="#" styleClass="input-form-component" onchange="changeVisibility()">
+                        <h:selectOneMenu id="typeSelect" value="#" styleClass="input-form-component" onchange="changeVisibilityInCreateForm()">
                             <f:selectItem itemValue="BasketballFacility" itemLabel="Basketball facility"/>
                             <f:selectItem itemValue="FootballFacility" itemLabel="Football facility"/>
                         </h:selectOneMenu>
@@ -88,7 +88,7 @@
                             <f:selectItem itemValue="true" itemLabel="Yes"/>
                             <f:selectItem itemValue="false" itemLabel="No"/>
                         </h:selectOneMenu>
-                        <h:inputText id="numberofbaket" validatorMessage="number of baket must be greter than 1" value="#{sportsFacilityController.numberOfBasket}" styleClass="input-form-component basketball-facility">
+                        <h:inputText id="numberofbaket" validatorMessage="number of baket must be greter than 2" value="#{sportsFacilityController.numberOfBasket}" styleClass="input-form-component basketball-facility">
                                 <f:converter converterId="javax.faces.Integer" />
                                 <f:validateLongRange minimum="2"/>
                         </h:inputText>
@@ -101,11 +101,11 @@
                         <h:outputLabel class="basketball-facility" value="Min Height of Basket: " />
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="widthofgoal" style="display: none" validatorMessage="width of goal must be greter than 1" value="#{sportsFacilityController.widthOfGoal}" styleClass="input-form-component football-facility">
+                        <h:inputText id="widthofgoal" style="display: none" validatorMessage="width of goal must be greter than 2" value="#{sportsFacilityController.widthOfGoal}" styleClass="input-form-component football-facility">
                                 <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="2"/>
                         </h:inputText>
-                        <h:inputText id="minheightofbasket" binding="#{minHeightOfBasket}"  validatorMessage="min height of basket must be greter than 1" value="#{sportsFacilityController.minHeightOfBasket}" styleClass="input-form-component basketball-facility">
+                        <h:inputText id="minheightofbasket" binding="#{minHeightOfBasket}"  validatorMessage="min height of basket must be greter than 1.5" value="#{sportsFacilityController.minHeightOfBasket}" styleClass="input-form-component basketball-facility">
                                 <f:converter converterId="javax.faces.Double"/>
                             <f:validateDoubleRange minimum="1.5"/>
                         </h:inputText>

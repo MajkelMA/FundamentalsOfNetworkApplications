@@ -24,8 +24,8 @@ public class SportsFacilityController implements Serializable {
     private double pricePerHours, penalty, widthOfGoal, heightOfGoal, minHeightOfBasket, maxHeightOfBasket, surfaceArea;
     private Field field = new Field();
     private int numberOfBasket, maxAmountOfPeople;
-    private String fullSize, name, id, typeOfGround, type, access;
-    SportsFacility sportsFacility;
+    private String fullSize, name, id, typeOfGround, facilityType, access;
+    private SportsFacility sportsFacility;
 
     @Inject
     private SportsFacilityService sportsFacilityService;
@@ -40,8 +40,9 @@ public class SportsFacilityController implements Serializable {
     public void init() {
         sportsFacilities = new ArrayList<>(sportsFacilityService.getAll());
         if(requestMap.containsKey("id")){
+
             sportsFacility = sportsFacilityService.get(requestMap.get("id"));
-            type = sportsFacility.getClass().getSimpleName();
+            facilityType = sportsFacility.getClass().getSimpleName();
             id = sportsFacility.getId();
             name = sportsFacility.getName();
             pricePerHours = sportsFacility.getPricePerHours();
@@ -49,7 +50,7 @@ public class SportsFacilityController implements Serializable {
             typeOfGround = sportsFacility.getField().getTypeOfGround();
             maxAmountOfPeople = sportsFacility.getField().getMaxAmountOfPeople();
             surfaceArea = sportsFacility.getField().getSurfaceArea();
-            if(type.equals("BasketballFacility")){
+            if(facilityType.equals("BasketballFacility")){
                 BasketballFacility basketballFacility = (BasketballFacility) sportsFacility;
                 maxHeightOfBasket = basketballFacility.getMaxHeightOfBasket();
                 minHeightOfBasket = basketballFacility.getMinHeightOfBasket();
@@ -178,8 +179,8 @@ public class SportsFacilityController implements Serializable {
         this.typeOfGround = typeOfGround;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setFacilityType(String facilityType) {
+        this.facilityType = facilityType;
     }
 
     public String getAccess() {
@@ -270,12 +271,8 @@ public class SportsFacilityController implements Serializable {
         this.numberOfBasket = numberOfBasket;
     }
 
-
-    public String getType() {
-        if (this.requestMap.containsKey("type")) {
-            return requestMap.get("type");
-        }
-        return null;
+    public String getFacilityType() {
+        return facilityType;
     }
     //</editor-fold>
 }

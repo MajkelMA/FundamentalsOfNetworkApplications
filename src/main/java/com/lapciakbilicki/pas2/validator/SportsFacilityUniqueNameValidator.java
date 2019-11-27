@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.validator;
 
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
+import org.primefaces.util.HTML;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -15,13 +16,22 @@ public class SportsFacilityUniqueNameValidator implements Validator {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         List<SportsFacility> sportsFacilities = (List<SportsFacility>)uiComponent.getAttributes().get("allFacility");
+        String oldName = (String)uiComponent.getAttributes().get("name");
         String name = (String)o;
         SportsFacility findSportsFacility = sportsFacilities.stream()
                 .filter(sportsFacility -> sportsFacility.getName().equals(name))
                 .findFirst()
                 .orElse(null);
-        if(findSportsFacility != null){
-            throw new ValidatorException(new FacesMessage("None unique name"));
+        if (findSportsFacility != null) {
+            if(oldName == null) {
+                throw new ValidatorException(new FacesMessage("None unique name"));
+            }
+            else{
+                if(!oldName.equals(name)){
+                    throw new ValidatorException(new FacesMessage("None unique name"));
+                }
+            }
         }
+
     }
 }

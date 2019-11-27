@@ -17,13 +17,20 @@
         <div class="data-view">
             <ul>
                 <h:form>
-                    <div class="data-view-component col-4">
-                        <h:outputLabel value="Price:"/>
-                        <h:inputText value="#{reservationController.priceFacilityFilter}"/>
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="Price from:"/>
+                        <h:inputText value="#{reservationController.priceFromFacilityFilter}"/>
                     </div>
-                    <div class="data-view-component col-4">
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="Price to:"/>
+                        <h:inputText value="#{reservationController.priceToFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
                         <h:outputLabel value="Name:"/>
-                        <h:inputText value="#{reservationController}"/>
+                        <h:inputText value="#{reservationController.nameFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
+                        <h:commandButton value="Filter" action="#{reservationController.filterFacility()}"/>
                     </div>
                 </h:form>
                 <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">
@@ -32,7 +39,9 @@
                             <h:outputText value="#{object.name}"/>
                         </div>
                         <div class="data-view-component col-4">
-                            <h:outputText value="#{object.pricePerHours}"/>
+                            <h:outputText value="#{object.pricePerHours}">
+                                <f:convertNumber maxFractionDigits="2"/>
+                            </h:outputText>
                         </div>
                         <div class="data-view-component col-1">
                             <h:form>

@@ -25,7 +25,16 @@ import java.util.stream.Collectors;
 public class ReservationController implements Serializable {
     private List<Reservation> reservations;
 
-    private String startDate, endDate, facilityName, accountLogin, startHour, endHour, message, sort, priceFacilityFilter = "", nameFacilityFilter = "";
+    private String startDate,
+            endDate,
+            facilityName,
+            accountLogin,
+            startHour, endHour,
+            message, sort,
+            priceFromFacilityFilter = "0",
+            priceToFacilityFilter = "0",
+            nameFacilityFilter = "",
+            nameAccountFilter = "";
 
     @Inject
     private ReservationService reservationService;
@@ -62,11 +71,11 @@ public class ReservationController implements Serializable {
     }
 
     public List<Account> getAllAccounts() {
-        return accountService.getAll();
+        return filterAccount();
     }
 
     public List<SportsFacility> getAllSportsFacilities() {
-        return sportsFacilityService.getAll();
+        return filterFacility();
     }
 
     public void deleteReservation(String id) {
@@ -79,6 +88,29 @@ public class ReservationController implements Serializable {
         if (reservation.isActive())
             reservationService.remove(reservation);
         this.init();
+    }
+
+    public List<Account> filterAccount() {
+        return accountService.getAll()
+                .stream()
+                .filter(acc -> acc.getLogin().contains(nameAccountFilter))
+                .collect(Collectors.toList());
+    }
+
+    public List<SportsFacility> filterFacility() {
+        if (Integer.parseInt(this.priceToFacilityFilter) == 0 && Integer.parseInt(this.priceFromFacilityFilter) == 0) {
+            return sportsFacilityService.getAll()
+                    .stream()
+                    .filter(fac -> fac.getName().contains(nameFacilityFilter))
+                    .collect(Collectors.toList());
+        } else {
+            return sportsFacilityService.getAll()
+                    .stream()
+                    .filter(fac -> fac.getPricePerHours() >= Integer.parseInt(priceFromFacilityFilter))
+                    .filter(fac -> fac.getPricePerHours() <= Integer.parseInt(priceToFacilityFilter))
+                    .filter(fac -> fac.getName().contains(nameFacilityFilter))
+                    .collect(Collectors.toList());
+        }
     }
 
     public String dateToStr(Date date) {
@@ -95,12 +127,28 @@ public class ReservationController implements Serializable {
 
     //<editor-fold desc="getters and setter">
 
-    public String getPriceFacilityFilter() {
-        return priceFacilityFilter;
+    public String getNameAccountFilter() {
+        return nameAccountFilter;
     }
 
-    public void setPriceFacilityFilter(String priceFacilityFilter) {
-        this.priceFacilityFilter = priceFacilityFilter;
+    public void setNameAccountFilter(String nameAccountFilter) {
+        this.nameAccountFilter = nameAccountFilter;
+    }
+
+    public String getPriceFromFacilityFilter() {
+        return priceFromFacilityFilter;
+    }
+
+    public void setPriceFromFacilityFilter(String priceFromFacilityFilter) {
+        this.priceFromFacilityFilter = priceFromFacilityFilter;
+    }
+
+    public String getPriceToFacilityFilter() {
+        return priceToFacilityFilter;
+    }
+
+    public void setPriceToFacilityFilter(String priceToFacilityFilter) {
+        this.priceToFacilityFilter = priceToFacilityFilter;
     }
 
     public String getNameFacilityFilter() {

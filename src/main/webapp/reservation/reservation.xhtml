@@ -17,6 +17,15 @@
 
         <div class="data-view">
             <ul>
+                <h:form>
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="Name:"/>
+                        <h:inputText value="#{reservationController.nameAccountFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
+                        <h:commandButton value="Filter" action="#{reservationController.filterAccount()}"/>
+                    </div>
+                </h:form>
                 <ui:repeat value="#{reservationController.allAccounts}" var="object">
                     <li>
                         <div class="data-view-component col-9">

@@ -19,7 +19,9 @@
                     <label>#{msg['price_per_hours']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}"/>
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.pricePerHours}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -53,9 +55,13 @@
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.minHeightOfBasket}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.minHeightOfBasket}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.widthOfGoal}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.widthOfGoal}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -67,9 +73,13 @@
                 </div>
                 <div class="data-panel-item col-4">
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('BasketballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.maxHeightOfBasket}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                     <h:outputLabel rendered="#{sportsFacilityController.activeSportsFacility.class.simpleName.equals('FootballFacility')}"
-                                   value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}"/>
+                                   value="#{sportsFacilityController.activeSportsFacility.heightOfGoal}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
             <div class="data-panel-group col-8">
@@ -101,7 +111,9 @@
                     <label>#{msg['surface_area']}: </label>
                 </div>
                 <div class="data-panel-item col-4">
-                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}"/>
+                    <h:outputLabel value="#{sportsFacilityController.activeSportsFacility.field.surfaceArea}">
+                        <f:convertNumber maxFractionDigits="2"/>
+                    </h:outputLabel>
                 </div>
             </div>
         </div>

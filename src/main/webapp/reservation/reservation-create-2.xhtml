@@ -27,7 +27,8 @@
                     </div>
                 </h:form>
                 <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">
-                    <li>
+                    <h:form>
+                        <li>
                         <div class="data-view-component col-5">
                             <h:outputText value="#{object.name}"/>
                         </div>
@@ -35,14 +36,13 @@
                             <h:outputText value="#{object.pricePerHours}"/>
                         </div>
                         <div class="data-view-component col-1">
-                            <h:form>
                                 <h:commandButton value="Choose" action="reservation-create-3"
                                                  styleClass="change-button">
                                     <f:actionListener binding="#{reservationBean.addSportFacility(object.id)}"/>
                                 </h:commandButton>
-                            </h:form>
                         </div>
                     </li>
+                    </h:form>
                 </ui:repeat>
             </ul>
         </div>

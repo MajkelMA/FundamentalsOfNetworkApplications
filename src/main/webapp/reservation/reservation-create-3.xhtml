@@ -8,14 +8,15 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="../templates/mainTemplate.xhtml">
 
-    <ui:define name="content">
+    <ui:define name="scripts">
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
         <h:outputScript library="js" name="datePicker.js"/>
-
+    </ui:define>
+    <ui:define name="content">
         <div class="create-form col-4">
-            <h:form>
+            <h:form style="width: 100%;">
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
                         <label for="startDate">Start date:</label>
@@ -61,10 +62,8 @@
                     </div>
                 </div>
                 <div class="form-group col-10">
-                    <div class="form-group col-10">
-                        <h:form>
-                            <h:commandButton value="Next" action="reservation-create-4" styleClass="change-button"/>
-                        </h:form>
+                    <div class="form-group-item col-10">
+                            <h:commandButton value="Next" action="reservation-create-4" styleClass="create-button"/>
                     </div>
                 </div>
             </h:form>

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RequestScoped
-public class ReservationService extends ServiceAdapter<Reservation>{
+public class ReservationService extends ServiceAdapter<Reservation> {
 
     public ReservationService() {
 
@@ -27,10 +27,12 @@ public class ReservationService extends ServiceAdapter<Reservation>{
 
     public void reservationDeactivation(String id) {
         Reservation reservation = this.get(id);
-        if (reservation != null){
-            reservation.setActive(false);
+        if (reservation != null) {
             Date now = Calendar.getInstance().getTime();
-            reservation.setFinishDate(now);
+            if (reservation.getStartDate().before(now)) {
+                reservation.setActive(false);
+                reservation.setFinishDate(now);
+            }
         }
     }
 }

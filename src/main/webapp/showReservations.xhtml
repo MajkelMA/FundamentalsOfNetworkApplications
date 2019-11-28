@@ -20,15 +20,15 @@
             <ul>
                 <h:form>
                     <div class="data-view-component col-2">
-                        <h:commandButton value="Add reservation" action="reservation" styleClass="change-button"/>
+                        <h:commandButton value="#{msg['add_reservation']}" action="reservation" styleClass="change-button"/>
                     </div>
                     <div class="data-view-component col-2">
                         <h:selectOneMenu styleClass="input-form-component"
                                          value="#{reservationController.sort}"
                                          onchange="window.location='/pas2/faces/showReservations.xhtml?sort='+ this.options[this.selectedIndex].value">
-                            <f:selectItem itemValue="All" itemLabel="All"/>
-                            <f:selectItem itemValue="Active" itemLabel="Active"/>
-                            <f:selectItem itemValue="Inactive" itemLabel="Inactive"/>
+                            <f:selectItem itemValue="All" itemLabel="#{msg['filter_all']}"/>
+                            <f:selectItem itemValue="Active" itemLabel="#{msg['filter_active']}"/>
+                            <f:selectItem itemValue="Inactive" itemLabel="#{msg['filter_inactive']}"/>
                         </h:selectOneMenu>
                     </div>
                 </h:form>
@@ -37,9 +37,7 @@
                     <h:form>
                         <li>
                             <div class="data-view-component col-2">
-                                <h:outputLink value="" styleClass="active">
-                                    <h:outputText value="#{object.account.fullName}"/>
-                                </h:outputLink>
+                                <h:outputText value="#{object.account.fullName}"/>
                             </div>
 
                             <div class="data-view-component col-1">
@@ -56,25 +54,18 @@
                             <div class="data-view-component col-1">
                                 <h:outputText value="#{reservationController.dateToStr(object.endDate)}"/>
                             </div>
-                            <div class="data-view-component col-1">
+                            <div class="data-view-component col-2">
                                 <h:outputText value="#{reservationController.dateToStr(object.finishDate)}"/>
                             </div>
 
                             <div class="data-view-component col-1">
                                 <h:commandButton action="#{reservationController.changeReservationActive(object.id)}"
-                                                 value="Finish" styleClass="change-button"/>
-                            </div>
-                            <div class="data-view-component col-1">
-                                <h:outputLink value="/pas2/faces/modifyReservation.xhtml"
-                                              styleClass="link-button modify-button">
-                                    <f:param name="id" value="#{object.id}"/>
-                                    <h:outputLabel value="Modify"/>
-                                </h:outputLink>
+                                                 value="#{msg['finish_button']}" styleClass="change-button"/>
                             </div>
                             <div class="data-view-component col-1">
                                 <h:commandButton styleClass="delete-button"
                                                  action="#{reservationController.deleteReservation(object.id)}"
-                                                 value="Delete"/>
+                                                 value="#{msg['delete_button']}"/>
                             </div>
                         </li>
                     </h:form>

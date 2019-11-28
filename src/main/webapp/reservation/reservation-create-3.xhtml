@@ -19,17 +19,18 @@
             <h:form style="width: 100%;">
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label for="startDate">Start date:</label>
+                        <label for="startDate">#{msg['start_date']}: </label>
                     </div>
-                    <div id="startDate" class="form-group-item col-5">
-                        <h:inputText value="#{reservationBean.startDate}"
+                    <div class="form-group-item col-5">
+                        <h:inputText id="startDate" value="#{reservationBean.startDate}"
                                      styleClass="form-control datepicker input-form-component"
-                                     required="true"/>
+                                     required="true">
+                        </h:inputText>
                     </div>
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label for="startHour">Start hour:</label>
+                        <label for="startHour">#{msg['start_hour']}: </label>
                     </div>
                     <div id="startHour" class="form-group-item col-5">
                         <h:selectOneMenu value="#{reservationBean.startHour}"
@@ -63,7 +64,7 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                            <h:commandButton value="Next" action="reservation-create-4" styleClass="create-button"/>
+                            <h:commandButton value="#{msg['next_button']}" action="reservation-create-4" styleClass="create-button"/>
                     </div>
                 </div>
             </h:form>

@@ -15,10 +15,10 @@
         <h:outputScript library="js" name="datePicker.js"/>
 
         <div class="create-form col-4">
-            <h:form style="width: 100%">
+            <h:form>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label for="endDate">End date:</label>
+                        <label for="endDate">#{msg['end_date']}: </label>
                     </div>
                     <div id="endDate" class="form-group-item col-5">
                         <h:inputText value="#{reservationBean.endDate}"
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-5">
-                        <label for="endHour">End hour:</label>
+                        <label for="endHour">#{msg['end_hour']}: </label>
                     </div>
                     <div id="endHour" class="form-group-item col-5">
                         <h:selectOneMenu value="#{reservationBean.endHour}"
@@ -62,19 +62,21 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:form>
-                            <h:commandButton value="Create" action="returnFromReservationFlow"
-                                             styleClass="change-button">
-                                <f:actionListener binding="#{reservationBean.createReservation()}"/>
-                            </h:commandButton>
-                        </h:form>
+                        <h:commandButton value="#{msg['create_button']}" action="#{reservationBean.createReservation()}"
+                                         styleClass="change-button"/>
+                    </div>
+                </div>
+                <div class="form-group col-10">
+                    <div class="form-group-item col-10">
+                        <h:commandButton value="#{msg['exit_button']}" action="returnFromReservationFlow"
+                                         styleClass="delete-button"/>
                     </div>
                 </div>
             </h:form>
         </div>
         <div class="message">
-            <h:outputLabel render="#{reservationController.message != null}"
-                           value="#{reservationController.message}"/>
+            <h:outputLabel render="#{reservationBean.message != null}"
+                           value="#{reservationBean.message}"/>
         </div>
     </ui:define>
 </ui:composition>

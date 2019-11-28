@@ -17,13 +17,14 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Named
 @FlowScoped("reservation")
 public class ReservationBean implements Serializable {
     private Account account;
     private SportsFacility sportsFacility;
-    String startDate, startHour, endDate, endHour;
+    String startDate, startHour, endDate, endHour, message;
 
     @Inject
     AccountService accountService;
@@ -35,7 +36,7 @@ public class ReservationBean implements Serializable {
     @PostConstruct
     public void init() {
         Date now = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("d MMMM, y", Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/y", Locale.US);
         this.startDate = sdf.format(now);
         this.endDate = this.startDate;
         sdf = new SimpleDateFormat("H");
@@ -51,27 +52,66 @@ public class ReservationBean implements Serializable {
         this.sportsFacility = sportsFacilityService.get(id);
     }
 
+    public List<Reservation> accountReservations() {
+        return reservationService.getAll()
+                .stream()
+                .filter(res -> res.getAccount().getId().equals(this.account.getId()))
+                .collect(Collectors.toList());
+    }
+
+    public boolean check() {
+        Date parseEndDate = null, parseStartDate = null;
+        try {
+            parseStartDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
+                    .parse(this.startDate + " " + this.startHour + ":00");
+            parseEndDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
+                    .parse(this.endDate + " " + this.endHour + ":00");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(parseStartDate.equals(parseEndDate))
+            return false;
+        List<Reservation> list = reservationService.getAll()
+                .stream()
+                .filter(res -> res.getFacility().getId().equals(this.sportsFacility.getId()))
+                .collect(Collectors.toList());
+        for (Reservation item : list) {
+            if (parseStartDate.after(item.getStartDate()) && parseStartDate.before(item.getEndDate())
+                    || parseEndDate.after(item.getStartDate()) && parseEndDate.before(item.getEndDate())
+                    || parseStartDate.equals(item.getStartDate())
+                    || parseEndDate.equals(item.getEndDate())
+                    || parseStartDate.after(parseEndDate)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void createReservation() {
         try {
-            boolean result = false;
-            Date parseStartDate = new SimpleDateFormat("d MMMM, y HH:mm", Locale.US)
-                    .parse(this.startDate + " " + this.startHour + ":00");
-            Date parseEndDate = new SimpleDateFormat("d MMMM, y HH:mm", Locale.US)
-                    .parse(this.endDate + " " + this.endHour + ":00");
+            if (this.check()) {
+                Date parseStartDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
+                        .parse(this.startDate + " " + this.startHour + ":00");
+                Date parseEndDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
+                        .parse(this.endDate + " " + this.endHour + ":00");
 
-            Reservation reservation = new Reservation(
-                    UUID.randomUUID().toString(),
-                    account,
-                    sportsFacility,
-                    parseStartDate,
-                    parseEndDate,
-                    true
-            );
+                Reservation reservation = new Reservation(
+                        UUID.randomUUID().toString(),
+                        account,
+                        sportsFacility,
+                        parseStartDate,
+                        parseEndDate,
+                        true
+                );
 
-            if (reservation.getAccount() != null && reservation.getFacility() != null) {
-                result = this.reservationService.add(reservation);
+                if (reservation.getAccount() != null && reservation.getFacility() != null) {
+                    this.reservationService.add(reservation);
+                    this.message = "Reservation created!";
+                }
+            } else {
+                this.message = "Reservation did not created! Invalid date.";
             }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -82,6 +122,14 @@ public class ReservationBean implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Account getAccount() {
         return account;

@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@ManagedBean
+//@ManagedBean
 @RequestScoped
 @Named
 public class ReservationController implements Serializable {
@@ -62,9 +62,9 @@ public class ReservationController implements Serializable {
         }
     }
 
-    public int update() {
-        return 1;
-    }
+//    public int update() {
+//        return 1;
+//    }
 
     public List<Reservation> getAll() {
         return reservations;

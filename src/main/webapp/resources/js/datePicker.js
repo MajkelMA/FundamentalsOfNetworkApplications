@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(".datepicker").datepicker({
-        dateFormat: 'dd MM, yy',
+        dateFormat: 'dd/m/yy',
         changeMonth: true,
         changeYear: true,
         yearRange: "1960:"

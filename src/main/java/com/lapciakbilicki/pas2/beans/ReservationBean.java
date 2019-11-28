@@ -60,14 +60,23 @@ public class ReservationBean implements Serializable {
     }
 
     public boolean check() {
-        Date parseEndDate = null, parseStartDate = null;
+        Date parseEndDate = null, parseStartDate = null, parseNowDate = null;
+        Date now = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/y HH:mm", Locale.US);
+        String nowDate = sdf.format(now);
         try {
             parseStartDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
                     .parse(this.startDate + " " + this.startHour + ":00");
             parseEndDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
                     .parse(this.endDate + " " + this.endHour + ":00");
+            parseNowDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
+                    .parse(nowDate);
+            if(parseStartDate.before(parseNowDate)){
+                return false;
+            }
         } catch (ParseException e) {
             e.printStackTrace();
+            return false;
         }
         if (parseStartDate.equals(parseEndDate))
             return false;
@@ -114,9 +123,9 @@ public class ReservationBean implements Serializable {
                 }
             } else {
                 if (FacesContext.getCurrentInstance().getViewRoot().getLocale().toString().equals("pl")) {
-                    this.message = "Nie utworzono rezerwacji! Niewłaściwe daty.";
+                    this.message = "Nie utworzono rezerwacji! Niewłaściwe daty lub obiekt jest zajęty.";
                 } else {
-                    this.message = "Reservation did not created! Invalid date.";
+                    this.message = "Reservation did not created! Invalid date or object is busy.";
                 }
             }
 

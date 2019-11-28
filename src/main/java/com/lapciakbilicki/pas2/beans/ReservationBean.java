@@ -69,7 +69,7 @@ public class ReservationBean implements Serializable {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if(parseStartDate.equals(parseEndDate))
+        if (parseStartDate.equals(parseEndDate))
             return false;
         List<Reservation> list = reservationService.getAll()
                 .stream()
@@ -106,10 +106,18 @@ public class ReservationBean implements Serializable {
 
                 if (reservation.getAccount() != null && reservation.getFacility() != null) {
                     this.reservationService.add(reservation);
-                    this.message = "Reservation created!";
+                    if (FacesContext.getCurrentInstance().getViewRoot().getLocale().toString().equals("pl")) {
+                        this.message = "Utworzono rezerwację!";
+                    } else {
+                        this.message = "Reservation created!";
+                    }
                 }
             } else {
-                this.message = "Reservation did not created! Invalid date.";
+                if (FacesContext.getCurrentInstance().getViewRoot().getLocale().toString().equals("pl")) {
+                    this.message = "Nie utworzono rezerwacji! Niewłaściwe daty.";
+                } else {
+                    this.message = "Reservation did not created! Invalid date.";
+                }
             }
 
         } catch (ParseException e) {

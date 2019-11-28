@@ -30,7 +30,8 @@
                         <h:inputText value="#{reservationController.nameFacilityFilter}"/>
                     </div>
                     <div class="data-view-component col-2">
-                        <h:commandButton value="#{msg['filter']}" action="#{reservationController.filterFacility()}"/>
+                        <h:commandButton value="#{msg['filter']}" action="#{reservationController.filterFacility()}"
+                        styleClass="modify-button"/>
                     </div>
                 </h:form>
                 <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">

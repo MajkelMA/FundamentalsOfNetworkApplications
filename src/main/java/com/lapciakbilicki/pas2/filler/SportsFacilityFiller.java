@@ -18,29 +18,28 @@ public class SportsFacilityFiller implements Filler<SportsFacility> {
         Faker faker = new Faker();
         Random random = new Random();
         Field field;
-        for(int i = 0; i < 20; i++){
-            field =   new Field(random.nextDouble()*500+100, random.nextInt(30)+10, faker.elderScrolls().city());
-            if(random.nextBoolean()){
+        for (int i = 0; i < 20; i++) {
+            field = new Field(random.nextDouble() * 500 + 100, random.nextInt(30) + 10, faker.elderScrolls().city());
+            if (random.nextBoolean()) {
                 destination.add(new FootballFacility(UUID.randomUUID().toString(),
-                        random.nextDouble()*50+5,
+                        random.nextDouble() * 50 + 5,
                         true,
-                         field,
-                         faker.witcher().location(),
-                         random.nextBoolean(),
-                        random.nextDouble()*5,
-                        random.nextDouble()*3
+                        field,
+                        faker.witcher().location(),
+                        random.nextBoolean(),
+                        random.nextDouble() * 5,
+                        random.nextDouble() * 3
                 ));
-            }
-            else{
+            } else {
                 destination.add(new BasketballFacility(UUID.randomUUID().toString(),
-                        random.nextDouble()*50+5,
+                        random.nextDouble() * 50 + 5,
                         true,
-                         field,
-                         faker.witcher().location(),
-                        random.nextInt(10)+2,
+                        field,
+                        faker.witcher().location(),
+                        random.nextInt(10) + 2,
                         1.5,
-                         random.nextDouble()*5
-                        ));
+                        random.nextDouble() * 5
+                ));
             }
         }
     }

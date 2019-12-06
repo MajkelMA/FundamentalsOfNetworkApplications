@@ -31,27 +31,27 @@
                     </div>
                     <div class="data-view-component col-2">
                         <h:commandButton value="#{msg['filter']}" action="#{reservationController.filterFacility()}"
-                        styleClass="modify-button"/>
+                                         styleClass="modify-button"/>
                     </div>
                 </h:form>
                 <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">
                     <h:form>
                         <li>
-                        <div class="data-view-component col-5">
-                            <h:outputText value="#{object.name}"/>
-                        </div>
-                        <div class="data-view-component col-4">
-                            <h:outputText value="#{object.pricePerHours}">
-                                <f:convertNumber maxFractionDigits="2"/>
-                            </h:outputText>
-                        </div>
-                        <div class="data-view-component col-1">
+                            <div class="data-view-component col-5">
+                                <h:outputText value="#{object.name}"/>
+                            </div>
+                            <div class="data-view-component col-4">
+                                <h:outputText value="#{object.pricePerHours}">
+                                    <f:convertNumber maxFractionDigits="2"/>
+                                </h:outputText>
+                            </div>
+                            <div class="data-view-component col-1">
                                 <h:commandButton value="#{msg['choose_button']}" action="reservation-create-3"
                                                  styleClass="change-button">
                                     <f:actionListener binding="#{reservationBean.addSportFacility(object.id)}"/>
                                 </h:commandButton>
-                        </div>
-                    </li>
+                            </div>
+                        </li>
                     </h:form>
                 </ui:repeat>
             </ul>

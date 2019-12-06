@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.validator;
 
 import com.lapciakbilicki.pas2.model.account.Account;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -18,19 +19,18 @@ public class LoginUniqueValidator implements Validator, Serializable {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        String login = (String)o;
-        List<Account> accounts = (List<Account>)uiComponent.getAttributes().get("allAccounts");
-        String oldLogin = (String)uiComponent.getAttributes().get("login");
+        String login = (String) o;
+        List<Account> accounts = (List<Account>) uiComponent.getAttributes().get("allAccounts");
+        String oldLogin = (String) uiComponent.getAttributes().get("login");
         Account accountToFind = accounts.stream()
                 .filter(account -> account.getLogin().equals(login))
                 .findFirst()
                 .orElse(null);
-        if(accountToFind != null){
-            if(oldLogin == null) {
+        if (accountToFind != null) {
+            if (oldLogin == null) {
                 throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
-            }
-            else{
-                if(!accountToFind.getLogin().equals(oldLogin)){
+            } else {
+                if (!accountToFind.getLogin().equals(oldLogin)) {
                     throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
                 }
             }

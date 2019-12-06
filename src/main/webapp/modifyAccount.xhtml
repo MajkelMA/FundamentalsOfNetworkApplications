@@ -12,7 +12,8 @@
         <p:breadCrumb>
             <p:menuitem value="#{msg['main']}" url="/pas2/faces/index.xhtml"/>
             <p:menuitem value="#{msg['users']}" url="/pas2/faces/index.xhtml"/>
-            <p:menuitem value="#{msg['modify_button']} #{accountController.activeAccount.login}" url="/pas2/faces/modifyAccount.xhtml?id=#{accountController.activeAccount.id}"/>
+            <p:menuitem value="#{msg['modify_button']} #{accountController.activeAccount.login}"
+                        url="/pas2/faces/modifyAccount.xhtml?id=#{accountController.activeAccount.id}"/>
         </p:breadCrumb>
     </ui:define>
     <ui:define name="content">
@@ -23,8 +24,9 @@
                         <label>#{msg['roles']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectManyCheckbox id="roles"  styleClass="form-table" value="#{accountController.roles}">
-                            <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{msg[role.name]}" itemValue="#{role.id}"/>
+                        <h:selectManyCheckbox id="roles" styleClass="form-table" value="#{accountController.roles}">
+                            <f:selectItems value="#{roleController.all}" var="role" itemLabel="#{msg[role.name]}"
+                                           itemValue="#{role.id}"/>
                             <f:validator validatorId="roleValidator"/>
                         </h:selectManyCheckbox>
                         <h:message for="roles" style="color: red; display: block;"/>
@@ -35,7 +37,8 @@
                         <label>Login: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="login" value="#{accountController.accountToModify.login}" required="true" requiredMessage="#{msg['validator_login']}" styleClass="input-form-component">
+                        <h:inputText id="login" value="#{accountController.accountToModify.login}" required="true"
+                                     requiredMessage="#{msg['validator_login']}" styleClass="input-form-component">
                             <f:validator validatorId="loginUniqueValidator"/>
                             <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
                             <f:attribute value="#{accountController.accountToModify.login}" name="login"/>
@@ -48,7 +51,9 @@
                         <label>#{msg['password']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="password" value="#{accountController.accountToModify.password}"  required="true" requiredMessage="#{msg['require_validator_password']}" styleClass="input-form-component">
+                        <h:inputText id="password" value="#{accountController.accountToModify.password}" required="true"
+                                     requiredMessage="#{msg['require_validator_password']}"
+                                     styleClass="input-form-component">
                             <f:validator validatorId="confirmPasswordValidator"/>
                             <f:attribute value="#{confirmPassword}" name="confirmPassword"/>
                         </h:inputText>
@@ -60,7 +65,9 @@
                         <label>#{msg['confirm_password']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputSecret styleClass="input-form-component" id="confirmPassword"  binding="#{confirmPassword}" required="true" requiredMessage="#{msg['require_confirm_password']}"/>
+                        <h:inputSecret styleClass="input-form-component" id="confirmPassword"
+                                       binding="#{confirmPassword}" required="true"
+                                       requiredMessage="#{msg['require_confirm_password']}"/>
                         <h:message for="confirmPassword" style="color: red; display: block;"/>
                     </div>
                 </div>
@@ -69,7 +76,9 @@
                         <label>#{msg['full_name']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:inputText id="fullname" value="#{accountController.accountToModify.fullName}" requiredMessage="#{msg['require_full_name']}" required="true" styleClass="input-form-component"/>
+                        <h:inputText id="fullname" value="#{accountController.accountToModify.fullName}"
+                                     requiredMessage="#{msg['require_full_name']}" required="true"
+                                     styleClass="input-form-component"/>
                         <h:message for="fullname" style="color: red; display:block;"/>
                     </div>
                 </div>
@@ -78,7 +87,8 @@
                         <label>#{msg['active']}: </label>
                     </div>
                     <div class="form-group-item col-5">
-                        <h:selectOneMenu id="isBanned" value="#{accountController.accountToModify.active}" styleClass="input-form-component">
+                        <h:selectOneMenu id="isBanned" value="#{accountController.accountToModify.active}"
+                                         styleClass="input-form-component">
                             <f:selectItem itemValue="true" itemLabel="#{msg['yes']}"/>
                             <f:selectItem itemValue="false" itemLabel="#{msg['no']}"/>
                             <f:converter converterId="javax.faces.Boolean"/>
@@ -87,7 +97,8 @@
                 </div>
                 <div class="form-group col-10">
                     <div class="form-group-item col-10">
-                        <h:commandButton action="#{accountController.updateAccount}" value="#{msg['submit_button']}" styleClass="create-button"/>
+                        <h:commandButton action="#{accountController.updateAccount}" value="#{msg['submit_button']}"
+                                         styleClass="create-button"/>
                     </div>
                 </div>
             </h:form>

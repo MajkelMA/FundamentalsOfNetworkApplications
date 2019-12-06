@@ -14,6 +14,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequestScoped
 public class AccountService extends ServiceAdapter<Account> {
@@ -46,6 +47,13 @@ public class AccountService extends ServiceAdapter<Account> {
 
     public void updateAccount(Account item) {
         this.repository.update(item);
+    }
+
+    public List<Account> filterAccount(String input) {
+        return this.repository.getAll()
+                .stream()
+                .filter(acc -> acc.getLogin().contains(input))
+                .collect(Collectors.toList());
     }
 
     public void changeAccountActivity(String id) {

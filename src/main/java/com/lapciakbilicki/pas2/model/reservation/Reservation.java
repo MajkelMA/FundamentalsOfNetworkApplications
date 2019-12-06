@@ -44,7 +44,6 @@ public class Reservation implements IsIdentified {
     }
 
 
-
     //<editor-fold desc="getters and setters">
     @Override
     public void setId(String id) {

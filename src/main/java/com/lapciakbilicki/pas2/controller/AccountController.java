@@ -30,8 +30,8 @@ public class AccountController implements Serializable {
     private Map<String, String> requestMap;
 
     @PostConstruct
-    private void init(){
-        if(requestMap.containsKey("id")){
+    private void init() {
+        if (requestMap.containsKey("id")) {
             Account account = getActiveAccount();
             accountToModify.setRoles(account.getRoles());
             accountToModify.setId(account.getId());
@@ -42,22 +42,22 @@ public class AccountController implements Serializable {
 
             List<Role> roles = accountToModify.getRoles();
             this.roles = new String[roles.size()];
-            for(int i = 0; i < this.roles.length; i++){
+            for (int i = 0; i < this.roles.length; i++) {
                 this.roles[i] = roles.get(i).getId();
             }
         }
     }
 
     //<editor-fold desc="getters and setter">
-    public List<Account> getAll(){
+    public List<Account> getAll() {
         return accountService.getAll();
     }
 
-    public Account getActiveAccount(){
+    public Account getActiveAccount() {
         return this.accountService.get(requestMap.get("id"));
     }
 
-    public void changeUserActive(String id){
+    public void changeUserActive(String id) {
         accountService.changeAccountActivity(id);
     }
 
@@ -87,11 +87,11 @@ public class AccountController implements Serializable {
 
     //</editor-fold>
 
-    public void createAccount(){
+    public void createAccount() {
         accountService.createUserWithRoles(roles, account.getLogin(), account.getPassword(), account.getFullName());
     }
 
-    public List<Account> getAllAccounts(){
+    public List<Account> getAllAccounts() {
         return accountService.getAll();
     }
 

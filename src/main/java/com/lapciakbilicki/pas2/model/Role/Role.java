@@ -9,7 +9,7 @@ public class Role implements IsIdentified {
     private String name;
     private String description;
 
-    public Role(){
+    public Role() {
 
     }
 

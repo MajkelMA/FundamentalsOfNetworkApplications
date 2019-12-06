@@ -7,19 +7,15 @@ import com.lapciakbilicki.pas2.service.AccountService;
 import com.lapciakbilicki.pas2.service.ReservationService;
 import com.lapciakbilicki.pas2.service.SportsFacilityService;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
-//@ManagedBean
 @RequestScoped
 @Named
 public class ReservationController implements Serializable {
@@ -52,19 +48,9 @@ public class ReservationController implements Serializable {
         reservations = new ArrayList<>(reservationService.getAll());
         if (requestMap.containsKey("sort")) {
             this.sort = this.requestMap.get("sort");
-            if (this.sort.equals("Active")) {
-                reservations = reservationService.getAll().stream().filter(Reservation::isActive).collect(Collectors.toList());
-            } else if (this.sort.equals("Inactive")) {
-                reservations = reservationService.getAll().stream().filter(res -> !res.isActive()).collect(Collectors.toList());
-            } else {
-                reservations = new ArrayList<>(reservationService.getAll());
-            }
+            reservations = this.reservationService.filterReservations(this.requestMap.get("sort"));
         }
     }
-
-//    public int update() {
-//        return 1;
-//    }
 
     public List<Reservation> getAll() {
         return reservations;
@@ -79,38 +65,16 @@ public class ReservationController implements Serializable {
     }
 
     public void deleteReservation(String id) {
-        Reservation reservation = reservations.stream()
-                .filter(res -> res
-                        .getId()
-                        .equals(id))
-                .findFirst()
-                .orElse(null);
-        if (reservation.isActive())
-            reservationService.remove(reservation);
+        this.reservationService.deleteReservation(id);
         this.init();
     }
 
     public List<Account> filterAccount() {
-        return accountService.getAll()
-                .stream()
-                .filter(acc -> acc.getLogin().contains(nameAccountFilter))
-                .collect(Collectors.toList());
+        return accountService.filterAccount(nameAccountFilter);
     }
 
     public List<SportsFacility> filterFacility() {
-        if (Integer.parseInt(this.priceToFacilityFilter) == 0 && Integer.parseInt(this.priceFromFacilityFilter) == 0) {
-            return sportsFacilityService.getAll()
-                    .stream()
-                    .filter(fac -> fac.getName().contains(nameFacilityFilter))
-                    .collect(Collectors.toList());
-        } else {
-            return sportsFacilityService.getAll()
-                    .stream()
-                    .filter(fac -> fac.getPricePerHours() >= Integer.parseInt(priceFromFacilityFilter))
-                    .filter(fac -> fac.getPricePerHours() <= Integer.parseInt(priceToFacilityFilter))
-                    .filter(fac -> fac.getName().contains(nameFacilityFilter))
-                    .collect(Collectors.toList());
-        }
+        return this.sportsFacilityService.filterFacility(this.priceFromFacilityFilter, this.priceToFacilityFilter, this.nameFacilityFilter);
     }
 
     public String dateToStr(Date date) {
@@ -126,6 +90,14 @@ public class ReservationController implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
 
     public String getNameAccountFilter() {
         return nameAccountFilter;
@@ -157,14 +129,6 @@ public class ReservationController implements Serializable {
 
     public void setNameFacilityFilter(String nameFacilityFilter) {
         this.nameFacilityFilter = nameFacilityFilter;
-    }
-
-    public String getSort() {
-        return sort;
-    }
-
-    public void setSort(String sort) {
-        this.sort = sort;
     }
 
     public String getStartDate() {

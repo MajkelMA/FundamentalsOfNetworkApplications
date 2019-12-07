@@ -1,47 +1,107 @@
 package com.lapciakbilicki.pas2.beans;
+//
+//import javax.ejb.Stateless;
+//import javax.faces.application.FacesMessage;
+//import javax.faces.context.FacesContext;
+//import javax.inject.Named;
+//import javax.servlet.ServletException;
+//import javax.servlet.http.HttpServletRequest;
+//
+//@Stateless
+//@Named
+//public class LoginBean {
+//    private String username;
+//    private String password;
+//
+//    public String login() {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        HttpServletRequest request = (HttpServletRequest)
+//                context.getExternalContext().getRequest();
+//        try {
+//            request.login(this.username, this.password);
+//        } catch (ServletException e) {
+//            context.addMessage(null, new FacesMessage("Login failed."));
+//            return "error";
+//        }
+//        return "/pas2/faces/createAccount.xhtml";
+//    }
+//
+//    public void logout() {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        HttpServletRequest request = (HttpServletRequest)
+//                context.getExternalContext().getRequest();
+//        try {
+//            request.logout();
+//        } catch (ServletException e) {
+//            context.addMessage(null, new FacesMessage("Logout failed."));
+//        }
+//    }
+//
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//}
 
+
+//
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.service.AccountService;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
+import javax.security.enterprise.AuthenticationStatus;
+import javax.security.enterprise.SecurityContext;
+import javax.security.enterprise.credential.Credential;
+import javax.security.enterprise.credential.Password;
+import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
+
+import static javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters.withParams;
 
 @Named
-@SessionScoped
-public class LoginBean implements Serializable {
+@RequestScoped
+public class LoginBean {
+
+    @Inject
+    private SecurityContext securityContext;
 
     @Inject
     private AccountService accountService;
 
-    private String username,
-            password,
-            message;
-    private Account account = null;
+    @NotNull
+    private String username;
 
-    public String login() {
-        this.message = null;
-        this.account = this.accountService.getAccountByLogin(this.username);
-        if (this.account != null
-                && this.username.equals(this.account.getLogin())
-                && this.password.equals(this.account.getPassword())) {
-            return "/faces/index.xhtml";
-        } else {
-            this.message = "Invalid login or password";
-            return "/faces/login/login.xhtml";
-        }
-    }
+    @NotNull
+    private String password;
 
-    //<editor-fold desc="getters and setter">
+    private String message;
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    public void login() {
+        Credential credential = new UsernamePasswordCredential(
+                this.username, new Password(this.password));
+        AuthenticationStatus status = securityContext
+                .authenticate(
+                        (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest(),
+                        (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(),
+                        withParams().credential(credential)
+        );
     }
 
     public String getMessage() {
@@ -67,6 +127,4 @@ public class LoginBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    //</editor-fold>
 }

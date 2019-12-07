@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.service;
 
 
+//import com.lapciakbilicki.pas2.beans.LoginBean;
 import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.repository.AccountRepository;
@@ -21,6 +22,9 @@ public class AccountService extends ServiceAdapter<Account> {
 
     @Inject
     RoleService roleService;
+
+//    @Inject
+//    private LoginBean loginBean;
 
     public AccountService() {
     }
@@ -49,10 +53,11 @@ public class AccountService extends ServiceAdapter<Account> {
         this.repository.update(item);
     }
 
-    public Account getAccountByLogin(String login){
+    public Account getAccountByLoginAndPassword(String login, String password){
         return this.repository.getAll()
                 .stream()
                 .filter(account -> account.getLogin().equals(login))
+                .filter(account -> account.getPassword().equals(password))
                 .findFirst()
                 .orElse(null);
     }

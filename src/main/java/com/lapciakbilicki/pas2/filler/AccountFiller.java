@@ -9,6 +9,7 @@ import com.lapciakbilicki.pas2.service.RoleService;
 
 import javax.inject.Inject;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AccountFiller implements Filler<Account> {
 
@@ -28,6 +29,37 @@ public class AccountFiller implements Filler<Account> {
             roles.add(roleService.getAll().get(roleType));
             destination.add(new Account(UUID.randomUUID().toString(), login, "fill", login, true, roles));
         }
+
+        destination.add(new Account(
+                UUID.randomUUID().toString(),
+                "resource-admin",
+                "fill",
+                "resource-admin",
+                true,
+                roleService.getAll().stream()
+                        .filter(role -> role.getName().equals("Resources_Admin"))
+                        .collect(Collectors.toList()))
+        );
+        destination.add(new Account(
+                UUID.randomUUID().toString(),
+                "user-admin",
+                "fill",
+                "user-admin",
+                true,
+                roleService.getAll().stream()
+                        .filter(role -> role.getName().equals("User_Admin"))
+                        .collect(Collectors.toList()))
+        );
+        destination.add(new Account(
+                UUID.randomUUID().toString(),
+                "client",
+                "fill",
+                "client",
+                true,
+                roleService.getAll().stream()
+                        .filter(role -> role.getName().equals("Client"))
+                        .collect(Collectors.toList()))
+        );
     }
 
 }

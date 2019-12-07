@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -19,6 +20,48 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/login/login.xhtml</welcome-file>
+        <welcome-file>/login/login.xhtml</welcome-file>
     </welcome-file-list>
+
+    <security-role>
+        <role-name>Resources_Admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>User_Admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Client</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>AllPages</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Index</web-resource-name>
+            <url-pattern>/faces/index.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>User_Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>CreateAccount</web-resource-name>
+            <url-pattern>/faces/createAccount.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Client</role-name>
+            <role-name>User_Admin</role-name>
+            <role-name>Resources_Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

@@ -10,13 +10,13 @@ import javax.inject.Inject;
 @RequestScoped
 public class RoleService extends ServiceAdapter<Role> {
 
-    public RoleService(){
+    public RoleService() {
 
     }
 
     @Inject
     @PostConstruct
-    public void inti(RoleRepository roleRepository){
+    public void inti(RoleRepository roleRepository) {
         this.repository = roleRepository;
     }
 

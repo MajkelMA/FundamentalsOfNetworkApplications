@@ -19,19 +19,18 @@ public class SportsFacilityUniqueNameValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        List<SportsFacility> sportsFacilities = (List<SportsFacility>)uiComponent.getAttributes().get("allFacility");
-        String oldName = (String)uiComponent.getAttributes().get("name");
-        String name = (String)o;
+        List<SportsFacility> sportsFacilities = (List<SportsFacility>) uiComponent.getAttributes().get("allFacility");
+        String oldName = (String) uiComponent.getAttributes().get("name");
+        String name = (String) o;
         SportsFacility findSportsFacility = sportsFacilities.stream()
                 .filter(sportsFacility -> sportsFacility.getName().equals(name))
                 .findFirst()
                 .orElse(null);
         if (findSportsFacility != null) {
-            if(oldName == null) {
+            if (oldName == null) {
                 throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
-            }
-            else{
-                if(!oldName.equals(name)){
+            } else {
+                if (!oldName.equals(name)) {
                     throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
                 }
             }

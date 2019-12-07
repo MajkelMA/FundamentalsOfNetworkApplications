@@ -17,15 +17,15 @@ public class ConfirmPasswordValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-        String password = (String)o;
-        UIInput inputPassword = (UIInput)uiComponent.getAttributes().get("confirmPassword");
+        String password = (String) o;
+        UIInput inputPassword = (UIInput) uiComponent.getAttributes().get("confirmPassword");
         String confirmPassword = inputPassword.getSubmittedValue().toString();
 
-        if(password.length() < 8){
+        if (password.length() < 8) {
             throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? tooShortEngMessage : tooShortPlMessage));
         }
 
-        if(!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
         }
     }

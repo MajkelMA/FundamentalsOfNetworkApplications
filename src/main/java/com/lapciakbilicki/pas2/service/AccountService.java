@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.service;
 
 
+//import com.lapciakbilicki.pas2.beans.LoginBean;
 import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.repository.AccountRepository;
@@ -14,12 +15,16 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequestScoped
 public class AccountService extends ServiceAdapter<Account> {
 
     @Inject
     RoleService roleService;
+
+//    @Inject
+//    private LoginBean loginBean;
 
     public AccountService() {
     }
@@ -46,6 +51,22 @@ public class AccountService extends ServiceAdapter<Account> {
 
     public void updateAccount(Account item) {
         this.repository.update(item);
+    }
+
+    public Account getAccountByLoginAndPassword(String login, String password){
+        return this.repository.getAll()
+                .stream()
+                .filter(account -> account.getLogin().equals(login))
+                .filter(account -> account.getPassword().equals(password))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Account> filterAccount(String input) {
+        return this.repository.getAll()
+                .stream()
+                .filter(acc -> acc.getLogin().contains(input))
+                .collect(Collectors.toList());
     }
 
     public void changeAccountActivity(String id) {

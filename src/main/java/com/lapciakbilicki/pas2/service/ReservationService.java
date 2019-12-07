@@ -7,10 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RequestScoped
 public class ReservationService extends ServiceAdapter<Reservation> {
@@ -34,5 +32,26 @@ public class ReservationService extends ServiceAdapter<Reservation> {
                 reservation.setFinishDate(now);
             }
         }
+    }
+
+    public List<Reservation> filterReservations(String argument) {
+        if (argument.equals("Active")) {
+            return this.repository.getAll().stream().filter(Reservation::isActive).collect(Collectors.toList());
+        } else if (argument.equals("Inactive")) {
+            return this.repository.getAll().stream().filter(res -> !res.isActive()).collect(Collectors.toList());
+        } else {
+            return this.repository.getAll();
+        }
+    }
+
+    public void deleteReservation(String id) {
+        Reservation reservation = this.repository.getAll().stream()
+                .filter(res -> res
+                        .getId()
+                        .equals(id))
+                .findFirst()
+                .orElse(null);
+        if (reservation.isActive())
+            this.repository.remove(reservation);
     }
 }

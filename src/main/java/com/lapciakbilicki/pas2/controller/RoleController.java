@@ -15,7 +15,7 @@ public class RoleController {
     @Inject
     private RoleService roleService;
 
-    public List<Role> getAll(){
+    public List<Role> getAll() {
         return roleService.getAll();
     }
 }

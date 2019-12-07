@@ -14,9 +14,9 @@ public class RoleValidator implements Validator {
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
-            String[] roles = (String[])o;
-            if(roles.length == 0){
-                throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
-            }
+        String[] roles = (String[]) o;
+        if (roles.length == 0) {
+            throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
+        }
     }
 }

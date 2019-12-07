@@ -39,7 +39,7 @@ public class SportsFacilityController implements Serializable {
     @PostConstruct
     public void init() {
         sportsFacilities = new ArrayList<>(sportsFacilityService.getAll());
-        if(requestMap.containsKey("id")){
+        if (requestMap.containsKey("id")) {
 
             sportsFacility = sportsFacilityService.get(requestMap.get("id"));
             facilityType = sportsFacility.getClass().getSimpleName();
@@ -50,13 +50,12 @@ public class SportsFacilityController implements Serializable {
             typeOfGround = sportsFacility.getField().getTypeOfGround();
             maxAmountOfPeople = sportsFacility.getField().getMaxAmountOfPeople();
             surfaceArea = sportsFacility.getField().getSurfaceArea();
-            if(facilityType.equals("BasketballFacility")){
+            if (facilityType.equals("BasketballFacility")) {
                 BasketballFacility basketballFacility = (BasketballFacility) sportsFacility;
                 maxHeightOfBasket = basketballFacility.getMaxHeightOfBasket();
                 minHeightOfBasket = basketballFacility.getMinHeightOfBasket();
                 numberOfBasket = basketballFacility.getNumberOfBasket();
-            }
-            else{
+            } else {
                 FootballFacility footballFacility = (FootballFacility) sportsFacility;
                 widthOfGoal = footballFacility.getWidthOfGoal();
                 heightOfGoal = footballFacility.getHeightOfGoal();
@@ -74,18 +73,11 @@ public class SportsFacilityController implements Serializable {
     }
 
     public void deleteSportsFacility(String id) {
-        SportsFacility facilityToRemove = sportsFacilities
-                .stream()
-                .filter(sportsFacility -> sportsFacility
-                        .getId()
-                        .equals(id))
-                .findFirst()
-                .orElse(null);
-        sportsFacilityService.remove(facilityToRemove);
+        sportsFacilityService.deleteSportsFacility(id);
         init();
     }
 
-    public void updateBasketBallFacility(){
+    public void updateBasketBallFacility() {
         sportsFacilityService.update(new BasketballFacility(
                 UUID.fromString(id).toString(),
                 pricePerHours,
@@ -99,7 +91,7 @@ public class SportsFacilityController implements Serializable {
         init();
     }
 
-    public void updateFootballFacility(){
+    public void updateFootballFacility() {
         sportsFacilityService.update(new FootballFacility(
                 UUID.fromString(id).toString(),
                 pricePerHours,

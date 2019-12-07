@@ -6,11 +6,11 @@ public class FootballFacility extends SportsFacility {
     private double heightOfGoal;
 
 
-    public FootballFacility(){
+    public FootballFacility() {
 
     }
 
-    public FootballFacility(String id, double pricePerHours, boolean access,  Field field, String name,boolean fullSize, double widthOfGoal, double heightOfGoal) {
+    public FootballFacility(String id, double pricePerHours, boolean access, Field field, String name, boolean fullSize, double widthOfGoal, double heightOfGoal) {
         super(id, pricePerHours, access, field, name);
         this.fullSize = fullSize;
         this.widthOfGoal = widthOfGoal;
@@ -42,7 +42,7 @@ public class FootballFacility extends SportsFacility {
     }
 
     @Override
-    public void copyAttributionsWithoutId(SportsFacility sportsFacility){
+    public void copyAttributionsWithoutId(SportsFacility sportsFacility) {
         super.copyAttributionsWithoutId(sportsFacility);
         FootballFacility footballFacility = (FootballFacility) sportsFacility;
         this.fullSize = footballFacility.fullSize;

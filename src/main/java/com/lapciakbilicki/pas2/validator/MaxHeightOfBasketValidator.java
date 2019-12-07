@@ -19,9 +19,9 @@ public class MaxHeightOfBasketValidator implements Validator {
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         UIInput inputMinHeightOfBasket = (UIInput) uiComponent.getAttributes().get("minHeightOfBasket");
-        double minHeightOfBasket= Double.parseDouble(inputMinHeightOfBasket.getValue().toString());
-        double maxHeightOfBasket = (double)o;
-        if(minHeightOfBasket > maxHeightOfBasket){
+        double minHeightOfBasket = Double.parseDouble(inputMinHeightOfBasket.getValue().toString());
+        double maxHeightOfBasket = Double.parseDouble(o.toString());
+        if (minHeightOfBasket > maxHeightOfBasket) {
             throw new ValidatorException(new FacesMessage(facesContext.getViewRoot().getLocale().toString().equals("en") ? engMessage : plMessage));
         }
     }

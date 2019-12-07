@@ -15,7 +15,7 @@ public class Account implements IsIdentified {
     private boolean active;
     private List<Role> roles;
 
-    public Account(){
+    public Account() {
 
     }
 

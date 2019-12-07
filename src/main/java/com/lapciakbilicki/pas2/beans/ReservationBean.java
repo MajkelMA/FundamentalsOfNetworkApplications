@@ -71,14 +71,14 @@ public class ReservationBean implements Serializable {
                     .parse(this.endDate + " " + this.endHour + ":00");
             parseNowDate = new SimpleDateFormat("d/M/y HH:mm", Locale.US)
                     .parse(nowDate);
-            if(parseStartDate.before(parseNowDate)){
+            if (parseStartDate.before(parseNowDate)) {
                 return false;
             }
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
         }
-        if (parseStartDate.equals(parseEndDate))
+        if (parseStartDate.equals(parseEndDate) || parseStartDate.after(parseEndDate))
             return false;
         List<Reservation> list = reservationService.getAll()
                 .stream()
@@ -88,8 +88,7 @@ public class ReservationBean implements Serializable {
             if (parseStartDate.after(item.getStartDate()) && parseStartDate.before(item.getEndDate())
                     || parseEndDate.after(item.getStartDate()) && parseEndDate.before(item.getEndDate())
                     || parseStartDate.equals(item.getStartDate())
-                    || parseEndDate.equals(item.getEndDate())
-                    || parseStartDate.after(parseEndDate)) {
+                    || parseEndDate.equals(item.getEndDate())) {
                 return false;
             }
         }

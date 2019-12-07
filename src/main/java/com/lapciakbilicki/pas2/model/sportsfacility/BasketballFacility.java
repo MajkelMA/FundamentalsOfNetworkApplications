@@ -1,15 +1,15 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
-public class BasketballFacility extends SportsFacility{
+public class BasketballFacility extends SportsFacility {
     private int numberOfBasket;
     private double minHeightOfBasket;
     private double maxHeightOfBasket;
 
-    public BasketballFacility(){
+    public BasketballFacility() {
 
     }
 
-    public BasketballFacility(String id, double pricePerHours, boolean access,  Field field, String name, int numberOfBasket, double minHeightOfBasket, double maxHeightOfBasket) {
+    public BasketballFacility(String id, double pricePerHours, boolean access, Field field, String name, int numberOfBasket, double minHeightOfBasket, double maxHeightOfBasket) {
         super(id, pricePerHours, access, field, name);
         this.numberOfBasket = numberOfBasket;
         this.minHeightOfBasket = minHeightOfBasket;

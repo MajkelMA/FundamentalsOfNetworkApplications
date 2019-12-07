@@ -49,6 +49,14 @@ public class AccountService extends ServiceAdapter<Account> {
         this.repository.update(item);
     }
 
+    public Account getAccountByLogin(String login){
+        return this.repository.getAll()
+                .stream()
+                .filter(account -> account.getLogin().equals(login))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<Account> filterAccount(String input) {
         return this.repository.getAll()
                 .stream()

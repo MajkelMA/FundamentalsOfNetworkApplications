@@ -94,4 +94,9 @@ public class AccountService extends ServiceAdapter<Account> {
         this.update(account);
     }
 
+    public Account getAccountByLogin(String login){
+        List<Account> accounts = this.repository.getByCondition(account -> account.getLogin().equals("login"));
+        return accounts.get(0);
+    }
+
 }

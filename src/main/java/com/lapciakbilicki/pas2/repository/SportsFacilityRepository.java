@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 @ApplicationScoped
@@ -18,7 +19,7 @@ public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> 
 
 
     public SportsFacilityRepository() {
-         this.setListOfItems(new ArrayList<>());
+        this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));
     }
 
     @PostConstruct

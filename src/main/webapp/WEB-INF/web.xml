@@ -5,6 +5,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.lifecycle.ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME</param-name>
+        <param-value>none</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -18,9 +22,10 @@
         <session-timeout>
             30
         </session-timeout>
+        <tracking-mode>COOKIE</tracking-mode>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/login/login.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <security-role>
         <role-name>Resources_Admin</role-name>
@@ -39,6 +44,8 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>User_Admin</role-name>
+            <role-name>Client</role-name>
+            <role-name>Resources_Admin</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -48,18 +55,55 @@
             <url-pattern>/faces/createAccount.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>Client</role-name>
             <role-name>User_Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>CreateAccount</web-resource-name>
+            <url-pattern>/faces/showUsers.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>User_Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>CreateAccount</web-resource-name>
+            <url-pattern>/faces/addSportsFacilities.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
     </security-constraint>
-        <security-constraint>
+
+    <security-constraint>
         <web-resource-collection>
-            <web-resource-name>AllPages</web-resource-name>
-            <url-pattern>/*</url-pattern>
+            <web-resource-name>CreateAccount</web-resource-name>
+            <url-pattern>/faces/showFacilities.xhtml</url-pattern>
         </web-resource-collection>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
+        <auth-constraint>
+            <role-name>Resources_Admin</role-name>
+        </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>CreateAccount</web-resource-name>
+            <url-pattern>/faces/showReservations.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Resources_Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>AllPages</web-resource-name>-->
+<!--            <url-pattern>/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <user-data-constraint>-->
+<!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+<!--        </user-data-constraint>-->
+<!--    </security-constraint>-->
 </web-app>

@@ -15,19 +15,12 @@
     </application>
 
     <navigation-rule>
-        <display-name>login.xhtml</display-name>
-        <from-view-id>/login/login.xhtml</from-view-id>
+        <display-name>*</display-name>
+        <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/faces/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <display-name>login.xhtml</display-name>
-        <from-view-id>/login/login.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>failure</from-outcome>
-            <to-view-id>/faces/login/failure.xhtml</to-view-id>
+            <from-outcome>Logout</from-outcome>
+            <to-view-id>/login/login.xhtml</to-view-id>
+        <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>

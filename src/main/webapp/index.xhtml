@@ -10,38 +10,11 @@
     <ui:define name="breadcrumbs">
         <p:breadCrumb>
             <p:menuitem value="#{msg['main']}" url="/pas2/faces/index.xhtml"/>
-            <p:menuitem value="#{msg['users']}" url="/pas2/faces/index.xhtml"/>
         </p:breadCrumb>
     </ui:define>
     <ui:define name="content">
-        <div class="data-view">
-            <h:form accept-charset="UTF-8">
-                <ul>
-                    <ui:repeat value="#{accountController.all}" var="account">
-                        <li>
-                            <div class="data-view-component col-8">
-                                <h:outputLink value="/pas2/faces/accountAction.xhtml"
-                                              styleClass="#{account.active ? 'active' : 'inactive'} link-button">
-                                    <f:param name="id" value="#{account.id}"/>
-                                    <h:outputText value="#{account.login}"/>
-                                </h:outputLink>
-                            </div>
-                            <div class="data-view-component col-1">
-                                <h:commandButton action="#{accountController.changeUserActive(account.id)}"
-                                                 value="#{msg['change_active_button']}" styleClass="change-button"/>
-                            </div>
-                            <div class="data-view-component col-1">
-                                <h:outputLink value="/pas2/faces/modifyAccount.xhtml"
-                                              styleClass="link-button modify-button">
-                                    <f:param name="id" value="#{account.id}"/>
-                                    <h:outputLabel value="#{msg['modify_button']}"/>
-                                </h:outputLink>
-                            </div>
-                        </li>
-
-                    </ui:repeat>
-                </ul>
-            </h:form>
-        </div>
+        #{msg['main']} #{request.isUserInRole("Client")} #{request.isUserInRole("User_Admin")} #{request.isUserInRole("Resources_Admin")}
+        #{request.userPrincipal.name}
+        #{request.session.id}
     </ui:define>
 </ui:composition>

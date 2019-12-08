@@ -4,11 +4,12 @@ import com.lapciakbilicki.pas2.model.reservation.Reservation;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @ApplicationScoped
 public class ReservationRepository extends RepositoryAdapter<Reservation> {
 
-    public ReservationRepository() { this.setListOfItems(new ArrayList<>());}
+    public ReservationRepository() { this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));}
 
     @Override
     public void update(Reservation item) {

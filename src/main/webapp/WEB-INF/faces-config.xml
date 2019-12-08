@@ -23,4 +23,8 @@
         <redirect/>
         </navigation-case>
     </navigation-rule>
+    <protected-views>
+        <url-pattern>/*</url-pattern>
+    </protected-views>
+
 </faces-config>

@@ -9,6 +9,10 @@
         <param-name>javax.faces.lifecycle.ClientWindow.CLIENT_WINDOW_MODE_PARAM_NAME</param-name>
         <param-value>none</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -22,6 +26,10 @@
         <session-timeout>
             30
         </session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>true</secure>
+        </cookie-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
     <welcome-file-list>
@@ -47,6 +55,9 @@
             <role-name>Client</role-name>
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
     <security-constraint>
@@ -57,6 +68,9 @@
         <auth-constraint>
             <role-name>User_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <security-constraint>
         <web-resource-collection>
@@ -66,6 +80,9 @@
         <auth-constraint>
             <role-name>User_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
     <security-constraint>
@@ -76,6 +93,9 @@
         <auth-constraint>
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
     <security-constraint>
@@ -86,6 +106,9 @@
         <auth-constraint>
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <security-constraint>
         <web-resource-collection>
@@ -95,15 +118,18 @@
         <auth-constraint>
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
 
-<!--    <security-constraint>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>AllPages</web-resource-name>-->
-<!--            <url-pattern>/*</url-pattern>-->
-<!--        </web-resource-collection>-->
-<!--        <user-data-constraint>-->
-<!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
-<!--        </user-data-constraint>-->
-<!--    </security-constraint>-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>AllPages</web-resource-name>
+            <url-pattern>/faces/login/login.xhtml</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>

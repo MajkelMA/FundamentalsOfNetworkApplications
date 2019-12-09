@@ -4,19 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://java.sun.com/jsf/html">
 
 <h:body>
     <ui:composition>
         <ul class="menu">
             <li class="menu-item">
-                <h:outputLink value="/pas2/faces/login/login.xhtml">
-                    <h:outputLabel value="#{msg['account']}"/>
+                <h:outputLink value="/pas2/faces/index.xhtml">
+                    <h:outputLabel value="#{msg['main']}"/>
                 </h:outputLink>
             </li>
             <li class="menu-item">
-                <h:outputLink value="/pas2/faces/index.xhtml">
-                    <h:outputLabel value="#{msg['main']}"/>
+                <h:outputLink value="/pas2/faces/showUsers.xhtml">
+                    <h:outputLabel value="#{msg['account']}"/>
                 </h:outputLink>
             </li>
             <li class="menu-item">
@@ -38,6 +38,11 @@
                 <h:outputLink value="/pas2/faces/showReservations.xhtml">
                     <h:outputLabel value="#{msg['reservations']}" />
                 </h:outputLink>
+            </li>
+            <li class="menu-item">
+                <h:form>
+                    <h:commandLink action="#{logoutBean.logout}" immediate="true" value="#{msg['logout']}"/>
+                </h:form>
             </li>
         </ul>
     </ui:composition>

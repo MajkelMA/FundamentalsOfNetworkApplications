@@ -7,12 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @ApplicationScoped
 public class AccountRepository extends RepositoryAdapter<Account> {
 
     public AccountRepository() {
-        this.setListOfItems(new ArrayList<>());
+        this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));
     }
 
     @PostConstruct

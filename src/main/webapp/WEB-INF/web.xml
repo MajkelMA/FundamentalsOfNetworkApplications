@@ -22,6 +22,7 @@
     <welcome-file-list>
         <welcome-file>/login/login.xhtml</welcome-file>
     </welcome-file-list>
+
     <security-role>
         <role-name>Resources_Admin</role-name>
     </security-role>
@@ -53,7 +54,8 @@
             <role-name>Resources_Admin</role-name>
         </auth-constraint>
     </security-constraint>
-        <security-constraint>
+
+    <security-constraint>
         <web-resource-collection>
             <web-resource-name>AllPages</web-resource-name>
             <url-pattern>/*</url-pattern>

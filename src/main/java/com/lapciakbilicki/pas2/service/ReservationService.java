@@ -44,6 +44,12 @@ public class ReservationService extends ServiceAdapter<Reservation> {
         }
     }
 
+    public List<Reservation> getUserReservations(String login){
+        return this.repository.getAll().stream()
+                .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                .collect(Collectors.toList());
+    }
+
     public void deleteReservation(String id) {
         Reservation reservation = this.repository.getAll().stream()
                 .filter(res -> res

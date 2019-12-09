@@ -26,7 +26,7 @@
                     <div class="data-view-component col-2">
                         <h:selectOneMenu styleClass="input-form-component"
                                          value="#{reservationController.sort}"
-                                         onchange="window.location='/pas2/faces/showReservations.xhtml?sort='+ this.options[this.selectedIndex].value">
+                                         onchange="window.location='/pas2/faces/showReservations.xhtml?sort=' + this.options[this.selectedIndex].value">
                             <f:selectItem itemValue="All" itemLabel="#{msg['filter_all']}"/>
                             <f:selectItem itemValue="Active" itemLabel="#{msg['filter_active']}"/>
                             <f:selectItem itemValue="Inactive" itemLabel="#{msg['filter_inactive']}"/>

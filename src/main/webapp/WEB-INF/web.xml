@@ -73,9 +73,10 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>CreateAccount</web-resource-name>
+            <web-resource-name>ShowUsers</web-resource-name>
             <url-pattern>/faces/showUsers.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
@@ -88,7 +89,7 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>CreateAccount</web-resource-name>
+            <web-resource-name>AddSportsFacilities</web-resource-name>
             <url-pattern>/faces/addSportsFacilities.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
@@ -101,20 +102,8 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>CreateAccount</web-resource-name>
+            <web-resource-name>ShowFacilities</web-resource-name>
             <url-pattern>/faces/showFacilities.xhtml</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>Resources_Admin</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>CreateAccount</web-resource-name>
-            <url-pattern>/faces/showReservations.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>Resources_Admin</role-name>
@@ -126,11 +115,25 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>AllPages</web-resource-name>
+            <web-resource-name>ShowReservations</web-resource-name>
+            <url-pattern>/faces/showReservations.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Client</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Login</web-resource-name>
             <url-pattern>/faces/login/login.xhtml</url-pattern>
         </web-resource-collection>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+
 </web-app>

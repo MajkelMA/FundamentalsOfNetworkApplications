@@ -40,6 +40,7 @@ public class AccountFiller implements Filler<Account> {
                         .filter(role -> role.getName().equals("Resources_Admin"))
                         .collect(Collectors.toList()))
         );
+
         destination.add(new Account(
                 UUID.randomUUID().toString(),
                 "user-admin",
@@ -50,11 +51,22 @@ public class AccountFiller implements Filler<Account> {
                         .filter(role -> role.getName().equals("User_Admin"))
                         .collect(Collectors.toList()))
         );
+
         destination.add(new Account(
                 UUID.randomUUID().toString(),
                 "client",
                 "fill",
                 "client",
+                true,
+                roleService.getAll().stream()
+                        .filter(role -> role.getName().equals("Client"))
+                        .collect(Collectors.toList()))
+        );
+        destination.add(new Account(
+                UUID.randomUUID().toString(),
+                "client2",
+                "fill",
+                "client2",
                 true,
                 roleService.getAll().stream()
                         .filter(role -> role.getName().equals("Client"))

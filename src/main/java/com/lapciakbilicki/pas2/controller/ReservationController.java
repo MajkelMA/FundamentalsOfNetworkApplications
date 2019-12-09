@@ -10,9 +10,14 @@ import com.lapciakbilicki.pas2.service.SportsFacilityService;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.security.enterprise.SecurityContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.security.Signature;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -43,9 +48,19 @@ public class ReservationController implements Serializable {
     @RequestParameterMap
     private Map<String, String> requestMap;
 
+
+
+
+    @Inject
+    private HttpServletRequest request;
+
     @PostConstruct
     public void init() {
-        reservations = new ArrayList<>(reservationService.getAll());
+        String userName = request.getParameter("username");
+
+        reservations = new ArrayList<>(reservationService.getUserReservations(userName));
+//        reservations = new ArrayList<>(reservationService.getAll());
+
         if (requestMap.containsKey("sort")) {
             this.sort = this.requestMap.get("sort");
             reservations = this.reservationService.filterReservations(this.requestMap.get("sort"));

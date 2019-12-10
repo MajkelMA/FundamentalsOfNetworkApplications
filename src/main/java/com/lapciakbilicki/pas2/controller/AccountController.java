@@ -12,6 +12,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -97,6 +98,10 @@ public class AccountController implements Serializable {
 
     public void updateAccount() {
         accountService.updateAccountWithRole(accountToModify.getId(), accountToModify.getLogin(), accountToModify.getPassword(), accountToModify.getFullName(), accountToModify.isActive(), roles);
+    }
+
+    public void createClientAccount(){
+        accountService.createClientUser(account.getLogin(), account.getPassword(), account.getFullName());
     }
 
 }

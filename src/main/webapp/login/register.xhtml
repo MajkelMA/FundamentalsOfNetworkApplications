@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>main page</title>
+    <h:outputStylesheet library="css" name="main.css" />
+    <h:outputStylesheet library="css" name="columns.css"/>
+    <h:outputStylesheet library="css" name="buttons.css"/>
+    <h:outputScript library="js" name="form.js"/>
+    <ui:insert name="scripts"/>
+</h:head>
+<h:body>
+    <div class="create-form col-4">
+        <h:form>
+            <div class="form-group col-10">
+                <div class="form-group-item col-5">
+                    <label>Login: </label>
+                </div>
+                <div class="form-group-item col-5">
+                    <h:inputText id="login" value="#{accountController.account.login}"
+                                 styleClass="input-form-component" required="true"
+                                 requiredMessage="#{msg['validator_login']}">
+                        <f:validator validatorId="loginUniqueValidator"/>
+                        <f:attribute value="#{accountController.allAccounts}" name="allAccounts"/>
+                    </h:inputText>
+                    <h:message for="login" style="color: red; display: block;"/>
+                </div>
+            </div>
+            <div class="form-group col-10">
+                <div class="form-group-item col-5">
+                    <label>#{msg['password']}: </label>
+                </div>
+                <div class="form-group-item col-5">
+                    <h:inputSecret value="#{accountController.account.password}" id="password"
+                                   styleClass="input-form-component" required="true"
+                                   requiredMessage="#{msg['require_validator_password']}">
+                        <f:validator validatorId="confirmPasswordValidator"/>
+                        <f:attribute value="#{confirmPassword}" name="confirmPassword"/>
+                    </h:inputSecret>
+                    <h:message for="password" style="color: red; display: block;"/>
+                </div>
+            </div>
+            <div class="form-group col-10">
+                <div class="form-group-item col-5">
+                    <label>#{msg['confirm_password']}: </label>
+                </div>
+                <div class="form-group-item col-5">
+                    <h:inputSecret styleClass="input-form-component" id="confirmPassword"
+                                   binding="#{confirmPassword}" required="true"
+                                   requiredMessage="#{msg['require_confirm_password']}"/>
+                    <h:message for="confirmPassword" style="color: red; display: block;"/>
+                </div>
+            </div>
+            <div class="form-group col-10">
+                <div class="form-group-item col-5">
+                    <label>#{msg['full_name']}: </label>
+                </div>
+                <div class="form-group-item col-5">
+                    <h:inputText id="fullname" value="#{accountController.account.fullName}"
+                                 styleClass="input-form-component" required="true"
+                                 requiredMessage="#{msg['require_full_name']}"/>
+                    <h:message for="fullname" style="color: red; display:block;"/>
+                </div>
+            </div>
+
+            <div id="test" class="form-group col-10">
+                <h:commandButton value="#{msg['submit_button']}" styleClass="create-button" style="width: 100%"
+                                 action="#{accountController.createClientAccount}"/>
+            </div>
+
+            <div class="form-group col-10">
+                <h:link styleClass="create-button" value="#{msg['back']}" outcome="login" style="width: 100%; text-decoration: none;"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

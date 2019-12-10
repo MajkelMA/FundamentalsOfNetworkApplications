@@ -15,6 +15,15 @@
     </application>
 
     <navigation-rule>
+        <from-view-id>/login/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/login/register.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <display-name>*</display-name>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -23,8 +32,10 @@
         <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <protected-views>
         <url-pattern>/*</url-pattern>
     </protected-views>
+
 
 </faces-config>

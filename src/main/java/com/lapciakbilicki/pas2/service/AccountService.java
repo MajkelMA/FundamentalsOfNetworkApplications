@@ -94,6 +94,10 @@ public class AccountService extends ServiceAdapter<Account> {
         this.update(account);
     }
 
+    public boolean createClientUser( String login, String password, String fullName){
+        return add(new Account(UUID.randomUUID().toString(), login, password, fullName, false, roleService.getByCondition(role -> role.getName().equals("Client"))));
+    }
+
     public Account getAccountByLogin(String login){
         return this.repository
                 .getAll()

@@ -1,10 +1,12 @@
 package com.lapciakbilicki.pas2.service;
 
+import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.model.reservation.Reservation;
 import com.lapciakbilicki.pas2.repository.ReservationRepository;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -12,6 +14,12 @@ import java.util.stream.Collectors;
 
 @RequestScoped
 public class ReservationService extends ServiceAdapter<Reservation> {
+
+    @Inject
+    private FacesContext facesContext;
+
+    @Inject
+    private AccountService accountService;
 
     public ReservationService() {
 
@@ -35,19 +43,70 @@ public class ReservationService extends ServiceAdapter<Reservation> {
     }
 
     public List<Reservation> filterReservations(String argument) {
-        if (argument.equals("Active")) {
-            return this.repository.getAll().stream().filter(Reservation::isActive).collect(Collectors.toList());
-        } else if (argument.equals("Inactive")) {
-            return this.repository.getAll().stream().filter(res -> !res.isActive()).collect(Collectors.toList());
+        facesContext = FacesContext.getCurrentInstance();
+        String login = facesContext.getExternalContext().getRemoteUser();
+
+        if (accountService.getAccountByLogin(login)
+                .getRoles()
+                .stream()
+                .filter(role -> role.getName().equals("Resources_Admin"))
+                .findAny()
+                .orElse(null) == null) {
+            if (argument.equals("Active")) {
+                return this.repository
+                        .getAll()
+                        .stream()
+                        .filter(Reservation::isActive)
+                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                        .collect(Collectors.toList());
+            } else if (argument.equals("Inactive")) {
+                return this.repository
+                        .getAll()
+                        .stream()
+                        .filter(res -> !res.isActive())
+                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                        .collect(Collectors.toList());
+            } else {
+                return this.repository.getAll().stream()
+                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                        .collect(Collectors.toList());
+            }
         } else {
-            return this.repository.getAll();
+            if (argument.equals("Active")) {
+                return this.repository
+                        .getAll()
+                        .stream()
+                        .filter(Reservation::isActive)
+                        .collect(Collectors.toList());
+            } else if (argument.equals("Inactive")) {
+                return this.repository
+                        .getAll()
+                        .stream()
+                        .filter(res -> !res.isActive())
+                        .collect(Collectors.toList());
+            } else {
+                return new ArrayList<>(this.repository.getAll());
+            }
         }
+
     }
 
-    public List<Reservation> getUserReservations(String login){
-        return this.repository.getAll().stream()
-                .filter(reservation -> reservation.getAccount().getLogin().equals(login))
-                .collect(Collectors.toList());
+    public List<Reservation> getUserReservations() {
+        facesContext = FacesContext.getCurrentInstance();
+        String login = facesContext.getExternalContext().getRemoteUser();
+
+        if (accountService.getAccountByLogin(login)
+                .getRoles()
+                .stream()
+                .filter(role -> role.getName().equals("Resources_Admin"))
+                .findAny()
+                .orElse(null) != null) {
+            return this.repository.getAll();
+        } else {
+            return this.repository.getAll().stream()
+                    .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                    .collect(Collectors.toList());
+        }
     }
 
     public void deleteReservation(String id) {

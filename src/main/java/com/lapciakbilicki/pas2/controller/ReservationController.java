@@ -15,8 +15,10 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.enterprise.SecurityContext;
+import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.security.Principal;
 import java.security.Signature;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -49,17 +51,14 @@ public class ReservationController implements Serializable {
     private Map<String, String> requestMap;
 
 
-
-
-    @Inject
-    private HttpServletRequest request;
+//    @Inject
+//    private FacesContext facesContext;
+//    @Inject
+//    private ExternalContext externalContext;
 
     @PostConstruct
     public void init() {
-        String userName = request.getParameter("username");
-
-        reservations = new ArrayList<>(reservationService.getUserReservations(userName));
-//        reservations = new ArrayList<>(reservationService.getAll());
+        reservations = new ArrayList<>(reservationService.getUserReservations());
 
         if (requestMap.containsKey("sort")) {
             this.sort = this.requestMap.get("sort");

@@ -71,6 +71,10 @@ public class LoginBean implements Serializable {
         );
     }
 
+    public String goToRegisterPage(){
+        return "register";
+    }
+
     public String getMessage() {
         return message;
     }

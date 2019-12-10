@@ -18,10 +18,10 @@
         <h:form>
             <div class="form-group col-10">
                 <div class="form-group-item col-5">
-                    <h:outputLabel for="usernameInput" value="#{msg['login']}"/>
+                    <label>Login: </label>
                 </div>
                 <div class="form-group-item col-5">
-                    <h:inputText id="usernameInput" value="#{loginBean.username}" required="true" />
+                    <h:inputText id="usernameInput" styleClass="input-form-component" value="#{loginBean.username}"/>
                 </div>
             </div>
 
@@ -30,13 +30,17 @@
                     <h:outputLabel for="passwordInput" value="#{msg['password']}"/>
                 </div>
                 <div class="form-group-item col-5">
-                    <h:inputSecret id="passwordInput" value="#{loginBean.password}" required="true"/>
+                    <h:inputSecret id="passwordInput" styleClass="input-form-component" value="#{loginBean.password}"/>
                 </div>
             </div>
 
             <div id="test" class="form-group col-10">
-                <h:commandButton value="#{msg['submit_button']}" styleClass="create-button"
+                <h:commandButton value="#{msg['submit_button']}" styleClass="create-button" style="width: 100%"
                                  action="#{loginBean.login}"/>
+            </div>
+            <div class="form-group col-10">
+                <h:commandButton value="#{msg['register']}" styleClass="create-button" style="width: 100%"
+                                 action="#{loginBean.goToRegisterPage}"/>
             </div>
             <h:messages errorClass="error" />
 

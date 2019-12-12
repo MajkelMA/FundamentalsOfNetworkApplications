@@ -43,6 +43,7 @@
                                  action="#{loginBean.goToRegisterPage}"/>
             </div>
             <h:messages errorClass="error" />
+            #{request.isUserInRole("User_Admin")}
 
         </h:form>
     </div>

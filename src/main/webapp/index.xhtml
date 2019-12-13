@@ -13,8 +13,6 @@
         </p:breadCrumb>
     </ui:define>
     <ui:define name="content">
-        #{msg['main']} #{request.isUserInRole("Client")} #{request.isUserInRole("User_Admin")} #{request.isUserInRole("Resources_Admin")}
-        #{request.userPrincipal.name}
-        #{request.session.id}
+        <h1>#{msg['welcome']}, #{request.userPrincipal.name}</h1>
     </ui:define>
 </ui:composition>

@@ -10,16 +10,9 @@ import com.lapciakbilicki.pas2.service.SportsFacilityService;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.RequestParameterMap;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.security.Principal;
-import java.security.Signature;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -49,12 +42,6 @@ public class ReservationController implements Serializable {
     @Inject
     @RequestParameterMap
     private Map<String, String> requestMap;
-
-
-//    @Inject
-//    private FacesContext facesContext;
-//    @Inject
-//    private ExternalContext externalContext;
 
     @PostConstruct
     public void init() {

@@ -16,7 +16,7 @@ public class RoleService extends ServiceAdapter<Role> {
 
     @Inject
     @PostConstruct
-    public void inti(RoleRepository roleRepository) {
+    public void init(RoleRepository roleRepository) {
         this.repository = roleRepository;
     }
 

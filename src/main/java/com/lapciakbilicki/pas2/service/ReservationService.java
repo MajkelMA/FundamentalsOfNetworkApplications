@@ -52,43 +52,44 @@ public class ReservationService extends ServiceAdapter<Reservation> {
                 .filter(role -> role.getName().equals("Resources_Admin"))
                 .findAny()
                 .orElse(null) == null) {
-            if (argument.equals("Active")) {
-                return this.repository
-                        .getAll()
-                        .stream()
-                        .filter(Reservation::isActive)
-                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
-                        .collect(Collectors.toList());
-            } else if (argument.equals("Inactive")) {
-                return this.repository
-                        .getAll()
-                        .stream()
-                        .filter(res -> !res.isActive())
-                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
-                        .collect(Collectors.toList());
-            } else {
-                return this.repository.getAll().stream()
-                        .filter(reservation -> reservation.getAccount().getLogin().equals(login))
-                        .collect(Collectors.toList());
+            switch (argument) {
+                case "Active":
+                    return this.repository
+                            .getAll()
+                            .stream()
+                            .filter(Reservation::isActive)
+                            .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                            .collect(Collectors.toList());
+                case "Inactive":
+                    return this.repository
+                            .getAll()
+                            .stream()
+                            .filter(res -> !res.isActive())
+                            .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                            .collect(Collectors.toList());
+                default:
+                    return this.repository.getAll().stream()
+                            .filter(reservation -> reservation.getAccount().getLogin().equals(login))
+                            .collect(Collectors.toList());
             }
         } else {
-            if (argument.equals("Active")) {
-                return this.repository
-                        .getAll()
-                        .stream()
-                        .filter(Reservation::isActive)
-                        .collect(Collectors.toList());
-            } else if (argument.equals("Inactive")) {
-                return this.repository
-                        .getAll()
-                        .stream()
-                        .filter(res -> !res.isActive())
-                        .collect(Collectors.toList());
-            } else {
-                return new ArrayList<>(this.repository.getAll());
+            switch (argument) {
+                case "Active":
+                    return this.repository
+                            .getAll()
+                            .stream()
+                            .filter(Reservation::isActive)
+                            .collect(Collectors.toList());
+                case "Inactive":
+                    return this.repository
+                            .getAll()
+                            .stream()
+                            .filter(res -> !res.isActive())
+                            .collect(Collectors.toList());
+                default:
+                    return new ArrayList<>(this.repository.getAll());
             }
         }
-
     }
 
     public List<Reservation> getUserReservations() {

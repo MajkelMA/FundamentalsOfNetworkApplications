@@ -3,7 +3,6 @@ package com.lapciakbilicki.pas2.controller;
 import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.service.AccountService;
-import sun.net.idn.StringPrep;
 
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 

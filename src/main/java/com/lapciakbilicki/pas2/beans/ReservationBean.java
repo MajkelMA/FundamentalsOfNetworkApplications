@@ -9,7 +9,6 @@ import com.lapciakbilicki.pas2.service.SportsFacilityService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,16 +21,19 @@ import java.util.stream.Collectors;
 @Named
 @FlowScoped("reservation")
 public class ReservationBean implements Serializable {
+
     private Account account;
     private SportsFacility sportsFacility;
     String startDate, startHour, endDate, endHour, message;
 
     @Inject
-    AccountService accountService;
+    private FacesContext facesContext;
     @Inject
-    SportsFacilityService sportsFacilityService;
+    private AccountService accountService;
     @Inject
-    ReservationService reservationService;
+    private SportsFacilityService sportsFacilityService;
+    @Inject
+    private ReservationService reservationService;
 
     @PostConstruct
     public void init() {
@@ -50,6 +52,14 @@ public class ReservationBean implements Serializable {
 
     public void addSportFacility(String id) {
         this.sportsFacility = sportsFacilityService.get(id);
+    }
+
+    public void addSportFacilityAndUser(String id) {
+        facesContext = FacesContext.getCurrentInstance();
+        String login = facesContext.getExternalContext().getRemoteUser();
+        
+        this.addSportFacility(id);
+        this.addAccount(accountService.getAccountByLogin(login).getId());
     }
 
     public List<Reservation> accountReservations() {
@@ -78,8 +88,9 @@ public class ReservationBean implements Serializable {
             e.printStackTrace();
             return false;
         }
-        if (parseStartDate.equals(parseEndDate) || parseStartDate.after(parseEndDate))
+        if (parseStartDate.equals(parseEndDate) || parseStartDate.after(parseEndDate)) {
             return false;
+        }
         List<Reservation> list = reservationService.getAll()
                 .stream()
                 .filter(res -> res.getFacility().getId().equals(this.sportsFacility.getId()))
@@ -138,7 +149,6 @@ public class ReservationBean implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
-
     public String getMessage() {
         return message;
     }

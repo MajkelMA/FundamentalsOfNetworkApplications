@@ -75,8 +75,10 @@
             </h:form>
         </div>
         <div class="message">
-            <h:outputLabel render="#{reservationBean.message != null}"
-                           value="#{reservationBean.message}"/>
+            <h:outputLabel rendered="#{reservationBean.isCreate == -1}"
+                           value="#{msg['reservation_failed']}"/>
+            <h:outputLabel rendered="#{reservationBean.isCreate == 1}"
+                           value="#{msg['reservation_pass']}"/>
         </div>
     </ui:define>
 </ui:composition>

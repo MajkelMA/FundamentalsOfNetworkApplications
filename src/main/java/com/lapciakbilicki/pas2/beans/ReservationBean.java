@@ -24,7 +24,8 @@ public class ReservationBean implements Serializable {
 
     private Account account;
     private SportsFacility sportsFacility;
-    String startDate, startHour, endDate, endHour, message;
+    private String startDate, startHour, endDate, endHour, message;
+    private int isCreate;
 
     @Inject
     private FacesContext facesContext;
@@ -44,6 +45,7 @@ public class ReservationBean implements Serializable {
         sdf = new SimpleDateFormat("H");
         this.startHour = sdf.format(now);
         this.endHour = this.startHour;
+        this.isCreate = 0;
     }
 
     public void addAccount(String id) {
@@ -85,7 +87,7 @@ public class ReservationBean implements Serializable {
                 return false;
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            e.getMessage();
             return false;
         }
         if (parseStartDate.equals(parseEndDate) || parseStartDate.after(parseEndDate)) {
@@ -125,22 +127,14 @@ public class ReservationBean implements Serializable {
 
                 if (reservation.getAccount() != null && reservation.getFacility() != null) {
                     this.reservationService.add(reservation);
-                    if (FacesContext.getCurrentInstance().getViewRoot().getLocale().toString().equals("pl")) {
-                        this.message = "Utworzono rezerwację!";
-                    } else {
-                        this.message = "Reservation created!";
-                    }
+                    this.isCreate = 1;
                 }
             } else {
-                if (FacesContext.getCurrentInstance().getViewRoot().getLocale().toString().equals("pl")) {
-                    this.message = "Nie utworzono rezerwacji! Niewłaściwe daty lub obiekt jest zajęty.";
-                } else {
-                    this.message = "Reservation did not created! Invalid date or object is busy.";
-                }
+                this.isCreate = -1;
             }
 
         } catch (ParseException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 
@@ -149,6 +143,14 @@ public class ReservationBean implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
+    public int getIsCreate() {
+        return isCreate;
+    }
+
+    public void setIsCreate(int isCreate) {
+        this.isCreate = isCreate;
+    }
+
     public String getMessage() {
         return message;
     }

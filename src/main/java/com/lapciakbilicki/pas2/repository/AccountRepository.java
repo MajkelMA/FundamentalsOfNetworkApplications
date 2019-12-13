@@ -13,25 +13,19 @@ import java.util.Collections;
 @ApplicationScoped
 public class AccountRepository extends RepositoryAdapter<Account> implements Serializable {
 
+    @Inject
+    private AccountFiller accountFiller;
+
     public AccountRepository() {
         this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));
     }
 
-    @Inject
-    private AccountFiller accountFiller;
-    
     @PostConstruct
     public void init() {
         this.setFiller(accountFiller);
         this.getFiller().autoFill(this.getAll());
     }
 
-//    @PostConstruct
-//    @Inject
-//    public void init(AccountFiller accountFiller) {
-//        this.setFiller(accountFiller);
-//        this.getFiller().autoFill(this.getAll());
-//    }
     @Override
     public void update(Account item) {
         Account accountToUpdate = this.get(item.getId());

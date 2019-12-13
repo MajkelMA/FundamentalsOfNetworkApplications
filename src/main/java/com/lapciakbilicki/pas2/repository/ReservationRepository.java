@@ -1,13 +1,14 @@
 package com.lapciakbilicki.pas2.repository;
 
 import com.lapciakbilicki.pas2.model.reservation.Reservation;
+import java.io.Serializable;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
 import java.util.Collections;
 
 @ApplicationScoped
-public class ReservationRepository extends RepositoryAdapter<Reservation> {
+public class ReservationRepository extends RepositoryAdapter<Reservation> implements Serializable {
 
     public ReservationRepository() { this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));}
 

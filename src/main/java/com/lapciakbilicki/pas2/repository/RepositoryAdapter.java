@@ -3,13 +3,6 @@ package com.lapciakbilicki.pas2.repository;
 import com.lapciakbilicki.pas2.filler.Filler;
 import com.lapciakbilicki.pas2.model.IsIdentified;
 
-import javax.annotation.PostConstruct;
-import javax.decorator.Decorator;
-import javax.decorator.Delegate;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

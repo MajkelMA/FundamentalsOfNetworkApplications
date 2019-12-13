@@ -1,9 +1,8 @@
 package com.lapciakbilicki.pas2.repository;
 
-import com.lapciakbilicki.pas2.filler.Filler;
 import com.lapciakbilicki.pas2.filler.SportsFacilityFiller;
-import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -12,29 +11,27 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 @ApplicationScoped
 @Named
-public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> {
+public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> implements Serializable {
 
+    @Inject
+    private SportsFacilityFiller filler;
 
     public SportsFacilityRepository() {
         this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));
     }
 
     @PostConstruct
-    @Inject
-    public void init(SportsFacilityFiller filler){
+    public void init() {
         this.setFiller(filler);
         this.getFiller().autoFill(this.getListOfItems());
     }
 
-
-
     @Override
     public void update(SportsFacility item) {
         SportsFacility sportsFacility = this.get(item.getId());
-        if(sportsFacility != null){
+        if (sportsFacility != null) {
             sportsFacility.copyAttributionsWithoutId(item);
         }
     }

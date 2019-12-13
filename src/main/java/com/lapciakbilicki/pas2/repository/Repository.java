@@ -1,9 +1,5 @@
 package com.lapciakbilicki.pas2.repository;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 

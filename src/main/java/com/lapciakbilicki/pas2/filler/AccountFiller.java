@@ -62,7 +62,7 @@ public class AccountFiller implements Filler<Account>, Serializable {
                         .filter(role -> role.getName().equals("Client"))
                         .collect(Collectors.toList()))
         );
-        
+
         destination.add(new Account(
                 UUID.randomUUID().toString(),
                 "client2",

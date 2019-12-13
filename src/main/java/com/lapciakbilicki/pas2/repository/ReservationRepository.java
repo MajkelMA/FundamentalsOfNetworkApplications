@@ -10,7 +10,9 @@ import java.util.Collections;
 @ApplicationScoped
 public class ReservationRepository extends RepositoryAdapter<Reservation> implements Serializable {
 
-    public ReservationRepository() { this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));}
+    public ReservationRepository() {
+        this.setListOfItems(Collections.synchronizedList(new ArrayList<>()));
+    }
 
     @Override
     public void update(Reservation item) {

@@ -1,27 +1,27 @@
 package com.lapciakbilicki.pas2.service;
 
-import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
-import com.lapciakbilicki.pas2.model.sportsfacility.Field;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 import com.lapciakbilicki.pas2.repository.SportsFacilityRepository;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequestScoped
-public class SportsFacilityService extends ServiceAdapter<SportsFacility> {
+public class SportsFacilityService extends ServiceAdapter<SportsFacility> implements Serializable {
+
+    @Inject
+    private SportsFacilityRepository sportsFacilityRepository;
 
     public SportsFacilityService() {
 
     }
 
     @PostConstruct
-    @Inject
-    public void init(SportsFacilityRepository sportsFacilityRepository) {
+    public void init() {
         repository = sportsFacilityRepository;
     }
 
@@ -48,12 +48,13 @@ public class SportsFacilityService extends ServiceAdapter<SportsFacility> {
         SportsFacility facilityToRemove = this.repository.getAll()
                 .stream()
                 .filter(sportsFacility -> sportsFacility
-                        .getId()
-                        .equals(id))
+                .getId()
+                .equals(id))
                 .findFirst()
                 .orElse(null);
-        if (facilityToRemove != null)
+        if (facilityToRemove != null) {
             this.repository.remove(facilityToRemove);
+        }
     }
 
     public List<SportsFacility> filterFacility(String priceFromFacilityFilter, String priceToFacilityFilter, String nameFacilityFilter) {

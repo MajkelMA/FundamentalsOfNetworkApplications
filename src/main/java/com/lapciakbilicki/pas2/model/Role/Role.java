@@ -1,6 +1,5 @@
 package com.lapciakbilicki.pas2.model.Role;
 
-
 import com.lapciakbilicki.pas2.model.IsIdentified;
 
 public class Role implements IsIdentified {

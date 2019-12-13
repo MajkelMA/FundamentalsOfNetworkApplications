@@ -1,19 +1,18 @@
 package com.lapciakbilicki.pas2.service;
 
-import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.model.reservation.Reservation;
 import com.lapciakbilicki.pas2.repository.ReservationRepository;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @RequestScoped
-public class ReservationService extends ServiceAdapter<Reservation> {
+public class ReservationService extends ServiceAdapter<Reservation> implements Serializable {
 
     @Inject
     private FacesContext facesContext;
@@ -21,13 +20,15 @@ public class ReservationService extends ServiceAdapter<Reservation> {
     @Inject
     private AccountService accountService;
 
+    @Inject
+    private ReservationRepository reservationRepository;
+
     public ReservationService() {
 
     }
 
     @PostConstruct
-    @Inject
-    public void init(ReservationRepository reservationRepository) {
+    public void init() {
         this.repository = reservationRepository;
     }
 
@@ -113,11 +114,12 @@ public class ReservationService extends ServiceAdapter<Reservation> {
     public void deleteReservation(String id) {
         Reservation reservation = this.repository.getAll().stream()
                 .filter(res -> res
-                        .getId()
-                        .equals(id))
+                .getId()
+                .equals(id))
                 .findFirst()
                 .orElse(null);
-        if (reservation.isActive())
+        if (reservation.isActive()) {
             this.repository.remove(reservation);
+        }
     }
 }

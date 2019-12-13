@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Reservation implements IsIdentified {
+
     private String id;
     private Account account;
     private SportsFacility facility;
@@ -32,8 +33,12 @@ public class Reservation implements IsIdentified {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Reservation that = (Reservation) o;
         return Objects.equals(id, that.id);
     }
@@ -42,7 +47,6 @@ public class Reservation implements IsIdentified {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
     //<editor-fold desc="getters and setters">
     @Override

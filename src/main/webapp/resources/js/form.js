@@ -5,12 +5,11 @@ const changeVisibility = () => {
     let basketballElements = document.getElementsByClassName("basketball-facility");
     const selected = selectMenu.selectedIndex;
     selectMenu.selectedIndex = selected;
-    if(selectMenu.options[selectMenu.selectedIndex].value === "BasketballFacility"){
+    if (selectMenu.options[selectMenu.selectedIndex].value === "BasketballFacility") {
         Array.from(footballElements).forEach(setDisplayNone);
         Array.from(basketballElements).forEach(setDisplayBlock);
 
-    }
-    else {
+    } else {
         Array.from(footballElements).forEach(setDisplayBlock);
         Array.from(basketballElements).forEach(setDisplayNone);
     }
@@ -28,7 +27,7 @@ const clearForm = () => document.getElementsByTagName("form").item(0).reset();
 
 document.addEventListener("DOMContentLoaded", changeVisibility);
 
-const fillDataDuringCreateBasketballField = () =>{
+const fillDataDuringCreateBasketballField = () => {
     document.getElementById("createFacilityForm:widthofgoal").value = 30;
     document.getElementById("createFacilityForm:heightofgoal").value = 30;
 };
@@ -46,7 +45,7 @@ const changeVisibilityInCreateForm = () => {
     let basketballElements = document.getElementsByClassName("basketball-facility");
     const selected = selectMenu.selectedIndex;
     selectMenu.selectedIndex = selected;
-    if(selectMenu.options[selectMenu.selectedIndex].value === "BasketballFacility"){
+    if (selectMenu.options[selectMenu.selectedIndex].value === "BasketballFacility") {
         Array.from(footballElements).forEach(setDisplayNone);
         Array.from(basketballElements).forEach(setDisplayBlock);
         document.getElementById("createFacilityForm:widthofgoal").value = 30;
@@ -54,8 +53,7 @@ const changeVisibilityInCreateForm = () => {
         document.getElementById("createFacilityForm:numberofbaket").value = 0;
         document.getElementById("createFacilityForm:minheightofbasket").value = 0;
         document.getElementById("createFacilityForm:maxbasketballheight").value = 0;
-    }
-    else {
+    } else {
         Array.from(footballElements).forEach(setDisplayBlock);
         Array.from(basketballElements).forEach(setDisplayNone);
         document.getElementById("createFacilityForm:widthofgoal").value = 0;

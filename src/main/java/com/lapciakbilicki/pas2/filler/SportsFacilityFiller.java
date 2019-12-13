@@ -5,14 +5,14 @@ import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.Field;
 import com.lapciakbilicki.pas2.model.sportsfacility.FootballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
+import java.io.Serializable;
 
-import javax.inject.Named;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+public class SportsFacilityFiller implements Filler<SportsFacility>, Serializable {
 
-public class SportsFacilityFiller implements Filler<SportsFacility> {
     @Override
     public void autoFill(List<SportsFacility> destination) {
         Faker faker = new Faker();

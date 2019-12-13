@@ -1,7 +1,5 @@
 package com.lapciakbilicki.pas2.validator;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;

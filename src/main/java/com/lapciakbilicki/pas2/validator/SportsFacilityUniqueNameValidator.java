@@ -1,7 +1,6 @@
 package com.lapciakbilicki.pas2.validator;
 
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
-import org.primefaces.util.HTML;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

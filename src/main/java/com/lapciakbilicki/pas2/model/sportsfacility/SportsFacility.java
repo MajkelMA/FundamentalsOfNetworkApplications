@@ -5,6 +5,7 @@ import com.lapciakbilicki.pas2.model.IsIdentified;
 import java.util.Objects;
 
 public abstract class SportsFacility implements IsIdentified {
+
     private String id;
     private double pricePerHours;
     private boolean access;
@@ -47,7 +48,6 @@ public abstract class SportsFacility implements IsIdentified {
         this.access = access;
     }
 
-
     public Field getField() {
         return field;
     }
@@ -66,8 +66,12 @@ public abstract class SportsFacility implements IsIdentified {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SportsFacility that = (SportsFacility) o;
         return id.equals(that.id);
     }

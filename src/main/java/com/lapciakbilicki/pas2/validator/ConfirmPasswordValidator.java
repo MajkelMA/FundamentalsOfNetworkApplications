@@ -10,6 +10,7 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("confirmPasswordValidator")
 public class ConfirmPasswordValidator implements Validator {
+
     private final String engMessage = "Password must match confirm password";
     private final String plMessage = "Podane hasła nie są identyczne";
     private final String tooShortEngMessage = "Password is too short";

@@ -9,6 +9,7 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("roleValidator")
 public class RoleValidator implements Validator {
+
     private final String engMessage = "Select role";
     private final String plMessage = "Wybierz role";
 

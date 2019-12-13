@@ -4,7 +4,6 @@ import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
 import com.lapciakbilicki.pas2.service.AccountService;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.annotation.RequestParameterMap;
 import javax.faces.view.ViewScoped;
@@ -85,7 +84,6 @@ public class AccountController implements Serializable {
     }
 
     //</editor-fold>
-
     public void createAccount() {
         accountService.createUserWithRoles(roles, account.getLogin(), account.getPassword(), account.getFullName());
     }
@@ -98,7 +96,7 @@ public class AccountController implements Serializable {
         accountService.updateAccountWithRole(accountToModify.getId(), accountToModify.getLogin(), accountToModify.getPassword(), accountToModify.getFullName(), accountToModify.isActive(), roles);
     }
 
-    public void createClientAccount(){
+    public void createClientAccount() {
         accountService.createClientUser(account.getLogin(), account.getPassword(), account.getFullName());
     }
 

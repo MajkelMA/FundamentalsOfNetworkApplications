@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
 public class BasketballFacility extends SportsFacility {
+
     private int numberOfBasket;
     private double minHeightOfBasket;
     private double maxHeightOfBasket;

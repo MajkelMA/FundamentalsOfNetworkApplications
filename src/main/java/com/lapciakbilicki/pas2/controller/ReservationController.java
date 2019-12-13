@@ -19,6 +19,7 @@ import java.util.*;
 @RequestScoped
 @Named
 public class ReservationController implements Serializable {
+
     private List<Reservation> reservations;
 
     private String startDate,
@@ -91,7 +92,6 @@ public class ReservationController implements Serializable {
     }
 
     //<editor-fold desc="getters and setter">
-
     public String getSort() {
         return sort;
     }

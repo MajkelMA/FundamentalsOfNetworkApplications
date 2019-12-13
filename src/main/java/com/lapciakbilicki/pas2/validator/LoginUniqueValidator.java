@@ -13,9 +13,9 @@ import java.util.List;
 
 @FacesValidator("loginUniqueValidator")
 public class LoginUniqueValidator implements Validator, Serializable {
+
     private final String engMessage = "Login is not unique";
     private final String plMessage = "Login nie jest unikalny";
-
 
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {

@@ -57,7 +57,7 @@ public class ReservationBean implements Serializable {
     public void addSportFacilityAndUser(String id) {
         facesContext = FacesContext.getCurrentInstance();
         String login = facesContext.getExternalContext().getRemoteUser();
-        
+
         this.addSportFacility(id);
         this.addAccount(accountService.getAccountByLogin(login).getId());
     }

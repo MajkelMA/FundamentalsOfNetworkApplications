@@ -1,8 +1,6 @@
 package com.lapciakbilicki.pas2.service;
 
 import com.lapciakbilicki.pas2.model.IsIdentified;
-import com.lapciakbilicki.pas2.repository.Repository;
-import com.lapciakbilicki.pas2.repository.RepositoryAdapter;
 
 import java.util.List;
 import java.util.function.Predicate;

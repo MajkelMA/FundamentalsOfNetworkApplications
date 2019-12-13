@@ -1,6 +1,7 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
 public class Field {
+
     private double surfaceArea;
     private int maxAmountOfPeople;
     private String typeOfGround;

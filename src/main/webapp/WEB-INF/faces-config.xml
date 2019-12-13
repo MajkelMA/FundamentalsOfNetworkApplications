@@ -29,7 +29,7 @@
         <navigation-case>
             <from-outcome>Logout</from-outcome>
             <to-view-id>/login/login.xhtml</to-view-id>
-        <redirect/>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 

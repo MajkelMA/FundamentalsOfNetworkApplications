@@ -133,7 +133,6 @@ public class SportsFacilityController implements Serializable {
                 numberOfBasket,
                 minHeightOfBasket,
                 maxHeightOfBasket
-
         ));
         init();
     }

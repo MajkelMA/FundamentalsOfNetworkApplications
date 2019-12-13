@@ -7,17 +7,15 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-
 public abstract class RepositoryAdapter<T extends IsIdentified> implements Repository<T> {
-
 
     private List<T> listOfItems;
     private Filler<T> filler;
 
     @Override
     public boolean add(T item) {
-        if(item.getId() !=null){
-            if(this.get(item.getId()) == null){
+        if (item.getId() != null) {
+            if (this.get(item.getId()) == null) {
                 this.listOfItems.add(item);
                 return true;
             }
@@ -47,7 +45,7 @@ public abstract class RepositoryAdapter<T extends IsIdentified> implements Repos
     }
 
     @Override
-    public List<T> getByCondition(Predicate<T> predicate){
+    public List<T> getByCondition(Predicate<T> predicate) {
         return this.listOfItems.stream()
                 .filter(predicate)
                 .collect(Collectors.toList());

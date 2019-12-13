@@ -6,8 +6,8 @@ import com.lapciakbilicki.pas2.model.Role.Role;
 import java.util.List;
 import java.util.Objects;
 
-
 public class Account implements IsIdentified {
+
     private String id;
     private String login;
     private String password;
@@ -79,7 +79,9 @@ public class Account implements IsIdentified {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
         Account account = (Account) o;
         return this.id.equals(account.id);
     }

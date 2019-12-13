@@ -1,11 +1,12 @@
 package com.lapciakbilicki.pas2.filler;
 
 import com.lapciakbilicki.pas2.model.Role.Role;
+import java.io.Serializable;
 
 import java.util.List;
 import java.util.UUID;
 
-public class RoleFiller implements Filler<Role> {
+public class RoleFiller implements Filler<Role>, Serializable {
 
     @Override
     public void autoFill(List<Role> destination) {

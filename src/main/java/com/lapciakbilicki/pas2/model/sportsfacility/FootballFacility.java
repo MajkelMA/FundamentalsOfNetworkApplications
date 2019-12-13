@@ -1,10 +1,10 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
 public class FootballFacility extends SportsFacility {
+
     private boolean fullSize;
     private double widthOfGoal;
     private double heightOfGoal;
-
 
     public FootballFacility() {
 

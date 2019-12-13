@@ -4,14 +4,14 @@ import com.github.javafaker.Faker;
 
 import com.lapciakbilicki.pas2.model.Role.Role;
 import com.lapciakbilicki.pas2.model.account.Account;
-import com.lapciakbilicki.pas2.repository.RoleRepository;
 import com.lapciakbilicki.pas2.service.RoleService;
+import java.io.Serializable;
 
 import javax.inject.Inject;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AccountFiller implements Filler<Account> {
+public class AccountFiller implements Filler<Account>, Serializable {
 
     @Inject
     RoleService roleService;
@@ -62,6 +62,7 @@ public class AccountFiller implements Filler<Account> {
                         .filter(role -> role.getName().equals("Client"))
                         .collect(Collectors.toList()))
         );
+        
         destination.add(new Account(
                 UUID.randomUUID().toString(),
                 "client2",

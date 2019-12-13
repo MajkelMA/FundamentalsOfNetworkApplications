@@ -6,8 +6,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
                 template="../templates/mainTemplate.xhtml">
+
     <ui:define name="content">
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -15,33 +15,50 @@
         <h:outputScript library="js" name="datePicker.js"/>
 
         <div class="data-view">
-            <h:form>
-                <ul>
+            <ul>
+                <h:form>
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="#{msg['price_from']}: "/>
+                        <h:inputText value="#{reservationController.priceFromFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="#{msg['price_to']}: "/>
+                        <h:inputText value="#{reservationController.priceToFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
+                        <h:outputLabel value="#{msg['name']}: "/>
+                        <h:inputText value="#{reservationController.nameFacilityFilter}"/>
+                    </div>
+                    <div class="data-view-component col-2">
+                        <h:commandButton value="#{msg['filter']}" action="#{reservationController.filterFacility()}"
+                                         styleClass="modify-button"/>
+                    </div>
+                </h:form>
+                <ui:repeat value="#{reservationController.allSportsFacilities}" var="object">
                     <h:form>
-                        <div class="data-view-component col-2">
-                            <h:outputLabel value="#{msg['name']}: "/>
-                            <h:inputText value="#{reservationController.nameAccountFilter}"/>
-                        </div>
-                        <div class="data-view-component col-2">
-                            <h:commandButton value="#{msg['filter']}" action="#{reservationController.filterAccount()}"
-                                             styleClass="modify-button"/>
-                        </div>
-                    </h:form>
-                    <ui:repeat value="#{reservationController.allAccounts}" var="object">
                         <li>
-                            <div class="data-view-component col-7">
-                                <h:outputText value="#{object.fullName}"/>
+                            <div class="data-view-component col-5">
+                                <h:outputText value="#{object.name}"/>
                             </div>
-                            <div class="data-view-component col-3">
+                            <div class="data-view-component col-4">
+                                <h:outputText value="#{object.pricePerHours}">
+                                    <f:convertNumber maxFractionDigits="2"/>
+                                </h:outputText>
+                            </div>
+                            <div class="data-view-component col-1">
+                                <h:commandButton value="#{msg['choose_button']}" action="reservation-create-3"
+                                                 styleClass="change-button" rendered="#{request.isUserInRole('Client')}">
+                                    <f:actionListener binding="#{reservationBean.addSportFacilityAndUser(object.id)}"/>
+                                </h:commandButton>
                                 <h:commandButton value="#{msg['choose_button']}" action="reservation-create-2"
-                                                 styleClass="change-button">
-                                    <f:actionListener binding="#{reservationBean.addAccount(object.id)}"/>
+                                                 styleClass="change-button" rendered="#{request.isUserInRole('Resources_Admin')}">
+                                    <f:actionListener binding="#{reservationBean.addSportFacility(object.id)}"/>
                                 </h:commandButton>
                             </div>
                         </li>
-                    </ui:repeat>
-                </ul>
-            </h:form>
+                    </h:form>
+                </ui:repeat>
+            </ul>
         </div>
 
     </ui:define>

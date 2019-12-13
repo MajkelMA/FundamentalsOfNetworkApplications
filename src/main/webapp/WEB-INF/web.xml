@@ -120,6 +120,7 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>Client</role-name>
+            <role-name>Resources_Admin</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>

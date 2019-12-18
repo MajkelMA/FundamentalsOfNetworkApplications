@@ -31,7 +31,12 @@
             </div>
 
             <div class="footer">
-                #{msg['page_info']} #{facesContext.viewRoot.locale}
+                #{msg['page_info']} #{facesContext.viewRoot.locale} #{msg['logged_info']}
+                <h:outputLabel rendered="#{request.isUserInRole('Resources_Admin')}">#{msg['Resources_Admin']}</h:outputLabel>
+                <h:outputLabel rendered="#{request.isUserInRole('User_Admin')}">#{msg['User_Admin']}</h:outputLabel>
+                <h:outputLabel rendered="#{request.isUserInRole('Client')}">#{msg['Client']}</h:outputLabel>
+                login: #{request.userPrincipal.name}
+
             </div>
         </div>
     </div>

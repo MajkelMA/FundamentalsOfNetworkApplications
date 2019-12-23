@@ -11,6 +11,7 @@ public abstract class SportsFacility implements IsIdentified {
     private boolean access;
     private Field field;
     private String name;
+    private String type = this.getClass().getSimpleName();
 
     public SportsFacility() {
 
@@ -86,5 +87,13 @@ public abstract class SportsFacility implements IsIdentified {
         this.access = sportsFacility.access;
         this.field = sportsFacility.field;
         this.name = sportsFacility.name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

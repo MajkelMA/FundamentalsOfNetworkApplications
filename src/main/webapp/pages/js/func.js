@@ -45,6 +45,7 @@ let getFacilities = () => {
                     `<td><a href='details.html?id=${facility.id}'>${facility.id}</a></td>` +
                     `<td>${facility.name}</td>` +
                     `<td>${facility.type}</td>` +
+                    `<td><button class='button' onclick='handleDeleteButtonClick("${facility.id}")'>Delete</button></td>` +
                     "</tr>";
             }
             document.getElementById("tableBody").innerHTML = str;
@@ -84,4 +85,15 @@ let getFacility = (id) => {
              document.getElementById("detailBody").innerHTML = str;
         })
         .catch(onerror => console.log(onerror));
+};
+
+let handleDeleteButtonClick = (id) => {
+    const confirm = window.confirm("Are you sure?");
+    if (confirm){
+    fetch(`http://localhost:8080/pas2/api/facilities/${id}`,{method: 'DELETE'})
+        .then(response => {
+            handleFilterChange();
+        })
+        .catch(onerror => window.alert("Error during delete"));
+    }
 };

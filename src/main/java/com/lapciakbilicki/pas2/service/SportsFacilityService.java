@@ -48,13 +48,24 @@ public class SportsFacilityService extends ServiceAdapter<SportsFacility> implem
         SportsFacility facilityToRemove = this.repository.getAll()
                 .stream()
                 .filter(sportsFacility -> sportsFacility
-                .getId()
-                .equals(id))
+                        .getId()
+                        .equals(id))
                 .findFirst()
                 .orElse(null);
         if (facilityToRemove != null) {
             this.repository.remove(facilityToRemove);
         }
+    }
+
+    public boolean delete(String id){
+        SportsFacility sportsFacility = this.repository.getAll()
+                .stream()
+                .filter(sportsFacility1 -> sportsFacility1.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if(sportsFacility != null)
+            return this.repository.remove(sportsFacility);
+        return false;
     }
 
     public List<SportsFacility> filterFacility(String priceFromFacilityFilter, String priceToFacilityFilter, String nameFacilityFilter) {

@@ -1,14 +1,19 @@
 package com.lapciakbilicki.pas2.rest;
 
+import com.github.javafaker.App;
+import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
+import com.lapciakbilicki.pas2.model.sportsfacility.FootballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
 import com.lapciakbilicki.pas2.repository.Repository;
 import com.lapciakbilicki.pas2.service.SportsFacilityService;
 
 import javax.inject.Inject;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 
 
 @Path("/facilities")
@@ -45,5 +50,29 @@ public class SportsFacilityRestController {
             return Response.status(200).entity("Success").build();
         else
             return Response.status(404).entity("Facility does not exist").build();
+    }
+
+    @POST
+    @Path("/basketball")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addFacility(BasketballFacility basketballFacility){
+        basketballFacility.setId(UUID.randomUUID().toString());
+        boolean result = this.sportsFacilityService.add(basketballFacility);
+        if(result)
+            return Response.status(200).build();
+        else
+            return Response.status(400).build();
+    }
+
+    @POST
+    @Path("/football")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addFacility(FootballFacility footballFacility){
+        footballFacility.setId(UUID.randomUUID().toString());
+        boolean result = this.sportsFacilityService.add(footballFacility);
+        if(result)
+            return Response.status(200).build();
+        else
+            return Response.status(400).build();
     }
 }

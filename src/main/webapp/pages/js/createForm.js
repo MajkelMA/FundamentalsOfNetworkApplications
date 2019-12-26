@@ -1,89 +1,3 @@
-let handleCreateClick = () => {
-    const confirm = window.confirm("Are you sure?");
-
-    if (confirm){
-        const typeForm = document.getElementById("type");
-        const selectedValue = typeForm.options[typeForm.selectedIndex].value;
-
-        const name = getValueFromInput("name");
-        const maxAmountOfPeople = parseInt(getValueFromInput("maxAmountOfPeople"));
-        const surfaceArea = parseFloat(getValueFromInput("surface"));
-        const typeOfGround = getValueFromInput("typeOfGround");
-        const price = parseFloat(getValueFromInput("price"));
-
-
-        if (selectedValue === "1"){
-            const numberOfBasket = parseInt(getValueFromInput("numberOfBasket"));
-            const minHeightOfBasket = parseFloat(getValueFromInput("minheight"));
-            const maxHeightOfBasket = parseFloat(getValueFromInput("maxheight"));
-            createBasketballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, numberOfBasket, minHeightOfBasket, maxHeightOfBasket);
-        }
-        if (selectedValue === "2"){
-            const radioResult = readSelectedRadioButtonValue("fullsize");
-            const fullSize = radioResult === "1";
-            const widthOfGoal = parseFloat(getValueFromInput("widthOfGoal"));
-            const heightOfGoal = parseFloat(getValueFromInput("heightOfGoal"));
-            createFootballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOfGoal, heightOfGoal);
-        }
-    }
-};
-
-let createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket,minHeightOfBasket, maxHeightOfBasket) => {
-    const data = {
-        id: "",
-        pricePerHours: price,
-        access: access,
-        field: {
-            surfaceArea: surfaceArea,
-            maxAmountOfPeople: maxAmountOfPeople,
-            typeOfGround: typeOfGround
-        },
-        name: name,
-        type: "BasketballFacility",
-        numberOfBasket: numberOFBasket,
-        minHeightOfBasket: minHeightOfBasket,
-        maxHeightOfBasket: maxHeightOfBasket
-    };
-
-    fetch("http://localhost:8080/pas2/api/facilities/basketball", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).catch(onerror => console.log(onerror));
-};
-
-
-let createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) =>{
-    const data = {
-        id: "",
-        pricePerHours: price,
-        access: access,
-        field: {
-            surfaceArea: surfaceArea,
-            maxAmountOfPeople: maxAmountOfPeople,
-            typeOfGround: typeOfGround
-        },
-        name: name,
-        type: "FootballFacility",
-        fullsize: fullSize,
-        widthOfGoal: widthOFGoal,
-        heightOfGoal: heightOfGoal
-    };
-    fetch("http://localhost:8080/pas2/api/facilities/football", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).catch(onerror => console.log(onerror));
-};
-
-let getValueFromInput = (id) => {
-    return document.getElementById(id).value
-};
-
 let handleChangeSelectedValue = () => {
     const typeForm = document.getElementById("type");
     const selectedValue = typeForm.options[typeForm.selectedIndex].value;
@@ -127,3 +41,222 @@ let readSelectedRadioButtonValue = (name) => {
     });
     return result;
 };
+
+
+class Validator {
+    state = {
+        validate: false,
+        form: null,
+        typeSelected: "BasketballFacility"
+    };
+
+    constructor(form){
+        this.state.form = form;
+        this.prepareElements();
+    }
+
+    prepareElements = () => {
+        document.getElementById("name").addEventListener("input", e => this.basicTextCheck(e.target, true, "name-validation"));
+        document.getElementById("maxAmountOfPeople").addEventListener("input", e => this.numberValidation(e.target, true, "maxAmountOfPeople-validation"));
+        document.getElementById("surface").addEventListener("input", e => this.floatNumberValidation(e.target, true, "surface-validation"));
+        document.getElementById("typeOfGround").addEventListener("input", ev => this.notNullValidation(ev.target, true, "typeOfGround-validation"));
+        document.getElementById("price").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "price-validation"));
+        document.getElementById("numberOfBasket").addEventListener("input", ev=>this.numberValidation(ev.target, true, "numberOfBasket-validation"));
+        document.getElementById("minheight").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "minheight-validation"));
+        document.getElementById("widthOfGoal").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "widthOfGoal-validation"));
+        document.getElementById("maxheight").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "maxheight-validation"));
+        document.getElementById("heightOfGoal").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "heightOfGoal-validation"));
+        document.getElementById("send").addEventListener("click", ev => this.handleCreateClick());
+    };
+
+    numberValidation = (item, show, validationDivId) => {
+        const value = item.value;
+        let validateFlag = true;
+        validateFlag = this.notNullValidation(item, false, null);
+
+        for (let i = 0 ; i < value.length; i++){
+            if (value[i] <= '0' || value[i] >= '9'){
+                validateFlag = false;
+            }
+        }
+
+        if (show)
+            this.showValidation(validationDivId, validateFlag, "Input must be number and not null");
+
+        return validateFlag;
+    };
+
+
+    floatNumberValidation = (item, show, validationDivId) => {
+        let value = item.value;
+        let isValidate = true;
+        isValidate = this.notNullValidation(item, false, null);
+
+        if (value[0] === '.') {
+            item.value = "0" + value;
+            value = item.value
+        }
+        for (let i = 0; i < value.length; i++){
+            if ((value[i] <= '0' || value[i] >= '9') && (value[i] !== '.')){
+                isValidate = false;
+            }
+        }
+
+        if (show)
+            this.showValidation(validationDivId, isValidate, "Input must be number and not null");
+
+        return isValidate;
+
+    };
+
+    notNullValidation = (item, show, validationDivId) => {
+        const value = item.value;
+        let isValidate = true;
+        if (value === "") {
+            isValidate = false;
+        }
+
+        if (show)
+            this.showValidation(validationDivId, isValidate, "Must be not null");
+
+        return isValidate;
+    };
+
+    basicTextCheck = (item, show, validationDivId) => {
+        let isValidate = true;
+        const value = item.value;
+        if (value.length < 3){
+            isValidate = false;
+        }
+
+        if (show)
+            this.showValidation(validationDivId, isValidate, "Min Length: 3");
+
+        return isValidate;
+    };
+
+    showValidation = (id, mode, message) => {
+        const element = document.getElementById(id);
+        if (mode){
+            element.innerHTML = "";
+        }
+        else{
+            element.innerHTML = message;
+        }
+    };
+
+     handleCreateClick = () => {
+        const confirm = window.confirm("Are you sure?");
+
+        if (confirm) {
+            let validateFlag;
+
+            const typeForm = document.getElementById("type");
+            const selectedValue = typeForm.options[typeForm.selectedIndex].value;
+
+
+            validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
+            const name = this.getValueFromInput("name");
+
+            validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
+            const maxAmountOfPeople = parseInt(this.getValueFromInput("maxAmountOfPeople"));
+
+            validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
+            const surfaceArea = parseFloat(this.getValueFromInput("surface"));
+
+            validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
+            const typeOfGround = this.getValueFromInput("typeOfGround");
+
+            validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
+            const price = parseFloat(this.getValueFromInput("price"));
+
+
+            if (selectedValue === "1") {
+                validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
+                const numberOfBasket = parseInt(this.getValueFromInput("numberOfBasket"));
+
+                validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
+                const minHeightOfBasket = parseFloat(this.getValueFromInput("minheight"));
+
+                validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
+                const maxHeightOfBasket = parseFloat(this.getValueFromInput("maxheight"));
+
+                if (validateFlag)
+                    this.createBasketballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, numberOfBasket, minHeightOfBasket, maxHeightOfBasket);
+                else window.alert("wrong data!");
+            }
+            if (selectedValue === "2") {
+                const radioResult = readSelectedRadioButtonValue("fullsize");
+                const fullSize = radioResult === "1";
+
+                validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
+                const widthOfGoal = parseFloat(this.getValueFromInput("widthOfGoal"));
+
+                validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
+                const heightOfGoal = parseFloat(this.getValueFromInput("heightOfGoal"));
+
+                if (validateFlag)
+                    this.createFootballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOfGoal, heightOfGoal);
+                else window.alert("wrong data!");
+            }
+        }
+    };
+
+     createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket,minHeightOfBasket, maxHeightOfBasket) => {
+        const data = {
+            id: "",
+            pricePerHours: price,
+            access: access,
+            field: {
+                surfaceArea: surfaceArea,
+                maxAmountOfPeople: maxAmountOfPeople,
+                typeOfGround: typeOfGround
+            },
+            name: name,
+            type: "BasketballFacility",
+            numberOfBasket: numberOFBasket,
+            minHeightOfBasket: minHeightOfBasket,
+            maxHeightOfBasket: maxHeightOfBasket
+        };
+
+        fetch("http://localhost:8080/pas2/api/facilities/basketball", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(onerror => console.log(onerror));
+    };
+
+
+     createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) =>{
+        const data = {
+            id: "",
+            pricePerHours: price,
+            access: access,
+            field: {
+                surfaceArea: surfaceArea,
+                maxAmountOfPeople: maxAmountOfPeople,
+                typeOfGround: typeOfGround
+            },
+            name: name,
+            type: "FootballFacility",
+            fullsize: fullSize,
+            widthOfGoal: widthOFGoal,
+            heightOfGoal: heightOfGoal
+        };
+        fetch("http://localhost:8080/pas2/api/facilities/football", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(onerror => console.log(onerror));
+    };
+
+     getValueFromInput = (id) => {
+        return document.getElementById(id).value
+    };
+
+
+}

@@ -8,6 +8,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = new Validator(document.querySelector('.form'));
+        });
+    </script>
 </head>
 <body>
 <form class="form-horizontal" method="post">
@@ -30,53 +35,54 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="name">Name</label>
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Facility name" class="form-control input-md">
+                <input id="name" name="name" required type="text" placeholder="Facility name" class="form-control input-md">
             </div>
+            <div id="name-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="maxAmountOfPeople">Max Amount of People</label>
             <div class="col-md-4">
-                <input id="maxAmountOfPeople" name="maxAmountOfPeople" type="text" placeholder="Amount of people" class="form-control input-md">
-
+                <input id="maxAmountOfPeople" required name="maxAmountOfPeople" type="text" placeholder="Amount of people" class="form-control input-md">
             </div>
+            <div id="maxAmountOfPeople-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="surface">Surface Area</label>
             <div class="col-md-4">
-                <input id="surface" name="surface" type="text" placeholder="Surface Area" class="form-control input-md">
-
+                <input id="surface" name="surface" required type="text" placeholder="Surface Area" class="form-control input-md">
             </div>
+            <div id="surface-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="typeOfGround">Type of Ground</label>
             <div class="col-md-4">
-                <input id="typeOfGround" name="typeOfGround" type="text" placeholder="Type" class="form-control input-md">
-
+                <input id="typeOfGround" required name="typeOfGround" type="text" placeholder="Type" class="form-control input-md">
             </div>
+            <div id="typeOfGround-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="price">Price per Houers</label>
             <div class="col-md-4">
-                <input id="price" name="price" type="text" placeholder="Price" class="form-control input-md">
-
+                <input id="price" required name="price" type="text" placeholder="Price" class="form-control input-md">
             </div>
+            <div id="price-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group" id="basket-1">
             <label class="col-md-4 control-label" for="numberOfBasket">Number of Basket</label>
             <div class="col-md-4">
-                <input id="numberOfBasket" name="numberOfBasket" type="text" placeholder="number" class="form-control input-md">
-
+                <input id="numberOfBasket" required name="numberOfBasket" type="text" placeholder="number" class="form-control input-md">
             </div>
+            <div id="numberOfBasket-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Multiple Radios -->
@@ -102,33 +108,35 @@
         <div class="form-group" id="basket-2">
             <label class="col-md-4 control-label" for="minheight">Min Height of Basket</label>
             <div class="col-md-4">
-                <input id="minheight" name="minheight" type="text" placeholder="Min height" class="form-control input-md">
-
+                <input id="minheight" required name="minheight" type="text" placeholder="Min height" class="form-control input-md">
             </div>
+            <div id="minheight-validation" style="display: block; color: red"></div>
         </div>
         <!-- Text input-->
         <div class="form-group" id="football-2" style="display: none">
             <label class="col-md-4 control-label" for="widthOfGoal">Width Of Goal</label>
             <div class="col-md-4">
-                <input id="widthOfGoal" name="widthOfGoal" type="text" placeholder="Width" class="form-control input-md">
-
+                <input id="widthOfGoal" required name="widthOfGoal" type="text" placeholder="Width" class="form-control input-md">
             </div>
+            <div id="widthOfGoal-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group" id="basket-3">
             <label class="col-md-4 control-label" for="maxheight">Max Height of Basket</label>
             <div class="col-md-4">
-                <input id="maxheight" name="maxheight" type="text" placeholder="Max height" class="form-control input-md">
+                <input id="maxheight" required name="maxheight" type="text" placeholder="Max height" class="form-control input-md">
             </div>
+            <div id="maxheight-validation" style="color: red; display: block"></div>
         </div>
 
         <!-- Text input-->
         <div class="form-group" id="football-3" style="display: none">
             <label class="col-md-4 control-label" for="heightOfGoal">Height of Goal</label>
             <div class="col-md-4">
-                <input id="heightOfGoal" name="heightOfGoal" type="text" placeholder="Max height" class="form-control input-md">
+                <input id="heightOfGoal" required name="heightOfGoal" type="text" placeholder="Max height" class="form-control input-md">
             </div>
+            <div id="heightOfGoal-validation" style="color: red; display: block"></div>
         </div>
 
 
@@ -136,7 +144,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="send"></label>
             <div class="col-md-8">
-                <button id="send" type="button" name="send" class="btn btn-success" onclick="handleCreateClick()">Send</button>
+                <button id="send" type="button" name="send" class="btn btn-success">Send</button>
                 <button id="clear" type="button" name="clear" class="btn btn-danger">Clear</button>
             </div>
         </div>

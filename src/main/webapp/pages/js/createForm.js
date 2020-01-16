@@ -147,53 +147,47 @@ class Validator {
         const confirm = window.confirm("Are you sure?");
 
         if (confirm) {
-            let validateFlag;
-
             const typeForm = document.getElementById("type");
             const selectedValue = typeForm.options[typeForm.selectedIndex].value;
 
-            validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
+            let validateFlag1 = this.basicTextCheck(document.getElementById("name"), false, "");
             const name = this.getValueFromInput("name");
-            console.log(document.getElementById("name").value);
-            console.log(validateFlag);
 
-            validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
+
+            let validateFlag2 = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
             const maxAmountOfPeople = parseInt(this.getValueFromInput("maxAmountOfPeople"));
-            console.log(document.getElementById("maxAmountOfPeople").value);
-            console.log(validateFlag);
 
-            validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
+            let validateFlag3 = this.floatNumberValidation(document.getElementById("surface"), false, "");
             const surfaceArea = parseFloat(this.getValueFromInput("surface"));
-            console.log(document.getElementById("surface").value);
-            console.log(validateFlag);
 
-            validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
+
+            let validateFlag4 = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
             const typeOfGround = this.getValueFromInput("typeOfGround");
-            console.log(document.getElementById("typeOfGround").value);
-            console.log(validateFlag);
 
-            validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
+
+            let validateFlag5 = this.floatNumberValidation(document.getElementById("price"), false, "");
             const price = parseFloat(this.getValueFromInput("price"));
-            console.log(document.getElementById("price").value);
-            console.log(validateFlag);
+
 
             if (selectedValue === "1") {
-                validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
+                let validateFlag6 = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
                 const numberOfBasket = parseInt(this.getValueFromInput("numberOfBasket"));
-                console.log(document.getElementById("numberOfBasket").value);
-                console.log(validateFlag);
 
-                validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
+                let validateFlag7 = this.floatNumberValidation(document.getElementById("minheight"), false, "");
                 const minHeightOfBasket = parseFloat(this.getValueFromInput("minheight"));
-                console.log(document.getElementById("minheight").value);
-                console.log(validateFlag);
 
-                validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
+                let validateFlag8 = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
                 const maxHeightOfBasket = parseFloat(this.getValueFromInput("maxheight"));
-                console.log(document.getElementById("maxheight").value);
-                console.log(validateFlag);
 
-                if (validateFlag)
+
+                if (validateFlag1
+                    && validateFlag2
+                    && validateFlag3
+                    && validateFlag4
+                    && validateFlag5
+                    && validateFlag6
+                    && validateFlag7
+                    && validateFlag8)
                     this.createBasketballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, numberOfBasket, minHeightOfBasket, maxHeightOfBasket);
                 else window.alert("wrong data!");
             }
@@ -201,17 +195,20 @@ class Validator {
                 const radioResult = readSelectedRadioButtonValue("fullsize");
                 const fullSize = radioResult === "1";
 
-                validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
+                let validateFlag6 = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
                 const widthOfGoal = parseFloat(this.getValueFromInput("widthOfGoal"));
-                console.log(document.getElementById("widthOfGoal").value);
-                console.log(validateFlag);
 
-                validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
+
+                let validateFlag7 = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
                 const heightOfGoal = parseFloat(this.getValueFromInput("heightOfGoal"));
-                console.log(document.getElementById("heightOfGoal").value);
-                console.log(validateFlag);
 
-                if (validateFlag)
+                if (validateFlag1
+                    && validateFlag2
+                    && validateFlag3
+                    && validateFlag4
+                    && validateFlag5
+                    && validateFlag6
+                    && validateFlag7)
                     this.createFootballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOfGoal, heightOfGoal);
                 else window.alert("wrong data!");
             }

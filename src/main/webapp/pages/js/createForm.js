@@ -74,7 +74,7 @@ class Validator {
         validateFlag = this.notNullValidation(item, false, null);
 
         for (let i = 0; i < value.length; i++) {
-            if (value[i] <= '0' || value[i] >= '9') {
+            if (value[i] < '0' || value[i] > '9') {
                 validateFlag = false;
             }
         }
@@ -96,7 +96,7 @@ class Validator {
             value = item.value
         }
         for (let i = 0; i < value.length; i++) {
-            if ((value[i] <= '0' || value[i] >= '9')) {
+            if ((value[i] < '0' || value[i] > '9') && value[i] !== '.') {
                 isValidate = false;
             }
         }
@@ -152,49 +152,68 @@ class Validator {
             const typeForm = document.getElementById("type");
             const selectedValue = typeForm.options[typeForm.selectedIndex].value;
 
-            // validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
+            validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
             const name = this.getValueFromInput("name");
-            // console.log(validateFlag);
-            // validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
+            console.log(document.getElementById("name").value);
+            console.log(validateFlag);
+
+            validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
             const maxAmountOfPeople = parseInt(this.getValueFromInput("maxAmountOfPeople"));
-            // console.log(validateFlag);
-            // validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
+            console.log(document.getElementById("maxAmountOfPeople").value);
+            console.log(validateFlag);
+
+            validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
             const surfaceArea = parseFloat(this.getValueFromInput("surface"));
-            // console.log(validateFlag);
-            // validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
+            console.log(document.getElementById("surface").value);
+            console.log(validateFlag);
+
+            validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
             const typeOfGround = this.getValueFromInput("typeOfGround");
-            // console.log(validateFlag);
-            // validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
+            console.log(document.getElementById("typeOfGround").value);
+            console.log(validateFlag);
+
+            validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
             const price = parseFloat(this.getValueFromInput("price"));
-            // console.log(validateFlag);
+            console.log(document.getElementById("price").value);
+            console.log(validateFlag);
 
             if (selectedValue === "1") {
-                // validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
+                validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
                 const numberOfBasket = parseInt(this.getValueFromInput("numberOfBasket"));
-                // console.log(validateFlag);
-                // validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
+                console.log(document.getElementById("numberOfBasket").value);
+                console.log(validateFlag);
+
+                validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
                 const minHeightOfBasket = parseFloat(this.getValueFromInput("minheight"));
-                // console.log(validateFlag);
-                // validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
+                console.log(document.getElementById("minheight").value);
+                console.log(validateFlag);
+
+                validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
                 const maxHeightOfBasket = parseFloat(this.getValueFromInput("maxheight"));
-                // console.log(validateFlag);
-                // if (validateFlag)
+                console.log(document.getElementById("maxheight").value);
+                console.log(validateFlag);
+
+                if (validateFlag)
                     this.createBasketballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, numberOfBasket, minHeightOfBasket, maxHeightOfBasket);
-                // else window.alert("wrong data!");
+                else window.alert("wrong data!");
             }
             if (selectedValue === "2") {
                 const radioResult = readSelectedRadioButtonValue("fullsize");
                 const fullSize = radioResult === "1";
-                //
-                // validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
+
+                validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
                 const widthOfGoal = parseFloat(this.getValueFromInput("widthOfGoal"));
-                //
-                // validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
+                console.log(document.getElementById("widthOfGoal").value);
+                console.log(validateFlag);
+
+                validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
                 const heightOfGoal = parseFloat(this.getValueFromInput("heightOfGoal"));
-                //
-                // if (validateFlag)
+                console.log(document.getElementById("heightOfGoal").value);
+                console.log(validateFlag);
+
+                if (validateFlag)
                     this.createFootballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOfGoal, heightOfGoal);
-                // else window.alert("wrong data!");
+                else window.alert("wrong data!");
             }
         }
     };
@@ -202,7 +221,7 @@ class Validator {
     createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket, minHeightOfBasket, maxHeightOfBasket) => {
         const id = document.getElementById("id");
 
-        if(id === null){
+        if (id === null) {
             const data = {
                 id: "",
                 pricePerHours: price,
@@ -257,7 +276,7 @@ class Validator {
     createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) => {
         const id = document.getElementById("id");
 
-        if(id === null) {
+        if (id === null) {
             const data = {
                 id: "",
                 pricePerHours: price,
@@ -280,7 +299,7 @@ class Validator {
                     'Content-Type': 'application/json'
                 }
             }).catch(onerror => console.log(onerror));
-        } else{
+        } else {
             const data = {
                 id: id,
                 pricePerHours: price,

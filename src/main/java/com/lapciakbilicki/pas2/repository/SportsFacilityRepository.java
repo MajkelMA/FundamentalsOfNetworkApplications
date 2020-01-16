@@ -29,10 +29,11 @@ public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> 
     }
 
     @Override
-    public void update(SportsFacility item) {
+    public boolean update(SportsFacility item) {
         SportsFacility sportsFacility = this.get(item.getId());
         if (sportsFacility != null) {
             sportsFacility.copyAttributionsWithoutId(item);
         }
+        return false;
     }
 }

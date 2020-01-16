@@ -11,7 +11,7 @@ public interface Repository<T> {
 
     List<T> getAll();
 
-    void update(T item);
+    boolean update(T item);
 
     boolean remove(T item);
 

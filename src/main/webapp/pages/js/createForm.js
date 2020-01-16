@@ -2,7 +2,7 @@ let handleChangeSelectedValue = () => {
     const typeForm = document.getElementById("type");
     const selectedValue = typeForm.options[typeForm.selectedIndex].value;
 
-    if (selectedValue === "1"){
+    if (selectedValue === "1") {
         changeDisplay("basket-1", true);
         changeDisplay("basket-2", true);
         changeDisplay("basket-3", true);
@@ -11,7 +11,7 @@ let handleChangeSelectedValue = () => {
         changeDisplay("football-3", false);
     }
 
-    if (selectedValue === "2"){
+    if (selectedValue === "2") {
         changeDisplay("basket-1", false);
         changeDisplay("basket-2", false);
         changeDisplay("basket-3", false);
@@ -23,10 +23,9 @@ let handleChangeSelectedValue = () => {
 
 let changeDisplay = (id, visibility) => {
     const element = document.getElementById(id);
-    if(visibility){
+    if (visibility) {
         element.style.display = "block";
-    }
-    else{
+    } else {
         element.style.display = "none";
     }
 };
@@ -35,7 +34,7 @@ let readSelectedRadioButtonValue = (name) => {
     let result;
     const radios = document.getElementsByName(name);
     radios.forEach(radio => {
-        if (radio.checked){
+        if (radio.checked) {
             result = radio.value;
         }
     });
@@ -50,7 +49,7 @@ class Validator {
         typeSelected: "BasketballFacility"
     };
 
-    constructor(form){
+    constructor(form) {
         this.state.form = form;
         this.prepareElements();
     }
@@ -61,7 +60,7 @@ class Validator {
         document.getElementById("surface").addEventListener("input", e => this.floatNumberValidation(e.target, true, "surface-validation"));
         document.getElementById("typeOfGround").addEventListener("input", ev => this.notNullValidation(ev.target, true, "typeOfGround-validation"));
         document.getElementById("price").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "price-validation"));
-        document.getElementById("numberOfBasket").addEventListener("input", ev=>this.numberValidation(ev.target, true, "numberOfBasket-validation"));
+        document.getElementById("numberOfBasket").addEventListener("input", ev => this.numberValidation(ev.target, true, "numberOfBasket-validation"));
         document.getElementById("minheight").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "minheight-validation"));
         document.getElementById("widthOfGoal").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "widthOfGoal-validation"));
         document.getElementById("maxheight").addEventListener("input", ev => this.floatNumberValidation(ev.target, true, "maxheight-validation"));
@@ -74,8 +73,8 @@ class Validator {
         let validateFlag = true;
         validateFlag = this.notNullValidation(item, false, null);
 
-        for (let i = 0 ; i < value.length; i++){
-            if (value[i] <= '0' || value[i] >= '9'){
+        for (let i = 0; i < value.length; i++) {
+            if (value[i] <= '0' || value[i] >= '9') {
                 validateFlag = false;
             }
         }
@@ -96,8 +95,8 @@ class Validator {
             item.value = "0" + value;
             value = item.value
         }
-        for (let i = 0; i < value.length; i++){
-            if ((value[i] <= '0' || value[i] >= '9') && (value[i] !== '.')){
+        for (let i = 0; i < value.length; i++) {
+            if ((value[i] <= '0' || value[i] >= '9')) {
                 isValidate = false;
             }
         }
@@ -125,7 +124,7 @@ class Validator {
     basicTextCheck = (item, show, validationDivId) => {
         let isValidate = true;
         const value = item.value;
-        if (value.length < 3){
+        if (value.length < 3) {
             isValidate = false;
         }
 
@@ -137,15 +136,14 @@ class Validator {
 
     showValidation = (id, mode, message) => {
         const element = document.getElementById(id);
-        if (mode){
+        if (mode) {
             element.innerHTML = "";
-        }
-        else{
+        } else {
             element.innerHTML = message;
         }
     };
 
-     handleCreateClick = () => {
+    handleCreateClick = () => {
         const confirm = window.confirm("Are you sure?");
 
         if (confirm) {
@@ -154,109 +152,162 @@ class Validator {
             const typeForm = document.getElementById("type");
             const selectedValue = typeForm.options[typeForm.selectedIndex].value;
 
-
-            validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
+            // validateFlag = this.basicTextCheck(document.getElementById("name"), false, "");
             const name = this.getValueFromInput("name");
-
-            validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
+            // console.log(validateFlag);
+            // validateFlag = this.numberValidation(document.getElementById("maxAmountOfPeople"), false, "");
             const maxAmountOfPeople = parseInt(this.getValueFromInput("maxAmountOfPeople"));
-
-            validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
+            // console.log(validateFlag);
+            // validateFlag = this.floatNumberValidation(document.getElementById("surface"), false, "");
             const surfaceArea = parseFloat(this.getValueFromInput("surface"));
-
-            validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
+            // console.log(validateFlag);
+            // validateFlag = this.basicTextCheck(document.getElementById("typeOfGround"), false, "");
             const typeOfGround = this.getValueFromInput("typeOfGround");
-
-            validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
+            // console.log(validateFlag);
+            // validateFlag = this.floatNumberValidation(document.getElementById("price"), false, "");
             const price = parseFloat(this.getValueFromInput("price"));
-
+            // console.log(validateFlag);
 
             if (selectedValue === "1") {
-                validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
+                // validateFlag = this.numberValidation(document.getElementById("numberOfBasket"), false, "");
                 const numberOfBasket = parseInt(this.getValueFromInput("numberOfBasket"));
-
-                validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
+                // console.log(validateFlag);
+                // validateFlag = this.floatNumberValidation(document.getElementById("minheight"), false, "");
                 const minHeightOfBasket = parseFloat(this.getValueFromInput("minheight"));
-
-                validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
+                // console.log(validateFlag);
+                // validateFlag = this.floatNumberValidation(document.getElementById("maxheight"), false, "");
                 const maxHeightOfBasket = parseFloat(this.getValueFromInput("maxheight"));
-
-                if (validateFlag)
+                // console.log(validateFlag);
+                // if (validateFlag)
                     this.createBasketballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, numberOfBasket, minHeightOfBasket, maxHeightOfBasket);
-                else window.alert("wrong data!");
+                // else window.alert("wrong data!");
             }
             if (selectedValue === "2") {
                 const radioResult = readSelectedRadioButtonValue("fullsize");
                 const fullSize = radioResult === "1";
-
-                validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
+                //
+                // validateFlag = this.floatNumberValidation(document.getElementById("widthOfGoal"), false, "");
                 const widthOfGoal = parseFloat(this.getValueFromInput("widthOfGoal"));
-
-                validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
+                //
+                // validateFlag = this.floatNumberValidation(document.getElementById("heightOfGoal"), false, "");
                 const heightOfGoal = parseFloat(this.getValueFromInput("heightOfGoal"));
-
-                if (validateFlag)
+                //
+                // if (validateFlag)
                     this.createFootballFacility(name, price, true, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOfGoal, heightOfGoal);
-                else window.alert("wrong data!");
+                // else window.alert("wrong data!");
             }
         }
     };
 
-     createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket,minHeightOfBasket, maxHeightOfBasket) => {
-        const data = {
-            id: "",
-            pricePerHours: price,
-            access: access,
-            field: {
-                surfaceArea: surfaceArea,
-                maxAmountOfPeople: maxAmountOfPeople,
-                typeOfGround: typeOfGround
-            },
-            name: name,
-            type: "BasketballFacility",
-            numberOfBasket: numberOFBasket,
-            minHeightOfBasket: minHeightOfBasket,
-            maxHeightOfBasket: maxHeightOfBasket
-        };
+    createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket, minHeightOfBasket, maxHeightOfBasket) => {
+        const id = document.getElementById("id");
 
-        fetch("http://localhost:8080/pas2/api/facilities/basketball", {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).catch(onerror => console.log(onerror));
+        if(id === null){
+            const data = {
+                id: "",
+                pricePerHours: price,
+                access: access,
+                field: {
+                    surfaceArea: surfaceArea,
+                    maxAmountOfPeople: maxAmountOfPeople,
+                    typeOfGround: typeOfGround
+                },
+                name: name,
+                type: "BasketballFacility",
+                numberOfBasket: numberOFBasket,
+                minHeightOfBasket: minHeightOfBasket,
+                maxHeightOfBasket: maxHeightOfBasket
+            };
+
+            fetch("https://localhost:8181/pas2/api/facilities/basketball", {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(onerror => console.log(onerror));
+        } else {
+            const data = {
+                id: id,
+                pricePerHours: price,
+                access: access,
+                field: {
+                    surfaceArea: surfaceArea,
+                    maxAmountOfPeople: maxAmountOfPeople,
+                    typeOfGround: typeOfGround
+                },
+                name: name,
+                type: "BasketballFacility",
+                numberOfBasket: numberOFBasket,
+                minHeightOfBasket: minHeightOfBasket,
+                maxHeightOfBasket: maxHeightOfBasket
+            };
+
+            fetch("https://localhost:8181/pas2/api/facilities/basketball/update", {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(onerror => console.log(onerror));
+        }
     };
 
 
-     createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) =>{
-        const data = {
-            id: "",
-            pricePerHours: price,
-            access: access,
-            field: {
-                surfaceArea: surfaceArea,
-                maxAmountOfPeople: maxAmountOfPeople,
-                typeOfGround: typeOfGround
-            },
-            name: name,
-            type: "FootballFacility",
-            fullsize: fullSize,
-            widthOfGoal: widthOFGoal,
-            heightOfGoal: heightOfGoal
-        };
-        fetch("http://localhost:8080/pas2/api/facilities/football", {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).catch(onerror => console.log(onerror));
+    createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) => {
+        const id = document.getElementById("id");
+
+        if(id === null) {
+            const data = {
+                id: "",
+                pricePerHours: price,
+                access: access,
+                field: {
+                    surfaceArea: surfaceArea,
+                    maxAmountOfPeople: maxAmountOfPeople,
+                    typeOfGround: typeOfGround
+                },
+                name: name,
+                type: "FootballFacility",
+                fullsize: fullSize,
+                widthOfGoal: widthOFGoal,
+                heightOfGoal: heightOfGoal
+            };
+            fetch("https://localhost:8181/pas2/api/facilities/football", {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(onerror => console.log(onerror));
+        } else{
+            const data = {
+                id: id,
+                pricePerHours: price,
+                access: access,
+                field: {
+                    surfaceArea: surfaceArea,
+                    maxAmountOfPeople: maxAmountOfPeople,
+                    typeOfGround: typeOfGround
+                },
+                name: name,
+                type: "FootballFacility",
+                fullsize: fullSize,
+                widthOfGoal: widthOFGoal,
+                heightOfGoal: heightOfGoal
+            };
+            fetch("https://localhost:8181/pas2/api/facilities/football/update", {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).catch(onerror => console.log(onerror));
+        }
     };
 
-     getValueFromInput = (id) => {
+    getValueFromInput = (id) => {
         return document.getElementById(id).value
     };
-
 
 }

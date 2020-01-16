@@ -27,11 +27,12 @@ public class RoleRepository extends RepositoryAdapter<Role> implements Serializa
     }
 
     @Override
-    public void update(Role item) {
+    public boolean update(Role item) {
         Role roleToUpdate = this.get(item.getId());
         if (roleToUpdate != null) {
             roleToUpdate.setDescription(item.getDescription());
             roleToUpdate.setName(item.getName());
         }
+        return false;
     }
 }

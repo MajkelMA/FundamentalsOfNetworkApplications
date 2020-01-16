@@ -26,8 +26,8 @@ public abstract class ServiceAdapter<T extends IsIdentified> implements Service<
     }
 
     @Override
-    public void update(T item) {
-        this.repository.update(item);
+    public boolean update(T item) {
+        return this.repository.update(item);
     }
 
     @Override

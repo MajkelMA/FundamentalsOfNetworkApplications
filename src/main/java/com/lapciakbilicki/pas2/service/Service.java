@@ -13,7 +13,7 @@ public interface Service<T extends IsIdentified> {
 
     List<T> getAll();
 
-    void update(T item);
+    boolean update(T item);
 
     boolean remove(T item);
 

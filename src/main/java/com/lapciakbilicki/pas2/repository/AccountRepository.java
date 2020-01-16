@@ -27,7 +27,7 @@ public class AccountRepository extends RepositoryAdapter<Account> implements Ser
     }
 
     @Override
-    public void update(Account item) {
+    public boolean update(Account item) {
         Account accountToUpdate = this.get(item.getId());
         if (accountToUpdate != null) {
             accountToUpdate.setActive(item.isActive());
@@ -36,5 +36,6 @@ public class AccountRepository extends RepositoryAdapter<Account> implements Ser
             accountToUpdate.setPassword(item.getPassword());
             accountToUpdate.setRoles(item.getRoles());
         }
+        return false;
     }
 }

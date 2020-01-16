@@ -15,11 +15,12 @@ public class ReservationRepository extends RepositoryAdapter<Reservation> implem
     }
 
     @Override
-    public void update(Reservation item) {
+    public boolean update(Reservation item) {
         Reservation reservation = this.get(item.getId());
         reservation.setAccount(item.getAccount());
         reservation.setFacility(item.getFacility());
         reservation.setStartDate(item.getStartDate());
         reservation.setEndDate(item.getEndDate());
+        return false;
     }
 }

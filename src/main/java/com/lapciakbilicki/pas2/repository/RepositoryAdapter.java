@@ -37,7 +37,7 @@ public abstract class RepositoryAdapter<T extends IsIdentified> implements Repos
     }
 
     @Override
-    public abstract void update(T item);
+    public abstract boolean update(T item);
 
     @Override
     public boolean remove(T item) {

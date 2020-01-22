@@ -216,7 +216,10 @@ class Validator {
     };
 
     createBasketballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, numberOFBasket, minHeightOfBasket, maxHeightOfBasket) => {
-        const id = document.getElementById("id");
+        let id = null;
+        if (document.getElementById("id") !== null) {
+            id = document.getElementById("id").value;
+        }
 
         if (id === null) {
             const data = {
@@ -235,6 +238,7 @@ class Validator {
                 maxHeightOfBasket: maxHeightOfBasket
             };
 
+            console.log(data);
             fetch("https://localhost:8181/pas2/api/facilities/basketball", {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -259,6 +263,7 @@ class Validator {
                 maxHeightOfBasket: maxHeightOfBasket
             };
 
+            console.log(data);
             fetch("https://localhost:8181/pas2/api/facilities/basketball/update", {
                 method: 'PUT',
                 body: JSON.stringify(data),
@@ -271,7 +276,7 @@ class Validator {
 
 
     createFootballFacility = (name, price, access, surfaceArea, maxAmountOfPeople, typeOfGround, fullSize, widthOFGoal, heightOfGoal) => {
-        const id = document.getElementById("id");
+        const id = document.getElementById("id").value;
 
         if (id === null) {
             const data = {
@@ -289,6 +294,7 @@ class Validator {
                 widthOfGoal: widthOFGoal,
                 heightOfGoal: heightOfGoal
             };
+            console.log(data);
             fetch("https://localhost:8181/pas2/api/facilities/football", {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -312,6 +318,7 @@ class Validator {
                 widthOfGoal: widthOFGoal,
                 heightOfGoal: heightOfGoal
             };
+            console.log(data);
             fetch("https://localhost:8181/pas2/api/facilities/football/update", {
                 method: 'PUT',
                 body: JSON.stringify(data),

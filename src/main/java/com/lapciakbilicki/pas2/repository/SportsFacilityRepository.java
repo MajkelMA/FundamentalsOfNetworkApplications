@@ -33,6 +33,7 @@ public class SportsFacilityRepository extends RepositoryAdapter<SportsFacility> 
         SportsFacility sportsFacility = this.get(item.getId());
         if (sportsFacility != null) {
             sportsFacility.copyAttributionsWithoutId(item);
+            return true;
         }
         return false;
     }

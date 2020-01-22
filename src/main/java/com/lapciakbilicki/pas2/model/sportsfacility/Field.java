@@ -1,9 +1,20 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Field {
 
+    @DecimalMin("10")
     private double surfaceArea;
+
+    @Min(2)
     private int maxAmountOfPeople;
+
+    @NotNull
+    @Size(min = 1, max = 20)
     private String typeOfGround;
 
     public Field() {

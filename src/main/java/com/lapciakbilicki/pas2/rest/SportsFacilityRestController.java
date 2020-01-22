@@ -1,14 +1,13 @@
 package com.lapciakbilicki.pas2.rest;
 
-import com.github.javafaker.App;
 import com.lapciakbilicki.pas2.model.sportsfacility.BasketballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.FootballFacility;
 import com.lapciakbilicki.pas2.model.sportsfacility.SportsFacility;
-import com.lapciakbilicki.pas2.repository.Repository;
 import com.lapciakbilicki.pas2.service.SportsFacilityService;
 
 import javax.inject.Inject;
-import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class SportsFacilityRestController {
 
     @Inject
-    SportsFacilityService sportsFacilityService = new SportsFacilityService();
+    SportsFacilityService sportsFacilityService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -31,20 +30,20 @@ public class SportsFacilityRestController {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public SportsFacility get(@PathParam("id") String id) {
+    public SportsFacility get(@NotNull @PathParam("id") String id) {
         return sportsFacilityService.get(id);
     }
 
     @GET
     @Path("/filter/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SportsFacility> getFilteredByName(@PathParam("name") String name) {
+    public List<SportsFacility> getFilteredByName(@NotNull @PathParam("name") String name) {
         return this.sportsFacilityService.getByCondition(sportsFacility -> sportsFacility.getName().contains(name));
     }
 
     @DELETE
     @Path("{id}")
-    public Response deleteFacility(@PathParam("id") String id) {
+    public Response deleteFacility(@NotNull @PathParam("id") String id) {
         boolean flag = this.sportsFacilityService.delete(id);
         if (flag)
             return Response.status(200).entity("Success").build();
@@ -55,7 +54,7 @@ public class SportsFacilityRestController {
     @PUT
     @Path("/basketball/update")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateFacility(BasketballFacility basketballFacility) {
+    public Response updateFacility(@Valid BasketballFacility basketballFacility) {
         if (this.sportsFacilityService.update(basketballFacility)) {
             return Response.status(200).build();
         } else {
@@ -66,7 +65,7 @@ public class SportsFacilityRestController {
     @PUT
     @Path("/football/update")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateFacility(FootballFacility footballFacility) {
+    public Response updateFacility(@Valid FootballFacility footballFacility) {
         if (this.sportsFacilityService.update(footballFacility)) {
             return Response.status(200).build();
         } else {
@@ -77,7 +76,7 @@ public class SportsFacilityRestController {
     @POST
     @Path("/football")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addFacility(FootballFacility footballFacility) {
+    public Response addFacility(@Valid FootballFacility footballFacility) {
         footballFacility.setId(UUID.randomUUID().toString());
         boolean result = this.sportsFacilityService.add(footballFacility);
         if (result)
@@ -89,7 +88,7 @@ public class SportsFacilityRestController {
     @POST
     @Path("/basketball")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addFacility(BasketballFacility basketballFacility) {
+    public Response addFacility(@Valid BasketballFacility basketballFacility) {
         basketballFacility.setId(UUID.randomUUID().toString());
         boolean result = this.sportsFacilityService.add(basketballFacility);
         if (result)

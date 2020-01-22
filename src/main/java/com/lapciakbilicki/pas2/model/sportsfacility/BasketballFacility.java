@@ -1,9 +1,22 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
+import com.lapciakbilicki.pas2.validator.HeightsOfBasketValidation;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+@HeightsOfBasketValidation
 public class BasketballFacility extends SportsFacility {
 
+    @NotNull
+    @Min(1)
     private int numberOfBasket;
+
+    @NotNull
+    @DecimalMin("1.5")
     private double minHeightOfBasket;
+
+    @DecimalMin("1.5")
     private double maxHeightOfBasket;
 
     public BasketballFacility() {

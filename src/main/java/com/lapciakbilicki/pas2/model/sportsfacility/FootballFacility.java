@@ -1,9 +1,19 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
 public class FootballFacility extends SportsFacility {
 
+    @NotNull
     private boolean fullSize;
+
+    @NotNull
+    @DecimalMin("1.5")
     private double widthOfGoal;
+
+    @NotNull
+    @DecimalMin("1.5")
     private double heightOfGoal;
 
     public FootballFacility() {

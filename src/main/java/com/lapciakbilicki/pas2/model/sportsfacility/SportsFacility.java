@@ -1,16 +1,35 @@
 package com.lapciakbilicki.pas2.model.sportsfacility;
 
 import com.lapciakbilicki.pas2.model.IsIdentified;
+import com.lapciakbilicki.pas2.validator.Unique;
 
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Unique
 public abstract class SportsFacility implements IsIdentified {
 
     private String id;
+
+    @NotNull
+    @DecimalMin("10")
     private double pricePerHours;
+
+    @NotNull
     private boolean access;
+
+    @NotNull
+    @Valid
     private Field field;
+
+    @NotNull
+    @Size(min = 3, max = 30)
     private String name;
+
     private String type = this.getClass().getSimpleName();
 
     public SportsFacility() {

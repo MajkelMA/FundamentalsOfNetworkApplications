@@ -46,9 +46,9 @@ public class SportsFacilityRestController {
     public Response deleteFacility(@NotNull @PathParam("id") String id) {
         boolean flag = this.sportsFacilityService.delete(id);
         if (flag)
-            return Response.status(200).entity("Success").build();
+            return Response.status(200).build();
         else
-            return Response.status(404).entity("Facility does not exist").build();
+            return Response.status(404).build();
     }
 
     @PUT

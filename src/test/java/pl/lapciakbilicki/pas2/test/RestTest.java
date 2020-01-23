@@ -40,7 +40,7 @@ public class RestTest {
 
     @Test
     public void deleteSportsFacilityError() {
-        String message = given()
+        given()
                 .spec(specification)
                 .when()
                 .delete(PATH + "/1")
@@ -48,7 +48,6 @@ public class RestTest {
                 .statusCode(404)
                 .extract()
                 .asString();
-        Assert.assertEquals("Facility does not exist", message);
     }
 
     @Test
